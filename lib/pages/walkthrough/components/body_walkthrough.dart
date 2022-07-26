@@ -85,8 +85,8 @@ class _BodyWalkThroughState extends State<BodyWalkThrough> {
                               Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   //SignInScreen.routeName,
-                                  //BottomBar.routeName,
-                                  SignUpScreen.routeName,
+                                  BottomBar.routeName,
+                                  //SignUpScreen.routeName,
                                   (Route<dynamic> route) => false);
                             }
                           });

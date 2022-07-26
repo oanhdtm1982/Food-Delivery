@@ -21,7 +21,7 @@ class _BottomBarState extends State<BottomBar> {
     HomeScreen(),
     ProfileScreen(),
     CartScreen(),
-    ChatScreen()
+    ChatScreen(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeScreen();

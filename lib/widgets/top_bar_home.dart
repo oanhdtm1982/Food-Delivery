@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/home/components/search_bar_home.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class TopBarHome extends StatefulWidget {
@@ -13,7 +14,7 @@ class _TopBarScreenState extends State<TopBarHome> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(31, 50, 31, 0),
+      padding: const EdgeInsets.fromLTRB(31, 50, 0, 0),
       child: Column(
         children: [
           Row(
@@ -46,17 +47,8 @@ class _TopBarScreenState extends State<TopBarHome> {
               
             ]
           ),
-          const SizedBox(height: 20,),
-          Container(
-            height: SizeConfig.screenWidth! * 0.12,
-            decoration:  BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    color: appPrimaryColor.withOpacity(0.5),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromRGBO(20, 78, 90, 0.2), blurRadius: 15)
-                    ]),
-          )
+          SizedBox(height: SizeConfig.screenHeight!*0.03),
+          const SearchBarHome()
         ],
       ),
     );
