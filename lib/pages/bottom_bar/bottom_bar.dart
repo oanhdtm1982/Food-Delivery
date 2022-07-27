@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/pages/cart/cart_screen.dart';
-import 'package:food_delivery/pages/chat/chat.dart';
+import 'package:food_delivery/pages/chat/chat_screen.dart';
 import 'package:food_delivery/pages/home/home_screen.dart';
 import 'package:food_delivery/pages/profile/profile_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -18,13 +18,13 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
   int badge = 0;
   final List<Widget> screens = [
-    HomeScreen(),
-    ProfileScreen(),
-    CartScreen(),
-    ChatScreen(),
+    const HomeScreen(),
+    const ProfileScreen(),
+    const CartScreen(),
+    const ChatScreen(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = HomeScreen();
+  Widget currentScreen = const HomeScreen();
   PageController controller = PageController();
   @override
   void initState() {

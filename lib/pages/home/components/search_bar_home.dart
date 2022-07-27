@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/notifier/food_notifier.dart';
+import 'package:food_delivery/pages/filter/filter_screen.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +44,7 @@ class _SearchBarHomeState extends State<SearchBarHome> {
           ),
           suggestionsCallback: (String query) async {
             return foodNotifier.foodList.where((food) {
-              final nameLower = food.name.toLowerCase();
+              final nameLower = food.foodName.toLowerCase();
               final queryLower = query.toLowerCase();
               return nameLower.contains(queryLower);
             }).toList();
@@ -57,18 +58,26 @@ class _SearchBarHomeState extends State<SearchBarHome> {
         ),
       ),
       SizedBox(width: SizeConfig.screenWidth!*0.03,),
-      Container(
-                height: SizeConfig.screenWidth! * 0.12,
-                width: SizeConfig.screenWidth! * 0.12,
-                decoration:  BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    color: appBackgroundButtonColor.withOpacity(0.1),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.white, blurRadius: 15)
-                    ]),
-                child: Center(child: Image.asset('assets/images/Filter.png'))
-              ),
+      GestureDetector(
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const FilterScreen())
+            );
+        },
+        child: Container(
+                  height: SizeConfig.screenWidth! * 0.12,
+                  width: SizeConfig.screenWidth! * 0.12,
+                  decoration:  BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      color: appBackgroundButtonColor.withOpacity(0.1),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.white, blurRadius: 15)
+                      ]),
+                  child: Center(child: Image.asset('assets/images/Filter.png'))
+                ),
+      ),
       ],
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class TitleGroup extends StatelessWidget {
@@ -15,11 +16,7 @@ class TitleGroup extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(mainTitle, style: const TextStyle(
-            fontFamily: 'BentonSans Bold',
-            fontSize: 15,
-            color: appTextColor
-          ),),
+          Text(mainTitle, style: titleGroup,),
           const Expanded(
             child: Align(
               alignment: Alignment.centerRight,

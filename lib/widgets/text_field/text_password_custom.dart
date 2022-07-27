@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery/widgets/text_field_custom.dart';
+import 'package:food_delivery/widgets/text_field/text_field_custom.dart';
 
 class TextPasswordCustom extends StatelessWidget {
   const TextPasswordCustom({Key? key, required this.onChanged,

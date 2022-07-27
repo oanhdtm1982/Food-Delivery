@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
-import 'package:food_delivery/widgets/button_custom.dart';
+import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 

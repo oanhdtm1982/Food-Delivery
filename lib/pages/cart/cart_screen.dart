@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/cart/components/body_cart.dart';
+import 'package:food_delivery/widgets/size_config.dart';
 
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
+  static String routeName = '/CartScreen';
   const CartScreen({Key? key}) : super(key: key);
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    SizeConfig().init(context);
+    return const Scaffold(
+      body: BodyCart(),
+    );
   }
 }

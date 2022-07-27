@@ -16,7 +16,7 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: onPress(),
       child: Padding(
-        padding:  EdgeInsets.fromLTRB(SizeConfig.screenWidth!*0.05, 15, SizeConfig.screenWidth!*0.05, 30),
+        padding:  EdgeInsets.fromLTRB(SizeConfig.screenWidth!*0.05, 15, SizeConfig.screenWidth!*0.05, 20),
         child: Container(
             height: SizeConfig.screenWidth! * 0.45,
             width: SizeConfig.screenWidth! * 0.4,

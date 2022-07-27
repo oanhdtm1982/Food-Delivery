@@ -26,15 +26,27 @@ class RestaurantModel {
       restaurantUrlImage: 'assets/images/RestaurantImage2.png',
     ),
     RestaurantModel(
-      idRestaurant: '1',
-      restaurantName: 'Vegan Resto',
+      idRestaurant: '3',
+      restaurantName: 'Good Food',
       restaurantTime: '12 Mins',
-      restaurantUrlImage: 'assets/images/RestaurantImage1.png',
+      restaurantUrlImage: 'assets/images/RestaurantImage3.png',
     ),
     RestaurantModel(
-      idRestaurant: '2',
+      idRestaurant: '4',
+      restaurantName: 'Smart Resto',
+      restaurantTime: '8 Mins',
+      restaurantUrlImage: 'assets/images/RestaurantImage4.png',
+    ),
+    RestaurantModel(
+      idRestaurant: '5',
+      restaurantName: 'Vegan Resto',
+      restaurantTime: '8 Mins',
+      restaurantUrlImage: 'assets/images/RestaurantImage5.png',
+    ),
+    RestaurantModel(
+      idRestaurant: '6',
       restaurantName: 'Healthy Food',
       restaurantTime: '8 Mins',
-      restaurantUrlImage: 'assets/images/RestaurantImage2.png',
+      restaurantUrlImage: 'assets/images/RestaurantImage6.png',
     ),
   ];

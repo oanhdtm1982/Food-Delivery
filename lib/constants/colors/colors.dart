@@ -8,3 +8,5 @@ const Color appStarColor = Color.fromRGBO(254, 173, 29, 1);
 const Color appBackgroundButtonColor = Color.fromRGBO(249, 168, 77, 1);
 const Color appButtonColor = Color.fromRGBO(218, 99, 23, 1);
 const Color appTextViewMore = Color.fromRGBO(255, 124, 50, 1);
+const Color appFoodPrice = Color.fromRGBO(254, 173, 29, 1);
+const Color appButtonDeleteOrder = Color.fromRGBO(247, 170, 37, 1);

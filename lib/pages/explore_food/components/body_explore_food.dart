@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
+import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
-import 'package:food_delivery/widgets/cards/restaurant_card.dart';
+import 'package:food_delivery/widgets/cards/food_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/screens/top_bar_home.dart';
 
-class BodyExploreRestaurant extends StatefulWidget {
-  const BodyExploreRestaurant({Key? key}) : super(key: key);
+class BodyExploreFood extends StatefulWidget {
+  const BodyExploreFood({Key? key}) : super(key: key);
 
   @override
-  State<BodyExploreRestaurant> createState() => _BodyExploreRestaurantState();
+  State<BodyExploreFood> createState() => _BodyExploreFoodState();
 }
 
-class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
+class _BodyExploreFoodState extends State<BodyExploreFood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
           const Padding(
             padding: EdgeInsets.fromLTRB(31, 20, 0, 10),
             child: Text(
-              'Popular Restaurant',
+              'Popular Menu',
               style: titleGroup,
             ),
           ),
@@ -38,17 +38,13 @@ class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
                 removeBottom: true,
                 context: context,
                 child: Expanded(
-                  child: GridView.builder(
-                    primary: false,
+                  child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: restaurantDemo.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        RestaurantCard(
-                            restaurantModel: restaurantDemo[index],
-                            onPress: () {}),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
+                    itemCount: foodDemo.length,
+                    itemBuilder: (context, index) => FoodCard(
+                        restaurantModel: restaurantDemo[index],
+                        foodModel: foodDemo[index],
+                        onPress: () {}),
                   ),
                 ),
               ),

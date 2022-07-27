@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/upload_photo/upload_photo_screen.dart';
-import 'package:food_delivery/widgets/button_card.dart';
-import 'package:food_delivery/widgets/app_bar_custom.dart';
+import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
-import '../../../widgets/button_custom.dart';
-import '../payment_method_screen.dart';
+import '../../../widgets/buttons/button_next_custom.dart';
 
 class BodyPaymentMethod extends StatelessWidget {
   static String routeName = '/BodyPaymentMethod';
