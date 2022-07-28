@@ -15,7 +15,7 @@ class BannerHome extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
           child: Stack(
             children: <Widget>[
-              Image.asset(item, fit: BoxFit.cover, width: 1000),
+              Image.asset(item, fit: BoxFit.cover, width: 1000, height: 700,),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,

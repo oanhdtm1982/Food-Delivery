@@ -30,26 +30,44 @@ class OrderDetailCard extends StatelessWidget {
             SizeConfig.screenWidth! * 0.05, 20),
         child: Slidable(
           key: const ValueKey(0),
-          endActionPane: ActionPane(motion: const BehindMotion(), children: [
-            SlidableAction(
-              onPressed: deleteOrder(),
-              backgroundColor: appButtonDeleteOrder,
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              label: 'Delete',
-              borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(15),
-                  bottomRight: Radius.circular(15)),
-            ),
-          ]),
+          endActionPane: ActionPane(
+              motion: const StretchMotion(),
+              dismissible: DismissiblePane(
+                onDismissed: () {},
+                closeOnCancel: true,
+                confirmDismiss: () async {
+                  return await _showConfirmationDialog(context, "delete") ??
+                      false;
+                },
+              ),
+              children: [
+                SlidableAction(
+                  flex: 1,
+                  onPressed: (context) async {
+                    if (await _showConfirmationDialog(context, "delete") ==
+                        true) {
+                      // ignore: unused_element
+                      deleteOrder() {}
+                    }
+                  },
+                  backgroundColor: appButtonDeleteOrder,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete,
+                  label: 'Delete',
+                  borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15)),
+                ),
+              ]),
           child: Container(
               height: 100,
               width: SizeConfig.screenWidth! * 1,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: appBackgroundButtonColor.withOpacity(0.1),
-                  boxShadow: const [
-                    BoxShadow(color: Colors.white, blurRadius: 15)
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.white.withOpacity(0.2), blurRadius: 15)
                   ]),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
@@ -118,6 +136,29 @@ class OrderDetailCard extends StatelessWidget {
               )),
         ),
       ),
+    );
+  }
+
+  _showConfirmationDialog(BuildContext context, String action) {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Do you want to $action this food?'),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                child: const Text('Yes')),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+                child: const Text('No'))
+          ],
+        );
+      },
     );
   }
 }

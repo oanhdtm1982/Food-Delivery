@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/profile/components/body_profile.dart';
+import 'package:food_delivery/widgets/size_config.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
+  static String routeName = '/ProfileScreen';
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    SizeConfig().init(context);
+    return const Scaffold(
+      body: BodyProfile(),
+    );
   }
 }
