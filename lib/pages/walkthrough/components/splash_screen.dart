@@ -33,10 +33,7 @@ class SplashScreen extends StatelessWidget {
                   fontSize: 40,
                   fontWeight: FontWeight.bold,  
                 ),
-                gradient: LinearGradient(colors: [
-                  appPrimaryColor,
-                  appSecondaryColor,
-                ]),
+                gradient: appLinearColor,
               ),
           const Text('Deliver Favorite Food', 
           style: TextStyle(

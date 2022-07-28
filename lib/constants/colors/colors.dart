@@ -10,3 +10,8 @@ const Color appButtonColor = Color.fromRGBO(218, 99, 23, 1);
 const Color appTextViewMore = Color.fromRGBO(255, 124, 50, 1);
 const Color appFoodPrice = Color.fromRGBO(254, 173, 29, 1);
 const Color appButtonDeleteOrder = Color.fromRGBO(247, 170, 37, 1);
+const LinearGradient appLinearColor = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    stops: [0.0, 1.0],
+    colors: [appPrimaryColor, appSecondaryColor]);

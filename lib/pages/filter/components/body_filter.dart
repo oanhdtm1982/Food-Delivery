@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
-import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/buttons/button_filter_text.dart';
-import 'package:food_delivery/widgets/cards/restaurant_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/screens/top_bar_home.dart';
 

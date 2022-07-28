@@ -18,11 +18,7 @@ class _ButtonCustomState extends State<ButtonCustom> {
       width: getProportionateScreenWidth(180),
       height: getProportionateScreenHeight(60),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.0, 1.0],
-            colors: [appPrimaryColor, appSecondaryColor]),
+        gradient: appLinearColor,
         borderRadius: BorderRadius.circular(25),
       ),
       child: ElevatedButton(

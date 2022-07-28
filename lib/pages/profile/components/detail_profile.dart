@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/models/user_model.dart';
+import 'package:food_delivery/pages/profile/components/body_detail_profile.dart';
 import 'package:food_delivery/widgets/size_config.dart';
-
-import '../../../widgets/buttons/button_filter_text.dart';
 
 class DetailProfile extends StatelessWidget {
   const DetailProfile({Key? key}) : super(key: key);
@@ -20,17 +20,10 @@ class DetailProfile extends StatelessWidget {
             color: Colors.white,
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                ButtonText(
-                  textFilter: 'Member Gold',
-                ),
-              ],
-            ),
-          ),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: BodyDetailProfile(
+                userModel: demoUsers[0],
+              )),
         ),
       ),
     );

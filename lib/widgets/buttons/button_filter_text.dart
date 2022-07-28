@@ -8,7 +8,7 @@ class ButtonText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 20, 20),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15)),

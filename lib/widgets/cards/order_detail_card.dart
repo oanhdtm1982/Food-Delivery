@@ -4,23 +4,22 @@ import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
-import 'package:food_delivery/widgets/buttons/add_button.dart';
-import 'package:food_delivery/widgets/buttons/sub_button.dart';
+import 'package:food_delivery/widgets/buttons/add_sub_button.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class OrderDetailCard extends StatelessWidget {
-  const OrderDetailCard({
-    Key? key,
-    required this.foodModel,
-    required this.onPress,
-    required this.restaurantModel,
-    required this.deleteOrder,
-  }) : super(key: key);
+  const OrderDetailCard(
+      {Key? key,
+      required this.foodModel,
+      required this.restaurantModel,
+      required this.onPress, required this.deleteOrder})
+      : super(key: key);
   final FoodModel foodModel;
+  final RestaurantModel restaurantModel;
   final Function onPress;
   final Function deleteOrder;
-  final RestaurantModel restaurantModel;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -109,27 +108,9 @@ class OrderDetailCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Row(
-                          children: const [
-                            SubButton(),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Text(
-                              '1',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color.fromRGBO(24, 24, 24, 0.7)),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            AddButton(),
-                          ],
-                        ),
-                      ),
+                      const Align(
+                          alignment: Alignment.centerRight,
+                          child: AddSubButton()),
                     ],
                   ),
                 ),
@@ -138,27 +119,27 @@ class OrderDetailCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  _showConfirmationDialog(BuildContext context, String action) {
-    return showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Do you want to $action this food?'),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.pop(context, true);
-                },
-                child: const Text('Yes')),
-            TextButton(
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
-                child: const Text('No'))
-          ],
-        );
-      },
-    );
-  }
+_showConfirmationDialog(BuildContext context, String action) {
+  return showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Do you want to $action this food?'),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: const Text('Yes')),
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              child: const Text('No'))
+        ],
+      );
+    },
+  );
 }

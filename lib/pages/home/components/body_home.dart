@@ -4,6 +4,7 @@ import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/pages/explore_food/explore_food_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
 import 'package:food_delivery/pages/home/components/banner_home.dart';
+import 'package:food_delivery/pages/restaurant_detail/restaurant_detail_screen.dart';
 import 'package:food_delivery/widgets/cards/food_card.dart';
 import 'package:food_delivery/widgets/screens/top_bar_home.dart';
 import 'package:food_delivery/widgets/cards/restaurant_card.dart';
@@ -52,19 +53,25 @@ class _BodyHomeState extends State<BodyHome> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 2,
-                itemBuilder: (context, index) => RestaurantCard(
-                    restaurantModel: restaurantDemo[index], onPress: () {}),
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        RestaurantDetailScreen.routeName, (route) => false);
+                  },
+                  child: RestaurantCard(
+                      restaurantModel: restaurantDemo[index], onPress: () {}),
+                ),
               ),
             ),
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ExploreFoodScreen()));
-            },
-            child: const TitleGroup(mainTitle: 'Popular Menu')),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ExploreFoodScreen()));
+              },
+              child: const TitleGroup(mainTitle: 'Popular Menu')),
           SizedBox(
             height: SizeConfig.screenWidth! * 0.6,
             width: SizeConfig.screenWidth! * 1,
