@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
-import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
-import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/pages/forgot_password/components/forgot_password_option.dart';
+import 'package:food_delivery/pages/reset_password/reset_password_screen.dart';
+import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
-  static String routeName = '/BodyUploadPhoto';
-  const BodyUploadPhoto({Key? key}) : super(key: key);
+class BodyForgotPassword extends StatelessWidget {
+  static String routeName = '/BodyForgotPassword';
+  const BodyForgotPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +25,31 @@ class BodyUploadPhoto extends StatelessWidget {
           child: Column(
             children: [
               AppBarCustom(
-                title: 'Upload Your Photo Profile',
+                title: 'Forgot password?',
                 description:
-                    'This data will be displayed in your account profile for security',
+                    'Select which contact details should we use to reset your password',
                 onPress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PaymentMethodScreen()));
+                      builder: (context) => const SignInScreen()));
                 },
               ),
               SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
+                height: SizeConfig.screenHeight! * 0.03,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/GalleryIcon.png',
-                onPress: () {},
+               ForgotPasswordOption(
+                forgotPasswordUrlImage: 'assets/images/sms.png',
+                textForgotPassword: 'Via sms',
+                descForgotPassword: '.... ... ...',
+                onPress: (){},
               ),
-              SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
+              const SizedBox(
+                height: 20,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
+               ForgotPasswordOption(
+                forgotPasswordUrlImage: 'assets/images/mail.png',
+                textForgotPassword: 'Via email',
+                descForgotPassword: '.... @gmail.com',
+                onPress: (){},
               ),
               Expanded(
                 child: Align(
@@ -54,9 +58,9 @@ class BodyUploadPhoto extends StatelessWidget {
                     title: 'Next',
                     onPress: () {
                       Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
+                          context,
+                          ResetPasswordScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),

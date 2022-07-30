@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/user_model.dart';
+import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
 import 'package:food_delivery/widgets/cards/discount_card.dart';
 import 'package:food_delivery/widgets/cards/favorite_card.dart';
 
@@ -45,7 +46,12 @@ class BodyDetailProfile extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  SignInScreen.routeName,
+                                  (Route<dynamic> route) => false);
+                    },
                     icon: const Icon(
                       Icons.drive_file_rename_outline_sharp,
                       color: appSecondaryColor,

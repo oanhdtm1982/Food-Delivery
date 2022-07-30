@@ -3,7 +3,6 @@ import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
-import 'package:food_delivery/routes/route.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class FoodCard extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
-import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
+import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
+import 'package:food_delivery/pages/verification_code/verification_code_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -27,7 +28,10 @@ class BodySignUpProcess extends StatelessWidget {
                 title: 'Fill in your bio to get started',
                 description:
                     'This data will be displayed in your account profile for security',
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SignUpScreen()));
+                },
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.07,
@@ -64,7 +68,7 @@ class BodySignUpProcess extends StatelessWidget {
                     onPress: () {
                       Navigator.pushNamedAndRemoveUntil(
                           context,
-                          PaymentMethodScreen.routeName,
+                          VertificationCodeScreen.routeName,
                           (Route<dynamic> route) => false);
                     },
                   ),

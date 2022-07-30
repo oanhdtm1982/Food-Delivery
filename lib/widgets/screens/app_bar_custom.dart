@@ -9,7 +9,7 @@ class AppBarCustom extends StatelessWidget {
       required this.title,
       required this.description})
       : super(key: key);
-  final Function onPress;
+  final Function() onPress;
   final String title;
   final String description;
 
@@ -20,13 +20,13 @@ class AppBarCustom extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: onPress(),
+          onTap: onPress,
           child: Container(
             height: 45,
             width: 45,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: appBackgroundButtonColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(15),
+              color: appBackgroundButtonColor.withOpacity(0.1),
             ),
             child: const Center(
               child: Icon(
@@ -38,7 +38,7 @@ class AppBarCustom extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: SizeConfig.screenHeight!*0.04,
+          height: SizeConfig.screenHeight! * 0.04,
         ),
         Text(title,
             style: const TextStyle(
@@ -46,7 +46,7 @@ class AppBarCustom extends StatelessWidget {
                 fontSize: 25,
                 color: appTextColor)),
         SizedBox(
-          height: SizeConfig.screenHeight!*0.02,
+          height: SizeConfig.screenHeight! * 0.02,
         ),
         Text(description,
             style: const TextStyle(

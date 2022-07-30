@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
-import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
-
+import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
 import 'package:food_delivery/pages/walkthrough/components/content_walkthrough.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
-
 
 class BodyWalkThrough extends StatefulWidget {
   static String routeName = '/body_walkthrough';
@@ -20,11 +17,12 @@ class _BodyWalkThroughState extends State<BodyWalkThrough> {
   int indexPage = 0;
   // ignore: prefer_final_fields, unused_field
   PageController _pageController = PageController(initialPage: 0);
-  List <Map<String, String>> walkthroughData = [
+  List<Map<String, String>> walkthroughData = [
     {
       'image': 'assets/images/Illustartion1.png',
       'title': 'Find your Comfort Food here',
-      'text': 'Here You Can find a chef or dish for every taste and color. Enjoy!'
+      'text':
+          'Here You Can find a chef or dish for every taste and color. Enjoy!'
     },
     {
       'image': 'assets/images/Illustration2.png',
@@ -85,8 +83,8 @@ class _BodyWalkThroughState extends State<BodyWalkThrough> {
                               Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   //SignInScreen.routeName,
-                                  BottomBar.routeName,
-                                  //SignUpScreen.routeName,
+                                  //BottomBar.routeName,
+                                  SignUpScreen.routeName,
                                   (Route<dynamic> route) => false);
                             }
                           });
@@ -100,6 +98,7 @@ class _BodyWalkThroughState extends State<BodyWalkThrough> {
       ),
     );
   }
+
   AnimatedContainer buildDot({required int index}) {
     return AnimatedContainer(
       duration: const Duration(microseconds: 300),

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
-import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
-import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
+import 'package:food_delivery/pages/upload_photo/upload_photo_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+import 'package:food_delivery/widgets/text_field/text_password_custom.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
-  static String routeName = '/BodyUploadPhoto';
-  const BodyUploadPhoto({Key? key}) : super(key: key);
+class BodyResetPassword extends StatelessWidget {
+  static String routeName = '/BodyResetPassword';
+  const BodyResetPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,28 +26,30 @@ class BodyUploadPhoto extends StatelessWidget {
           child: Column(
             children: [
               AppBarCustom(
-                title: 'Upload Your Photo Profile',
+                title: 'Reset your password here',
                 description:
-                    'This data will be displayed in your account profile for security',
+                    'Select which contact details should we use to reset your password',
                 onPress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PaymentMethodScreen()));
+                      builder: (context) => const SignInScreen()));
                 },
               ),
               SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
+                height: SizeConfig.screenHeight! * 0.03,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/GalleryIcon.png',
-                onPress: () {},
+              TextPasswordCustom(
+                  hintTextPassword: 'New Password',
+                  colorBackground: appSecondaryColor,
+                  colorIcon: appPrimaryColor,
+                  onChanged: (value) {}),
+              const SizedBox(
+                height: 20,
               ),
-              SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
-              ),
-              ButtonCard(
-                urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
-              ),
+              TextPasswordCustom(
+                  hintTextPassword: 'Confirm Password',
+                  colorBackground: appSecondaryColor,
+                  colorIcon: appPrimaryColor,
+                  onChanged: (value) {}),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
@@ -54,9 +57,9 @@ class BodyUploadPhoto extends StatelessWidget {
                     title: 'Next',
                     onPress: () {
                       Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
+                          context,
+                          UploadPhotoScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),

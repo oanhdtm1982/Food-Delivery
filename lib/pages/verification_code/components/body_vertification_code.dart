@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
-import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
-import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/pages/sign_up/sign_up_process/sign_up_process_screen.dart';
+import 'package:food_delivery/pages/verification_code/components/otp_text_filed.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
-
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
-  static String routeName = '/BodyUploadPhoto';
-  const BodyUploadPhoto({Key? key}) : super(key: key);
+class BodyVertificationCode extends StatelessWidget {
+  static String routeName = '/BodyVertificationCode';
+  const BodyVertificationCode({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +24,20 @@ class BodyUploadPhoto extends StatelessWidget {
           child: Column(
             children: [
               AppBarCustom(
-                title: 'Upload Your Photo Profile',
+                title: 'Enter 4-digit Verification code',
                 description:
-                    'This data will be displayed in your account profile for security',
+                    'Code send to your mobile phone. This code will expired in 01:30',
                 onPress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PaymentMethodScreen()));
+                            builder: (context) => const SignUpProcessScreen()));
                 },
               ),
               SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
+                height: SizeConfig.screenHeight! * 0.04,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/GalleryIcon.png',
-                onPress: () {},
-              ),
+              const OtpTextFiledForm(),
               SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
-              ),
-              ButtonCard(
-                urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
+                height: SizeConfig.screenHeight! * 0.03,
               ),
               Expanded(
                 child: Align(
@@ -54,9 +46,9 @@ class BodyUploadPhoto extends StatelessWidget {
                     title: 'Next',
                     onPress: () {
                       Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
+                          context,
+                          PaymentMethodScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),

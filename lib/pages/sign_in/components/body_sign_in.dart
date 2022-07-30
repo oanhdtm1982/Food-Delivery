@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
+import 'package:food_delivery/pages/forgot_password/forgot_password_screen.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -30,16 +32,19 @@ class BodySignIn extends StatelessWidget {
             height: SizeConfig.screenHeight! * 0.02,
           ),
           TextPasswordCustom(
-            colorBackground: appSecondaryColor,
-            colorIcon: appPrimaryColor,
-            onChanged: (value) {}),
+            hintTextPassword: 'Password',
+              colorBackground: appSecondaryColor,
+              colorIcon: appPrimaryColor,
+              onChanged: (value) {}),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.03,
           ),
           const Text(
             'Or Continue With',
             style: TextStyle(
-                fontFamily: 'BentonSans Bold', fontSize: 12, color: appTextColor),
+                fontFamily: 'BentonSans Bold',
+                fontSize: 12,
+                color: appTextColor),
           ),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.02,
@@ -48,7 +53,8 @@ class BodySignIn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 width: SizeConfig.screenWidth! * 0.4,
                 decoration: BoxDecoration(
                     color: appPrimaryColor.withOpacity(0.2),
@@ -65,16 +71,18 @@ class BodySignIn extends StatelessWidget {
                     ),
                     const Text(
                       'Facebook',
-                      style: TextStyle(fontFamily: 'BentonSans Medium', fontSize: 14),
+                      style: TextStyle(
+                          fontFamily: 'BentonSans Medium', fontSize: 14),
                     )
                   ],
                 ),
               ),
               SizedBox(
-                      width: SizeConfig.screenWidth! * 0.04,
-                    ),
+                width: SizeConfig.screenWidth! * 0.04,
+              ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 width: SizeConfig.screenWidth! * 0.4,
                 decoration: BoxDecoration(
                     color: appPrimaryColor.withOpacity(0.2),
@@ -91,33 +99,43 @@ class BodySignIn extends StatelessWidget {
                     ),
                     const Text(
                       'Google',
-                      style: TextStyle(fontFamily: 'BentonSans Medium', fontSize: 14),
+                      style: TextStyle(
+                          fontFamily: 'BentonSans Medium', fontSize: 14),
                     )
                   ],
                 ),
               ),
             ],
           ),
-           SizedBox(
+          SizedBox(
             height: SizeConfig.screenHeight! * 0.03,
           ),
-         const GradientText(
-          'Forgot Your Password?',
-                style: TextStyle(
-                  fontFamily: 'BentonSans Medium',
-                  fontSize: 12,
-                ),
-                gradient: LinearGradient(colors: [
-                  appPrimaryColor,
-                  appSecondaryColor,
-                ]),
-         ),
+          GestureDetector(
+            onTap: (() {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ForgotPasswordScreen()));
+            }),
+            child: const GradientText(
+              'Forgot Your Password?',
+              style: TextStyle(
+                fontFamily: 'BentonSans Medium',
+                fontSize: 12,
+              ),
+              gradient: LinearGradient(colors: [
+                appPrimaryColor,
+                appSecondaryColor,
+              ]),
+            ),
+          ),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.03,
           ),
           ButtonCustom(
             title: 'Login',
-            onPress: (){},
+            onPress: () {
+              Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
+                  (Route<dynamic> route) => false);
+            },
           )
         ]),
       ),

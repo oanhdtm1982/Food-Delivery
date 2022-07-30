@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
-import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
-import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/pages/set_location/set_location_screen.dart';
+import 'package:food_delivery/pages/upload_preview/components/image_photo_profile.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
-  static String routeName = '/BodyUploadPhoto';
-  const BodyUploadPhoto({Key? key}) : super(key: key);
+class BodyUploadPreview extends StatelessWidget {
+  static String routeName = '/BodyUploadPreview';
+  const BodyUploadPreview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +27,13 @@ class BodyUploadPhoto extends StatelessWidget {
                 title: 'Upload Your Photo Profile',
                 description:
                     'This data will be displayed in your account profile for security',
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PaymentMethodScreen()));
-                },
-              ),
-              SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
-              ),
-              ButtonCard(
-                urlImage: 'assets/images/GalleryIcon.png',
                 onPress: () {},
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.05,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
+              const Center(
+                child: ImagePhotoProfile(),
               ),
               Expanded(
                 child: Align(
@@ -54,9 +42,9 @@ class BodyUploadPhoto extends StatelessWidget {
                     title: 'Next',
                     onPress: () {
                       Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
+                          context,
+                          SetLocationScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),

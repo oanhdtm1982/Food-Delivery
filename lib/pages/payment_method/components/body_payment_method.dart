@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/sign_up/sign_up_process/components/body_sign_up_process.dart';
 import 'package:food_delivery/pages/upload_photo/upload_photo_screen.dart';
 import 'package:food_delivery/widgets/buttons/button_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
@@ -27,7 +28,10 @@ class BodyPaymentMethod extends StatelessWidget {
                 title: 'Payment Method',
                 description:
                     'This data will be displayed in your account profile for security',
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BodySignUpProcess()));
+                },
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.03,
@@ -56,10 +60,10 @@ class BodyPaymentMethod extends StatelessWidget {
                   child: ButtonCustom(
                     title: 'Next',
                     onPress: () {
-                     Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  UploadPhotoScreen.routeName,
-                                  (Route<dynamic> route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          UploadPhotoScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                   ),
                 ),
@@ -67,7 +71,6 @@ class BodyPaymentMethod extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.07,
               ),
-              
             ],
           ),
         ),

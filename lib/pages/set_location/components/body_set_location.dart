@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
-import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
-import 'package:food_delivery/widgets/buttons/button_card.dart';
+import 'package:food_delivery/pages/set_location/components/set_location_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
-  static String routeName = '/BodyUploadPhoto';
-  const BodyUploadPhoto({Key? key}) : super(key: key);
+class BodySetLocation extends StatelessWidget {
+  static String routeName = '/BodySetLocation';
+  const BodySetLocation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,38 +23,25 @@ class BodyUploadPhoto extends StatelessWidget {
           child: Column(
             children: [
               AppBarCustom(
-                title: 'Upload Your Photo Profile',
+                title: 'Set Your Location ',
                 description:
                     'This data will be displayed in your account profile for security',
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PaymentMethodScreen()));
-                },
-              ),
-              SizedBox(
-                height: SizeConfig.screenHeight! * 0.05,
-              ),
-              ButtonCard(
-                urlImage: 'assets/images/GalleryIcon.png',
                 onPress: () {},
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.05,
               ),
-              ButtonCard(
-                urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
-              ),
+              SetLocationCard(onPress: () {},),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ButtonCustom(
                     title: 'Next',
                     onPress: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
+                      // Navigator.pushNamedAndRemoveUntil(
+                      //                 context,
+                      //                 UploadPhotoScreen.routeName,
+                      //                 (Route<dynamic> route) => false);
                     },
                   ),
                 ),
