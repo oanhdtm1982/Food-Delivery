@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/set_location/components/set_location_card.dart';
+import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
@@ -26,12 +27,17 @@ class BodySetLocation extends StatelessWidget {
                 title: 'Set Your Location ',
                 description:
                     'This data will be displayed in your account profile for security',
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const UploadPreviewScreen()));
+                },
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.05,
               ),
-              SetLocationCard(onPress: () {},),
+              SetLocationCard(
+                onPress: () {},
+              ),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,

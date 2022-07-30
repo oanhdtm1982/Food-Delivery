@@ -8,8 +8,8 @@ class ImagePhotoProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenWidth! * 0.7,
-      width: SizeConfig.screenWidth! * 0.7,
+      height: getProportionateScreenHeight(260),
+      width: getProportionateScreenWidth(251),
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(15)),
           color: appBackgroundButtonColor.withOpacity(0.1),
@@ -20,9 +20,7 @@ class ImagePhotoProfile extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         GestureDetector(
-          onTap: (){
-            
-          },
+          onTap: () {},
           child: const Icon(
             Icons.close,
             color: Colors.white,

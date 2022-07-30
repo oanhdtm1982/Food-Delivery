@@ -14,15 +14,17 @@ class BodySignUpProcess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.screenWidth! * 0.05,
               SizeConfig.screenHeight! * 0.05,
               SizeConfig.screenWidth! * 0.05,
               0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppBarCustom(
                 title: 'Fill in your bio to get started',
@@ -60,22 +62,20 @@ class BodySignUpProcess extends StatelessWidget {
                   hintText: 'Mobile phone',
                   iconData: Icons.phone_android_sharp,
                   onChanged: (value) {}),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ButtonCustom(
-                    title: 'Next',
-                    onPress: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          VertificationCodeScreen.routeName,
-                          (Route<dynamic> route) => false);
-                    },
-                  ),
-                ),
-              ),
               SizedBox(
-                height: SizeConfig.screenHeight! * 0.07,
+                height: getProportionateScreenHeight(220),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: ButtonCustom(
+                  title: 'Next',
+                  onPress: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        VertificationCodeScreen.routeName,
+                        (Route<dynamic> route) => false);
+                  },
+                ),
               ),
             ],
           ),

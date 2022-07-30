@@ -30,14 +30,14 @@ class BodyDetailProfile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  userModel.userName,
+                  '${userModel.firstName!} ${userModel.lastName!}',
                   style: textNameProfile,
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
-                  userModel.userEmail,
+                  userModel.userEmail!,
                   style: descRestaurantName,
                 )
               ],
@@ -48,9 +48,9 @@ class BodyDetailProfile extends StatelessWidget {
                 child: IconButton(
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  SignInScreen.routeName,
-                                  (Route<dynamic> route) => false);
+                          context,
+                          SignInScreen.routeName,
+                          (Route<dynamic> route) => false);
                     },
                     icon: const Icon(
                       Icons.drive_file_rename_outline_sharp,

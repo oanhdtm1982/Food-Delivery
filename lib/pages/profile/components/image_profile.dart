@@ -11,7 +11,7 @@ class ImageProfile extends StatelessWidget {
     return SizedBox(
       height: SizeConfig.screenHeight! * 0.4,
       width: SizeConfig.screenWidth! * 1,
-      child: Image.asset(userModel.userUrlImage, fit: BoxFit.cover),
+      child: Image.asset(userModel.userUrlImage!, fit: BoxFit.cover),
     );
   }
 }

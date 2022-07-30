@@ -6,24 +6,22 @@ class AddSubButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: const [
-          SubButton(),
-          SizedBox(
-            width: 16,
-          ),
-          Text(
-            '1',
-            style:
-                TextStyle(fontSize: 16, color: Color.fromRGBO(24, 24, 24, 0.7)),
-          ),
-          SizedBox(
-            width: 16,
-          ),
-          AddButton(),
-        ],
-      ),
+    return Row(
+      children: const [
+        SubButton(),
+        SizedBox(
+          width: 16,
+        ),
+        Text(
+          '1',
+          style:
+              TextStyle(fontSize: 16, color: Color.fromARGB(177, 26, 22, 22)),
+        ),
+        SizedBox(
+          width: 16,
+        ),
+        AddButton(),
+      ],
     );
   }
 }

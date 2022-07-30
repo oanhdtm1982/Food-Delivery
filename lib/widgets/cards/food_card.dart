@@ -37,7 +37,7 @@ class FoodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   Image.asset(foodModel.foodUrlImage),
+                  Image.asset(foodModel.foodUrlImage),
                   const SizedBox(
                     width: 15,
                   ),

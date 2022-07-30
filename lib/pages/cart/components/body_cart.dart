@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
+import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/widgets/cards/order_detail_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -19,14 +20,17 @@ class BodyCart extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(
-            SizeConfig.screenWidth! * 0.05,
-            SizeConfig.screenHeight! * 0.05,
-            SizeConfig.screenWidth! * 0.05,
-            0),
+                  SizeConfig.screenWidth! * 0.05,
+                  SizeConfig.screenHeight! * 0.05,
+                  SizeConfig.screenWidth! * 0.05,
+                  0),
               child: AppBarCustom(
                 title: 'Order details',
                 description: '',
-                onPress: () {},
+                onPress: () {
+                  Navigator.pushNamedAndRemoveUntil(context,
+                      BottomBar.routeName, (Route<dynamic> route) => false);
+                },
               ),
             ),
             Expanded(
@@ -34,7 +38,7 @@ class BodyCart extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: foodDemo.length,
                 itemBuilder: (context, index) => OrderDetailCard(
-                  deleteOrder: (){},
+                    deleteOrder: () {},
                     restaurantModel: restaurantDemo[index],
                     foodModel: foodDemo[index],
                     onPress: () {}),

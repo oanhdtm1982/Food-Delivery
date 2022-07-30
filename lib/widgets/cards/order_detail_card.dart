@@ -13,17 +13,18 @@ class OrderDetailCard extends StatelessWidget {
       {Key? key,
       required this.foodModel,
       required this.restaurantModel,
-      required this.onPress, required this.deleteOrder})
+      required this.onPress,
+      required this.deleteOrder})
       : super(key: key);
   final FoodModel foodModel;
   final RestaurantModel restaurantModel;
-  final Function onPress;
-  final Function deleteOrder;
+  final Function() onPress;
+  final Function() deleteOrder;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPress(),
+      onTap: onPress,
       child: Padding(
         padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
             SizeConfig.screenWidth! * 0.05, 20),
@@ -60,7 +61,6 @@ class OrderDetailCard extends StatelessWidget {
               ]),
           child: Container(
               height: 100,
-              width: SizeConfig.screenWidth! * 1,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: appBackgroundButtonColor.withOpacity(0.1),
@@ -70,8 +70,7 @@ class OrderDetailCard extends StatelessWidget {
                   ]),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                child: Expanded(
                   child: Row(
                     children: [
                       Image.asset(foodModel.foodUrlImage),
