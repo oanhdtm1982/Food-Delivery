@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
-import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
+import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
 import 'package:food_delivery/pages/walkthrough/components/content_walkthrough.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -82,9 +82,7 @@ class _BodyWalkThroughState extends State<BodyWalkThrough> {
                               indexPage = 1;
                               Navigator.pushNamedAndRemoveUntil(
                                   context,
-                                  //SignInScreen.routeName,
-                                  //BottomBar.routeName,
-                                  SignUpScreen.routeName,
+                                  SignInScreen.routeName,
                                   (Route<dynamic> route) => false);
                             }
                           });

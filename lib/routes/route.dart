@@ -3,6 +3,7 @@ import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
 import 'package:food_delivery/pages/forgot_password/forgot_password_screen.dart';
 import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
+import 'package:food_delivery/pages/rate/rate_screen.dart';
 import 'package:food_delivery/pages/reset_password/reset_password_screen.dart';
 import 'package:food_delivery/pages/restaurant_detail/restaurant_detail_screen.dart';
 import 'package:food_delivery/pages/set_location/set_location_screen.dart';
@@ -33,4 +34,5 @@ final routes = <String, WidgetBuilder>{
   ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
   UploadPreviewScreen.routeName: (context) => const UploadPreviewScreen(),
   SetLocationScreen.routeName: (context) => const SetLocationScreen(),
+  RateScreen.routeName: (context) => const RateScreen(),
 };

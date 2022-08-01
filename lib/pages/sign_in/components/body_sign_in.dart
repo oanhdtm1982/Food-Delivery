@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/forgot_password/forgot_password_screen.dart';
+import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
 import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -27,12 +28,15 @@ class BodySignIn extends StatelessWidget {
             onChanged: (value) {},
             hintText: 'Email',
             iconData: Icons.mail,
+            errorInvalidTextField: 'Please enter valid email',
+            errorNullTextField: 'Please enter your email',
+            regExpTextField: RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
           ),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.02,
           ),
           TextPasswordCustom(
-            hintTextPassword: 'Password',
+              hintTextPassword: 'Password',
               colorBackground: appSecondaryColor,
               colorIcon: appPrimaryColor,
               onChanged: (value) {}),
@@ -108,27 +112,7 @@ class BodySignIn extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: SizeConfig.screenHeight! * 0.03,
-          ),
-          GestureDetector(
-            onTap: (() {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ForgotPasswordScreen()));
-            }),
-            child: const GradientText(
-              'Forgot Your Password?',
-              style: TextStyle(
-                fontFamily: 'BentonSans Medium',
-                fontSize: 12,
-              ),
-              gradient: LinearGradient(colors: [
-                appPrimaryColor,
-                appSecondaryColor,
-              ]),
-            ),
-          ),
-          SizedBox(
-            height: SizeConfig.screenHeight! * 0.03,
+            height: SizeConfig.screenHeight! * 0.04,
           ),
           ButtonCustom(
             title: 'Login',
@@ -136,7 +120,56 @@ class BodySignIn extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
                   (Route<dynamic> route) => false);
             },
-          )
+          ),
+          SizedBox(
+            height: SizeConfig.screenHeight! * 0.03,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: (() {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordScreen()));
+                  }),
+                  child: const GradientText(
+                    'Forgot Your Password?',
+                    style: TextStyle(
+                      fontFamily: 'BentonSans Medium',
+                      fontSize: 12,
+                    ),
+                    gradient: LinearGradient(colors: [
+                      appPrimaryColor,
+                      appSecondaryColor,
+                    ]),
+                  ),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: (() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const SignUpScreen()));
+                      }),
+                      child: const GradientText(
+                        'Create an account?',
+                        style: TextStyle(
+                          fontFamily: 'BentonSans Medium',
+                          fontSize: 12,
+                        ),
+                        gradient: LinearGradient(colors: [
+                          appPrimaryColor,
+                          appSecondaryColor,
+                        ]),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ]),
       ),
     );

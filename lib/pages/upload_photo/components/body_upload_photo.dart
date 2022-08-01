@@ -1,15 +1,40 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
 import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/widgets/buttons/button_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPhoto extends StatelessWidget {
+class BodyUploadPhoto extends StatefulWidget {
   static String routeName = '/BodyUploadPhoto';
   const BodyUploadPhoto({Key? key}) : super(key: key);
+
+  @override
+  State<BodyUploadPhoto> createState() => _BodyUploadPhotoState();
+}
+
+class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
+  File? image;
+  Future pickImage(ImageSource imageSoure) async {
+    try {
+      final image = await ImagePicker().pickImage(source: imageSoure);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      // ignore: avoid_print
+      print('Failed to pick image: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,27 +63,20 @@ class BodyUploadPhoto extends StatelessWidget {
               ),
               ButtonCard(
                 urlImage: 'assets/images/GalleryIcon.png',
-                onPress: () {},
+                onPress: () => pickImage(ImageSource.gallery),
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.05,
               ),
               ButtonCard(
                 urlImage: 'assets/images/CameraIcon.png',
-                onPress: () {},
+                onPress: () => pickImage(ImageSource.camera),
               ),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ButtonCustom(
-                    title: 'Next',
-                    onPress: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      UploadPreviewScreen.routeName,
-                                      (Route<dynamic> route) => false);
-                    },
-                  ),
+                      title: 'Next', onPress: (() => uploadImage(context))),
                 ),
               ),
               SizedBox(
@@ -69,5 +87,9 @@ class BodyUploadPhoto extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future uploadImage(BuildContext context) async {
+    Navigator.pushNamed(context, UploadPreviewScreen.routeName);
   }
 }

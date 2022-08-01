@@ -26,6 +26,9 @@ class BodySignUp extends StatelessWidget {
           onChanged: (value) {},
           hintText: 'Username',
           iconData: Icons.person,
+          errorInvalidTextField: '',
+          errorNullTextField: 'Please enter your name',
+          regExpTextField: RegExp(r"^[a-zA-Z0-9.]"),
         ),
         SizedBox(
           height: SizeConfig.screenHeight! * 0.02,
@@ -36,12 +39,15 @@ class BodySignUp extends StatelessWidget {
           onChanged: (value) {},
           hintText: 'Email',
           iconData: Icons.mail,
+          errorInvalidTextField: 'Please enter valid email',
+          errorNullTextField: 'Please enter your email',
+          regExpTextField: RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
         ),
         SizedBox(
           height: SizeConfig.screenHeight! * 0.02,
         ),
         TextPasswordCustom(
-          hintTextPassword: 'Password',
+            hintTextPassword: 'Password',
             colorBackground: appSecondaryColor,
             colorIcon: appPrimaryColor,
             onChanged: (value) {}),

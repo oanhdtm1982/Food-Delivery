@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/home/components/search_bar_home.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
@@ -20,12 +21,18 @@ class _TopBarScreenState extends State<TopBarHome> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 31, 0),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                'Find Your \nFavorite Food',
-                style: TextStyle(
-                    color: appTextColor,
-                    fontSize: 31,
-                    fontFamily: 'BentonSans Bold'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BottomBar()));
+                },
+                child: const Text(
+                  'Find Your \nFavorite Food',
+                  style: TextStyle(
+                      color: appTextColor,
+                      fontSize: 31,
+                      fontFamily: 'BentonSans Bold'),
+                ),
               ),
               Expanded(
                 child: Align(

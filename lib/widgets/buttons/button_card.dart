@@ -5,12 +5,12 @@ import 'package:food_delivery/widgets/size_config.dart';
 class ButtonCard extends StatelessWidget {
   const ButtonCard({Key? key, required this.urlImage, required this.onPress}) : super(key: key);
   final String urlImage;
-  final Function onPress;
+  final Function() onPress;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size / 7;
     return GestureDetector(
-      onTap: onPress(),
+      onTap: onPress,
       child: Container(
         height: size.height,
         width: SizeConfig.screenWidth! * 0.9,

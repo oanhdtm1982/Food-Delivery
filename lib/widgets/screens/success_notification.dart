@@ -18,10 +18,10 @@ class SuccessScreen extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Image.asset('assets/images/Pattern.png'),
-              Image.asset('assets/images/Gradient.png'),
-              Center(
-                child: Image.asset('assets/images/Illustration_success.png'),
-              ),
+            Image.asset('assets/images/Gradient.png'),
+            Center(
+              child: Image.asset('assets/images/Illustration_success.png'),
+            ),
           ],
         ),
         SizedBox(
@@ -49,9 +49,7 @@ class SuccessScreen extends StatelessWidget {
         SizedBox(
           height: SizeConfig.screenHeight! * 0.1,
         ),
-        ButtonCustom(
-          onPress: (){}, 
-          title: text)
+        ButtonCustom(onPress: () {}, title: text)
       ],
     );
   }
