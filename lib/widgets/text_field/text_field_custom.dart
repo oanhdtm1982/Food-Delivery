@@ -8,32 +8,18 @@ class TextFieldCustom extends StatelessWidget {
       required this.iconData,
       required this.onChanged,
       required this.colorBackground,
-      required this.colorIcon, 
-      required this.regExpTextField, 
-      required this.errorNullTextField, 
-      required this.errorInvalidTextField})
+      required this.colorIcon})
       : super(key: key);
   final String hintText;
   final IconData iconData;
   final ValueChanged<String> onChanged;
   final Color colorBackground;
   final Color colorIcon;
-  final RegExp regExpTextField;
-  final String errorNullTextField;
-  final String errorInvalidTextField;
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       colorBackground: colorBackground,
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return errorNullTextField;
-          } else if (!regExpTextField.hasMatch(value)) {
-            return errorInvalidTextField;
-          }
-          return null;
-        },
         onChanged: onChanged,
         decoration: InputDecoration(
           icon: Icon(

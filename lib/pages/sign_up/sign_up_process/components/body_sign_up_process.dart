@@ -44,9 +44,6 @@ class BodySignUpProcess extends StatelessWidget {
                 hintText: 'First name',
                 iconData: Icons.drive_file_rename_outline_outlined,
                 onChanged: (value) {},
-                errorInvalidTextField: '',
-          errorNullTextField: 'Please enter your name',
-          regExpTextField: RegExp(r"^[a-zA-Z0-9.]"),
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.03,
@@ -57,9 +54,6 @@ class BodySignUpProcess extends StatelessWidget {
                 hintText: 'Last name',
                 iconData: Icons.drive_file_rename_outline_sharp,
                 onChanged: (value) {},
-                errorInvalidTextField: '',
-          errorNullTextField: 'Please enter your name',
-          regExpTextField: RegExp(r"^[a-zA-Z0-9.]"),
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.03,
@@ -70,9 +64,6 @@ class BodySignUpProcess extends StatelessWidget {
                 hintText: 'Mobile phone',
                 iconData: Icons.phone_android_sharp,
                 onChanged: (value) {},
-                errorInvalidTextField: 'Please enter valid phone number',
-                errorNullTextField: 'Please enter your phone number',
-                regExpTextField: RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'),
               ),
               SizedBox(
                 height: getProportionateScreenHeight(220),

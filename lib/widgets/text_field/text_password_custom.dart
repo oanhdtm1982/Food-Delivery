@@ -3,7 +3,7 @@ import 'package:food_delivery/widgets/text_field/text_field_custom.dart';
 
 // ignore: must_be_immutable
 class TextPasswordCustom extends StatelessWidget {
-  TextPasswordCustom(
+  const TextPasswordCustom(
       {Key? key,
       required this.onChanged,
       required this.colorBackground,
@@ -14,21 +14,11 @@ class TextPasswordCustom extends StatelessWidget {
   final Color colorBackground;
   final Color colorIcon;
   final String hintTextPassword;
-  String kPassNullError = "Please enter your password";
-  String kShortPassError = "Password is too short";
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       colorBackground: colorBackground,
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return kPassNullError;
-          } else if (value.length < 6) {
-            return kShortPassError;
-          }
-          return null;
-        },
         obscureText: true,
         onChanged: onChanged,
         decoration: InputDecoration(

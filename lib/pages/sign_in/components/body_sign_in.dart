@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/localization/app_localization.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/forgot_password/forgot_password_screen.dart';
 import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
@@ -11,9 +13,54 @@ import 'package:food_delivery/widgets/text_field/text_field_custom.dart';
 import 'package:food_delivery/widgets/text_field/text_password_custom.dart';
 import 'package:food_delivery/widgets/screens/top_screen_sign.dart';
 
-class BodySignIn extends StatelessWidget {
+import '../../../blocs/credentials_bloc/credentials_bloc.dart';
+import '../../../utils/validators.dart';
+
+class BodySignIn extends StatefulWidget {
   static String routeName = '/BodySignIn';
   const BodySignIn({Key? key}) : super(key: key);
+
+  @override
+  State<BodySignIn> createState() => _BodySignInState();
+}
+
+class _BodySignInState extends State<BodySignIn> {
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String? validateEmail(String? input) {
+    if (input != null && Validators.isValidEmail(input) as bool) {
+      return null;
+    } else {
+      return context.localize("invalid_field");
+    }
+  }
+
+  String? validatePassword(String? input) {
+    if (input!.length > 5) {
+      return null;
+    } else {
+      return context.localize("invalid_field");
+    }
+  }
+
+  void loginButtonPressed(BuildContext context) {
+    context.watch<CredentialsBloc>().add(LoginButtonPressed(
+        username: emailController.text, password: passwordController.text));
+  }
+
+  void registerButtonPressed(BuildContext context) {
+    context.watch<CredentialsBloc>().add(RegisterButtonPressed(
+        username: emailController.text, password: passwordController.text));
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +75,6 @@ class BodySignIn extends StatelessWidget {
             onChanged: (value) {},
             hintText: 'Email',
             iconData: Icons.mail,
-            errorInvalidTextField: 'Please enter valid email',
-            errorNullTextField: 'Please enter your email',
-            regExpTextField: RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
           ),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.02,
@@ -117,8 +161,11 @@ class BodySignIn extends StatelessWidget {
           ButtonCustom(
             title: 'Login',
             onPress: () {
-              Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
-                  (Route<dynamic> route) => false);
+              if (formKey.currentState!.validate()) {
+                loginButtonPressed(context);
+              }
+              // Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
+              //     (Route<dynamic> route) => false);
             },
           ),
           SizedBox(
