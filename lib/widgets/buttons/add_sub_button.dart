@@ -1,27 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 
-class AddSubButton extends StatelessWidget {
+class AddSubButton extends StatefulWidget {
   const AddSubButton({Key? key}) : super(key: key);
 
   @override
+  State<AddSubButton> createState() => _AddSubButtonState();
+}
+
+class _AddSubButtonState extends State<AddSubButton> {
+  int _valueOrder = 1;
+
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        SubButton(),
-        SizedBox(
-          width: 16,
-        ),
-        Text(
-          '1',
-          style:
-              TextStyle(fontSize: 16, color: Color.fromARGB(177, 26, 22, 22)),
-        ),
-        SizedBox(
-          width: 16,
-        ),
-        AddButton(),
-      ],
+    return SizedBox(
+      height: 26,
+      width: 100,
+      child: Row(
+        children: [
+          GestureDetector(
+              onTap: () {
+                setState(() {
+                  _valueOrder > 1 ? _valueOrder-- : _valueOrder;
+                });
+              },
+              child: const SubButton()),
+          const SizedBox(
+            width: 16,
+          ),
+          Text(
+            '$_valueOrder',
+            style: const TextStyle(
+                fontSize: 16, color: Color.fromARGB(177, 26, 22, 22)),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          GestureDetector(
+              onTap: () {
+                setState(() {
+                  _valueOrder++;
+                });
+              },
+              child: const AddButton()),
+        ],
+      ),
     );
   }
 }

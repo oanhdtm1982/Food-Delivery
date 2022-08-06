@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
+import 'package:food_delivery/pages/cart/components/total_order.dart';
 import 'package:food_delivery/widgets/cards/order_detail_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -17,6 +18,7 @@ class BodyCart extends StatelessWidget {
       child: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(
@@ -44,6 +46,7 @@ class BodyCart extends StatelessWidget {
                     onPress: () {}),
               ),
             ),
+            const TotalOrder(),
           ],
         ),
       ),

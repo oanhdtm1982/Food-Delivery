@@ -161,11 +161,11 @@ class _BodySignInState extends State<BodySignIn> {
           ButtonCustom(
             title: 'Login',
             onPress: () {
-              if (formKey.currentState!.validate()) {
-                loginButtonPressed(context);
-              }
-              // Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
-              //     (Route<dynamic> route) => false);
+              // if (formKey.currentState!.validate()) {
+              //   loginButtonPressed(context);
+              // }
+              Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
+                  (Route<dynamic> route) => false);
             },
           ),
           SizedBox(

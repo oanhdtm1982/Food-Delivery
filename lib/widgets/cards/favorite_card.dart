@@ -4,7 +4,6 @@ import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/buttons/button_buy_again.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
-import 'package:food_delivery/widgets/size_config.dart';
 
 import '../../constants/styles/text_styles.dart';
 
@@ -21,22 +20,22 @@ class FavoriteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-      child: Container(
-          height: 100,
-          width: SizeConfig.screenWidth! * 1,
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(15)),
-              color: appBackgroundButtonColor.withOpacity(0.1),
-              boxShadow: [
-                BoxShadow(color: Colors.white.withOpacity(0.2), blurRadius: 15)
-              ]),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
+    return InkWell(
+      onTap: onPress(),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 15, 0, 20),
+        child: Container(
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                color: appBackgroundButtonColor.withOpacity(0.1),
+                boxShadow: const [
+                  BoxShadow(color: Colors.white, blurRadius: 15)
+                ]),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(foodModel.foodUrlImage),
                   const SizedBox(
@@ -71,13 +70,14 @@ class FavoriteCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Align(
-                      alignment: Alignment.centerRight,
-                      child: BuyAgainButton()),
+                  const Expanded(
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: BuyAgainButton())),
                 ],
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

@@ -18,4 +18,5 @@ const textPriceFoodOrder =
     TextStyle(fontFamily: 'BentonSans Bold', fontSize: 19);
 const textNameProfile =
     TextStyle(fontFamily: 'BentonSans Bold', fontSize: 27, color: appTextColor);
-const textBuyAgain = TextStyle(fontFamily: 'BentonSans Medium', fontSize: 12, color: Colors.white);
+const textBuyAgain = TextStyle(
+    fontFamily: 'BentonSans Medium', fontSize: 12, color: Colors.white);

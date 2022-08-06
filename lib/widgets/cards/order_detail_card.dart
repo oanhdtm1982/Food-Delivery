@@ -60,7 +60,6 @@ class OrderDetailCard extends StatelessWidget {
                 ),
               ]),
           child: Container(
-              height: 100,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: appBackgroundButtonColor.withOpacity(0.1),
@@ -70,48 +69,50 @@ class OrderDetailCard extends StatelessWidget {
                   ]),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                child: Expanded(
-                  child: Row(
-                    children: [
-                      Image.asset(foodModel.foodUrlImage),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            foodModel.foodName,
-                            style: titleFood,
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                              foodModel.idRestaurant ==
-                                      restaurantModel.idRestaurant
-                                  ? restaurantModel.restaurantName
-                                  : 'null',
-                              style: descRestaurantName),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          GradientText(
-                            '\$ ${foodModel.price}',
-                            style: textPriceFoodOrder,
-                            gradient: const LinearGradient(colors: [
-                              appPrimaryColor,
-                              appSecondaryColor,
-                            ]),
-                          ),
-                        ],
-                      ),
-                      const Align(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(foodModel.foodUrlImage),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          foodModel.foodName,
+                          style: titleFood,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                            foodModel.idRestaurant ==
+                                    restaurantModel.idRestaurant
+                                ? restaurantModel.restaurantName
+                                : 'null',
+                            style: descRestaurantName),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        GradientText(
+                          '\$ ${foodModel.price}',
+                          style: textPriceFoodOrder,
+                          gradient: const LinearGradient(colors: [
+                            appPrimaryColor,
+                            appSecondaryColor,
+                          ]),
+                        ),
+                      ],
+                    ),
+                    const Expanded(
+                      child: Align(
                           alignment: Alignment.centerRight,
                           child: AddSubButton()),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               )),
         ),
