@@ -31,10 +31,11 @@ class SplashScreen extends StatelessWidget {
                   fontFamily: 'Viga',
                   letterSpacing: 4,
                   fontSize: 40,
-                  fontWeight: FontWeight.bold,  
+                  fontWeight: FontWeight.w400,
                 ),
                 gradient: appLinearColor,
               ),
+          const SizedBox(height: 10,),
           const Text('Deliver Favorite Food', 
           style: TextStyle(
             fontFamily: 'Inter',
