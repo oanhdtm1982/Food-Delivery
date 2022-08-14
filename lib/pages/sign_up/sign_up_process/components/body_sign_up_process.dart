@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
@@ -19,6 +21,10 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
   final firstname = TextEditingController();
   final lastname = TextEditingController();
   final mobile = TextEditingController();
+  late String first_Name;
+  late String last_Name;
+  late String mobile_Phone;
+
   @override
   void dispose() {
     lastname.dispose();
@@ -58,7 +64,9 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                 colorIcon: appButtonColor,
                 hintText: 'First name',
                 iconData: Icons.drive_file_rename_outline_outlined,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  first_Name = value;
+                },
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.03,
@@ -68,7 +76,9 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                 colorIcon: appButtonColor,
                 hintText: 'Last name',
                 iconData: Icons.drive_file_rename_outline_sharp,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  last_Name = value;
+                },
               ),
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.03,
@@ -78,7 +88,9 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                 colorIcon: appButtonColor,
                 hintText: 'Mobile phone',
                 iconData: Icons.phone_android_sharp,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  mobile_Phone = value;
+                },
               ),
               SizedBox(
                 height: getProportionateScreenHeight(220),
@@ -88,10 +100,22 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                 child: ButtonCustom(
                   title: 'Next',
                   onPress: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        VertificationCodeScreen.routeName,
-                        (Route<dynamic> route) => false);
+                    var uid = FirebaseAuth.instance.currentUser;
+                    CollectionReference users = FirebaseFirestore.instance.collection('user');
+                    users.add(
+                        {
+                          'last_name':last_Name,
+                          'first_name':first_Name,
+                          'mobile_phone':mobile_Phone,
+                        }
+                    ).then((user){
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          VertificationCodeScreen.routeName,
+                              (Route<dynamic> route) => false);
+                    })
+                        .catchError((error) => print("Failed"));
+
                   },
                 ),
               ),

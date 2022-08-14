@@ -32,6 +32,7 @@ class _BodySignInState extends State<BodySignIn> {
   final passwordController = TextEditingController();
   late String email;
   late String password;
+
   String? validateEmail(String? input) {
     if (input != null && Validators.isValidEmail(input) as bool) {
       return null;
