@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/localization/app_localization.dart';
@@ -28,7 +30,8 @@ class _BodySignInState extends State<BodySignIn> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  late String email;
+  late String password;
   String? validateEmail(String? input) {
     if (input != null && Validators.isValidEmail(input) as bool) {
       return null;
@@ -47,12 +50,12 @@ class _BodySignInState extends State<BodySignIn> {
 
   void loginButtonPressed(BuildContext context) {
     context.watch<CredentialsBloc>().add(LoginButtonPressed(
-        username: emailController.text, password: passwordController.text));
+        username: email.toString(), password: password.toString()));
   }
 
   void registerButtonPressed(BuildContext context) {
     context.watch<CredentialsBloc>().add(RegisterButtonPressed(
-        username: emailController.text, password: passwordController.text));
+        username: email.toString(), password: password.toString()));
   }
 
   @override
@@ -72,7 +75,9 @@ class _BodySignInState extends State<BodySignIn> {
           TextFieldCustom(
             colorBackground: appSecondaryColor,
             colorIcon: appPrimaryColor,
-            onChanged: (value) {},
+            onChanged: (value) {
+              email = value;
+            },
             hintText: 'Email',
             iconData: Icons.mail,
           ),
@@ -83,7 +88,9 @@ class _BodySignInState extends State<BodySignIn> {
               hintTextPassword: 'Password',
               colorBackground: appSecondaryColor,
               colorIcon: appPrimaryColor,
-              onChanged: (value) {}),
+              onChanged: (value) {
+                password = value;
+              }),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.03,
           ),
@@ -164,8 +171,22 @@ class _BodySignInState extends State<BodySignIn> {
               // if (formKey.currentState!.validate()) {
               //   loginButtonPressed(context);
               // }
-              Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
-                  (Route<dynamic> route) => false);
+              FirebaseAuth.instance
+                  .signInWithEmailAndPassword(
+                      email: email.toString(), password: password.toString())
+                  .then((value) {
+                Fluttertoast.showToast(
+                    msg: "Login Successful",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+                Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
+                    (Route<dynamic> route) => false);
+              });
             },
           ),
           SizedBox(

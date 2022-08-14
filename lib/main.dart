@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/pages/walkthrough/components/splash_screen.dart';
 import 'package:food_delivery/routes/route.dart';
 import 'package:provider/provider.dart';
 
+import 'firebase_options.dart';
 import 'notifier/food_notifier.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

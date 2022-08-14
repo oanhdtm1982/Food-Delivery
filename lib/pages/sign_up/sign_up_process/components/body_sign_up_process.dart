@@ -7,10 +7,25 @@ import 'package:food_delivery/widgets/buttons/button_next_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/text_field/text_field_custom.dart';
 
-class BodySignUpProcess extends StatelessWidget {
+class BodySignUpProcess extends StatefulWidget {
   static String routeName = '/BodySignUpProcess';
   const BodySignUpProcess({Key? key}) : super(key: key);
 
+  @override
+  State<BodySignUpProcess> createState() => _BodySignUpProcessState();
+}
+
+class _BodySignUpProcessState extends State<BodySignUpProcess> {
+  final firstname = TextEditingController();
+  final lastname = TextEditingController();
+  final mobile = TextEditingController();
+  @override
+  void dispose() {
+    lastname.dispose();
+    firstname.dispose();
+    mobile.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

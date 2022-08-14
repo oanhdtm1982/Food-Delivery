@@ -8,9 +8,20 @@ import 'package:food_delivery/widgets/text_field/text_password_custom.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyResetPassword extends StatelessWidget {
+class BodyResetPassword extends StatefulWidget {
   static String routeName = '/BodyResetPassword';
   const BodyResetPassword({Key? key}) : super(key: key);
+
+  @override
+  State<BodyResetPassword> createState() => _BodyResetPasswordState();
+}
+
+class _BodyResetPasswordState extends State<BodyResetPassword> {
+  final formKey = GlobalKey<FormState>();
+
+  final passWord = TextEditingController();
+
+  final confirmPassWord = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

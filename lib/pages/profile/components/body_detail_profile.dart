@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/user_model.dart';
@@ -10,10 +12,17 @@ import '../../../models/food_model.dart';
 import '../../../models/restaurant_model.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
 
-class BodyDetailProfile extends StatelessWidget {
+class BodyDetailProfile extends StatefulWidget {
   const BodyDetailProfile({Key? key, required this.userModel})
       : super(key: key);
   final UserModel userModel;
+
+  @override
+  State<BodyDetailProfile> createState() => _BodyDetailProfileState();
+}
+
+class _BodyDetailProfileState extends State<BodyDetailProfile> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +39,14 @@ class BodyDetailProfile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${userModel.firstName!} ${userModel.lastName!}',
+                  '${widget.userModel.firstName!} ${widget.userModel.lastName!}',
                   style: textNameProfile,
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
-                  userModel.userEmail!,
+                  widget.userModel.userEmail!,
                   style: descRestaurantName,
                 )
               ],
@@ -47,6 +56,16 @@ class BodyDetailProfile extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: IconButton(
                     onPressed: () {
+                      _firebaseAuth.signOut();
+                      Fluttertoast.showToast(
+                          msg: "SignOut Successful",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
                       Navigator.pushNamedAndRemoveUntil(
                           context,
                           SignInScreen.routeName,

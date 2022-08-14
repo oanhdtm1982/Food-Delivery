@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class TextFieldCustom extends StatelessWidget {
-  const TextFieldCustom(
+  TextFieldCustom(
       {Key? key,
       required this.hintText,
       required this.iconData,
       required this.onChanged,
       required this.colorBackground,
-      required this.colorIcon})
+      required this.colorIcon,})
       : super(key: key);
   final String hintText;
   final IconData iconData;
   final ValueChanged<String> onChanged;
   final Color colorBackground;
   final Color colorIcon;
+
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(

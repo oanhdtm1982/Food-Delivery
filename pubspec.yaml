@@ -28,6 +28,10 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   localize: ^0.0.4
+  google_sign_in: ^5.2.1
+  cloud_firestore: ^3.4.4
+  firebase_database: ^9.1.1
+  fluttertoast: ^8.0.9
 
 
 dev_dependencies:

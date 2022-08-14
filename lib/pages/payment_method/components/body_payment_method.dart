@@ -30,7 +30,7 @@ class BodyPaymentMethod extends StatelessWidget {
                     'This data will be displayed in your account profile for security',
                 onPress: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const BodySignUpProcess()));
+                      builder: (context) =>  BodySignUpProcess()));
                 },
               ),
               SizedBox(
