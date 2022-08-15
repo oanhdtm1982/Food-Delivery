@@ -101,7 +101,19 @@ class _BodySignUpState extends State<BodySignUp> {
                   Navigator.pushNamedAndRemoveUntil(context,
                       SignUpProcessScreen.routeName, (Route<dynamic> route) => false);
                 })
-                    .catchError((error) => print("Failed"));
+                    .catchError((error){
+                });
+              })
+                  .catchError((error){
+                Fluttertoast.showToast(
+                    msg: "Sign Up Failed",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
               });
               }
             ),

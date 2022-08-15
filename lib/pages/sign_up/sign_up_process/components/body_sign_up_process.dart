@@ -114,7 +114,9 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                           VertificationCodeScreen.routeName,
                               (Route<dynamic> route) => false);
                     })
-                        .catchError((error) => print("Failed"));
+                        .catchError((error){
+
+                    });
 
                   },
                 ),
