@@ -15,65 +15,65 @@ class BodyFilter extends StatefulWidget {
 class _BodyFilterState extends State<BodyFilter> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const TopBarHome(),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(31, 20, 0, 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Type', style: titleGroup),
-                Row(
-                  children: const [
-                    ButtonText(textFilter: 'Restaurant'),
-                    ButtonText(textFilter: 'Menu'),
-                  ],
-                ),
-                const Text('Location', style: titleGroup),
-                Row(
-                  children: const [
-                    ButtonText(textFilter: '1 Km'),
-                    ButtonText(textFilter: '>10 Km'),
-                    ButtonText(textFilter: '<10 Km'),
-                  ],
-                ),
-                const Text('Food', style: titleGroup),
-                Column(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              const TopBarHome(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(31, 20, 0, 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Text('Type', style: titleGroup),
                     Row(
                       children: const [
-                        ButtonText(textFilter: 'Cake'),
-                        ButtonText(textFilter: 'Soup'),
-                        ButtonText(textFilter: 'Main Course'),
+                        ButtonText(textFilter: 'Restaurant'),
+                        ButtonText(textFilter: 'Menu'),
                       ],
                     ),
+                    const Text('Location', style: titleGroup),
                     Row(
                       children: const [
-                        ButtonText(textFilter: 'Appetizer'),
-                        ButtonText(textFilter: 'Dessert'),
+                        ButtonText(textFilter: '1 Km'),
+                        ButtonText(textFilter: '>10 Km'),
+                        ButtonText(textFilter: '<10 Km'),
                       ],
-                    )
+                    ),
+                    const Text('Food', style: titleGroup),
+                    Column(
+                      children: [
+                        Row(
+                          children: const [
+                            ButtonText(textFilter: 'Cake'),
+                            ButtonText(textFilter: 'Soup'),
+                            ButtonText(textFilter: 'Main Course'),
+                          ],
+                        ),
+                        Row(
+                          children: const [
+                            ButtonText(textFilter: 'Appetizer'),
+                            ButtonText(textFilter: 'Dessert'),
+                          ],
+                        )
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: ButtonCustom(
+              ),
+              SizedBox(
+                height: SizeConfig.screenHeight! * 0.1,
+              ),
+              ButtonCustom(
                 title: 'Search',
                 onPress: () {},
               ),
-            ),
+            ],
           ),
-          SizedBox(
-            height: SizeConfig.screenHeight! * 0.07,
-          ),
-        ],
+        ),
       ),
     );
   }

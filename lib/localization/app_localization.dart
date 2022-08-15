@@ -23,7 +23,7 @@ class AppLocalization {
   static AppLocalization of(BuildContext context) =>
       Localizations.of<AppLocalization>(context, AppLocalization)!;
 
-  static Map<String, Map<String, String>> _localizedValues = {
+  static final Map<String, Map<String, String>> _localizedValues = {
     "en": {
       "title": "Login app",
       "login": "Login",

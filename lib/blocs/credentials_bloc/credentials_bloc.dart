@@ -7,7 +7,6 @@ import '../auth_bloc/auth_bloc.dart';
 part 'credentials_event.dart';
 part 'credentials_state.dart';
 
-
 class CredentialsBloc extends Bloc<CredentialsEvent, CredentialsState> {
   /// Data about the user
   final UserRepository userRepository;
@@ -21,7 +20,6 @@ class CredentialsBloc extends Bloc<CredentialsEvent, CredentialsState> {
     required this.userRepository,
   }) : super(const CredentialsInitial());
 
-  @override
   Stream<CredentialsState> mapEventToState(CredentialsEvent event) async* {
     if (event is LoginButtonPressed) {
       yield* _loginPressed(event);

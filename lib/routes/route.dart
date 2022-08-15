@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
+import 'package:food_delivery/pages/chat/chat_screen.dart';
+import 'package:food_delivery/pages/chat_detail/chat_detail_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
 import 'package:food_delivery/pages/forgot_password/forgot_password_screen.dart';
 import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
@@ -35,4 +37,6 @@ final routes = <String, WidgetBuilder>{
   UploadPreviewScreen.routeName: (context) => const UploadPreviewScreen(),
   SetLocationScreen.routeName: (context) => const SetLocationScreen(),
   RateScreen.routeName: (context) => const RateScreen(),
+  ChatScreen.routeName: (context) => const ChatScreen(),
+  ChatDetailScreen.routeName: (context) => const ChatDetailScreen(),
 };
