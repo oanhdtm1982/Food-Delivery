@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -23,9 +24,24 @@ class BodyDetailProfile extends StatefulWidget {
 
 class _BodyDetailProfileState extends State<BodyDetailProfile> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  var uid = FirebaseAuth.instance.currentUser;
+  CollectionReference users = FirebaseFirestore.instance.collection('user');
+  var first_name = '';
+  var last_name = '';
+  var mobile_phone = '';
+  Future<void> getName() async {
+    await FirebaseFirestore.instance.collection("user").doc(uid?.uid).snapshots().listen((event) {
+      setState(() {
+        first_name = event.get("first_name");
+        last_name = event.get("last_name");
+        mobile_phone = event.get("mobile_phone");
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    getName();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,14 +55,14 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${widget.userModel.firstName!} ${widget.userModel.lastName!}',
+                  '${first_name} ${last_name}',
                   style: textNameProfile,
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
-                  widget.userModel.userEmail!,
+                  '${mobile_phone}',
                   style: descRestaurantName,
                 )
               ],
