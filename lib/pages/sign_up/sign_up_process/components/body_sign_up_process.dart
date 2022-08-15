@@ -102,12 +102,12 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                   onPress: () {
                     var uid = FirebaseAuth.instance.currentUser;
                     CollectionReference users = FirebaseFirestore.instance.collection('user');
-                    users.add(
+                    users.doc(uid?.uid).set(
                         {
                           'last_name':last_Name,
                           'first_name':first_Name,
                           'mobile_phone':mobile_Phone,
-                        }
+                        },SetOptions(merge: true)
                     ).then((user){
                       Navigator.pushNamedAndRemoveUntil(
                           context,

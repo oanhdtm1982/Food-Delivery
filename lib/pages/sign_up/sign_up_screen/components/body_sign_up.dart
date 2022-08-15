@@ -93,7 +93,7 @@ class _BodySignUpState extends State<BodySignUp> {
                 );
                 var uid = FirebaseAuth.instance.currentUser;
                 CollectionReference users = FirebaseFirestore.instance.collection('user');
-                users.add(
+                users.doc(uid?.uid).set(
                   {
                     'user_name':username,
                   }
