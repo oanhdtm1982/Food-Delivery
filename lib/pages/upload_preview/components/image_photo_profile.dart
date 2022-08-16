@@ -29,7 +29,7 @@ class _ImagePhotoProfileState extends State<ImagePhotoProfile> {
           borderRadius: const BorderRadius.all(Radius.circular(15)),
           color: appBackgroundButtonColor.withOpacity(0.1),
           boxShadow: const [BoxShadow(color: Colors.white, blurRadius: 22)]),
-      child: Stack(alignment: Alignment.topRight, children: [
+      child: Stack(alignment: Alignment.center, children: [
         Image.network(
           url,
           fit: BoxFit.cover,
