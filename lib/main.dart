@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
+import 'package:food_delivery/pages/walkthrough/components/splash_screen.dart';
 import 'package:food_delivery/routes/route.dart';
 import 'package:provider/provider.dart';
 
@@ -36,8 +37,8 @@ class MyApp extends StatelessWidget {
           shadowColor: appPrimaryColor,
         ),
         routes: routes,
-        initialRoute: BottomBar.routeName,
-        //initialRoute: SplashScreen.routeName,
+        //initialRoute: BottomBar.routeName,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }

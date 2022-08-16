@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_delivery/pages/payment_method/payment_method_screen.dart';
@@ -8,7 +9,8 @@ import 'package:food_delivery/widgets/buttons/button_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:path/path.dart';
 import '../../../widgets/buttons/button_next_custom.dart';
 
 class BodyUploadPhoto extends StatefulWidget {
@@ -21,6 +23,8 @@ class BodyUploadPhoto extends StatefulWidget {
 
 class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
   File? image;
+  firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+  var uid = FirebaseAuth.instance.currentUser?.uid;
   Future pickImage(ImageSource imageSoure) async {
     try {
       final image = await ImagePicker().pickImage(source: imageSoure);
@@ -29,13 +33,26 @@ class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
       final imageTemporary = File(image.path);
       setState(() {
         this.image = imageTemporary;
+        uploadFile();
       });
     } on PlatformException catch (e) {
       // ignore: avoid_print
       print('Failed to pick image: $e');
     }
   }
+  Future uploadFile() async {
+    if (image == null) return;
+    final destination = 'files/$uid';
 
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref(destination)
+          .child('avatar/');
+      await ref.putFile(image!);
+    } catch (e) {
+      print('error occured');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

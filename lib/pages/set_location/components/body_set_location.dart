@@ -1,15 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
+import 'package:food_delivery/pages/home/home_screen.dart';
 import 'package:food_delivery/pages/set_location/components/set_location_card.dart';
 import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodySetLocation extends StatelessWidget {
+class BodySetLocation extends StatefulWidget {
   static String routeName = '/BodySetLocation';
   const BodySetLocation({Key? key}) : super(key: key);
 
+  @override
+  State<BodySetLocation> createState() => _BodySetLocationState();
+}
+
+class _BodySetLocationState extends State<BodySetLocation> {
+  Future<Placemark> getCurrentLocation() async {
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error("Location service is not enabled");
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permission is denied");
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        return Future.error("Location permission is denied forever");
+      }
+    }
+    final position = await Geolocator.getCurrentPosition();
+    final placeMarks =
+    await placemarkFromCoordinates(position.latitude, position.longitude);
+    if (placeMarks.isEmpty) {
+      return Future.error("No place mark found");
+    } else {
+      return placeMarks.first;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -36,7 +75,30 @@ class BodySetLocation extends StatelessWidget {
                 height: SizeConfig.screenHeight! * 0.05,
               ),
               SetLocationCard(
-                onPress: () {},
+                onPress: () {
+                  getCurrentLocation().then((value) {
+                    var uid = FirebaseAuth.instance.currentUser;
+                    CollectionReference users = FirebaseFirestore.instance.collection('user');
+                    users.doc(uid?.uid).set(
+                        {
+                          'address': value.name,
+                        },SetOptions(merge: true)
+                    ).then((user){
+                      Fluttertoast.showToast(
+                          msg: "Location set successfully: ${value.name}",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                    })
+                        .catchError((error){
+
+                    });
+                  });
+                },
               ),
               Expanded(
                 child: Align(
@@ -44,10 +106,9 @@ class BodySetLocation extends StatelessWidget {
                   child: ButtonCustom(
                     title: 'Next',
                     onPress: () {
-                      // Navigator.pushNamedAndRemoveUntil(
-                      //                 context,
-                      //                 UploadPhotoScreen.routeName,
-                      //                 (Route<dynamic> route) => false);
+                      //Chinh lai cho nay giup em
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const BottomBar()));
                     },
                   ),
                 ),

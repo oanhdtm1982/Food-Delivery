@@ -6,10 +6,15 @@ import 'package:food_delivery/widgets/size_config.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyUploadPreview extends StatelessWidget {
+class BodyUploadPreview extends StatefulWidget {
   static String routeName = '/BodyUploadPreview';
   const BodyUploadPreview({Key? key}) : super(key: key);
 
+  @override
+  State<BodyUploadPreview> createState() => _BodyUploadPreviewState();
+}
+
+class _BodyUploadPreviewState extends State<BodyUploadPreview> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

@@ -34,6 +34,9 @@ dependencies:
   fluttertoast: ^8.0.9
   firebase_storage: ^10.3.5
   permission_handler: ^10.0.0
+  path: ^1.8.1
+  geolocator: ^9.0.1
+  geocoding: ^2.0.4
 
 
 
