@@ -21,7 +21,6 @@ class _ImagePhotoProfileState extends State<ImagePhotoProfile> {
   }
   @override
   Widget build(BuildContext context) {
-    print(url);
     return Container(
       height: getProportionateScreenHeight(260),
       width: getProportionateScreenWidth(251),
