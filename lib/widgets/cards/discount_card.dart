@@ -1,15 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
-class DiscountCard extends StatelessWidget {
+class DiscountCard extends StatefulWidget {
   const DiscountCard({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<DiscountCard> createState() => _DiscountCardState();
+}
+
+class _DiscountCardState extends State<DiscountCard> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  var uid = FirebaseAuth.instance.currentUser;
+  CollectionReference users = FirebaseFirestore.instance.collection('user');
+  var voucher = '';
+  Future<void> getVoucher() async {
+    await FirebaseFirestore.instance.collection("user").doc(uid?.uid).snapshots().listen((event) {
+      setState(() {
+        voucher = event.get("voucher");
+      });
+    });
+  }
+  @override
   Widget build(BuildContext context) {
+    getVoucher();
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       child: Container(
@@ -27,8 +46,8 @@ class DiscountCard extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              const Text(
-                'You have 3 voucher',
+              Text(
+                'You have $voucher voucher',
                 style: titleFood,
               )
             ],

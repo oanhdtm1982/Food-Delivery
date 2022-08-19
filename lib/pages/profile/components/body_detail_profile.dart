@@ -29,12 +29,14 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   var first_name = '';
   var last_name = '';
   var mobile_phone = '';
+
   Future<void> getName() async {
     await FirebaseFirestore.instance.collection("user").doc(uid?.uid).snapshots().listen((event) {
       setState(() {
         first_name = event.get("first_name");
         last_name = event.get("last_name");
         mobile_phone = event.get("mobile_phone");
+
       });
     });
   }
@@ -94,7 +96,7 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
             )
           ],
         ),
-        const DiscountCard(),
+        DiscountCard(),
         const Text(
           'Favorite',
           style: titleGroup,

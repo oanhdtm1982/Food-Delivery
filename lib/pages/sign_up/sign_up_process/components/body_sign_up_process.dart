@@ -107,6 +107,7 @@ class _BodySignUpProcessState extends State<BodySignUpProcess> {
                           'last_name':last_Name,
                           'first_name':first_Name,
                           'mobile_phone':mobile_Phone,
+                          'voucher':'0',
                         },SetOptions(merge: true)
                     ).then((user){
                       Navigator.pushNamedAndRemoveUntil(
