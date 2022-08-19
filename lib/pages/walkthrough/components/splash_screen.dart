@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/walkthrough/components/body_walkthrough.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -49,8 +51,16 @@ class SplashScreen extends StatelessWidget {
 
   void delay(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamedAndRemoveUntil(
-          context, BodyWalkThrough.routeName, (route) => false);
+      if (FirebaseAuth.instance.currentUser != null)
+      {
+        Navigator.pushNamedAndRemoveUntil(
+            context, BottomBar.routeName, (route) => false);
+      }
+      else
+      {
+        Navigator.pushNamedAndRemoveUntil(
+            context, BodyWalkThrough.routeName, (route) => false);
+      }
     });
   }
 }
