@@ -86,7 +86,7 @@ class _BodySignUpState extends State<BodySignUp> {
                   content: Row(
                     children: const <Widget>[
                       CircularProgressIndicator(),
-                      Text("Please Wait...")
+                      Text("   Please Wait...")
                     ],
                   ),
                 ));
