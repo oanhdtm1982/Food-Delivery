@@ -26,6 +26,7 @@ class _BodySignUpState extends State<BodySignUp> {
   late String email;
   late String password;
   late String username;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   void dispose() {
@@ -38,6 +39,7 @@ class _BodySignUpState extends State<BodySignUp> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Column(children: [
             const TopScreenSign(titleSign: 'Sign Up For Free'),
@@ -79,6 +81,15 @@ class _BodySignUpState extends State<BodySignUp> {
             ButtonCustom(
               title: 'Create Account',
               onPress: () {
+                _scaffoldKey.currentState?.showSnackBar(SnackBar(
+                  duration: const Duration(seconds: 4),
+                  content: Row(
+                    children: const <Widget>[
+                      CircularProgressIndicator(),
+                      Text("Please Wait...")
+                    ],
+                  ),
+                ));
               FirebaseAuth.instance.createUserWithEmailAndPassword(
                   email: email.toString(), password: password.toString())
                   .then((user) {
@@ -87,7 +98,7 @@ class _BodySignUpState extends State<BodySignUp> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
+                    backgroundColor:  const Color.fromRGBO(83, 232, 139, 1),
                     textColor: Colors.white,
                     fontSize: 16.0
                 );
@@ -98,8 +109,7 @@ class _BodySignUpState extends State<BodySignUp> {
                     'user_name':username,
                   }
                 ).then((user){
-                  Navigator.pushNamedAndRemoveUntil(context,
-                      SignUpProcessScreen.routeName, (Route<dynamic> route) => false);
+
                 })
                     .catchError((error){
                 });
@@ -110,11 +120,13 @@ class _BodySignUpState extends State<BodySignUp> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
+                    backgroundColor:  const Color.fromRGBO(83, 232, 139, 1),
                     textColor: Colors.white,
                     fontSize: 16.0
                 );
-              });
+              }).whenComplete(() =>
+                  Navigator.pushNamedAndRemoveUntil(context,
+                      SignUpProcessScreen.routeName, (Route<dynamic> route) => false));
               }
             ),
             SizedBox(

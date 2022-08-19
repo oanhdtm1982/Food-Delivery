@@ -16,6 +16,7 @@ import 'package:food_delivery/widgets/text_field/text_password_custom.dart';
 import 'package:food_delivery/widgets/screens/top_screen_sign.dart';
 
 import '../../../blocs/credentials_bloc/credentials_bloc.dart';
+import '../../../constants/colors/colors.dart';
 import '../../../utils/validators.dart';
 
 class BodySignIn extends StatefulWidget {
@@ -32,6 +33,7 @@ class _BodySignInState extends State<BodySignIn> {
   final passwordController = TextEditingController();
   late String email;
   late String password;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   String? validateEmail(String? input) {
     if (input != null && Validators.isValidEmail(input) as bool) {
@@ -70,6 +72,7 @@ class _BodySignInState extends State<BodySignIn> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Column(children: [
           const TopScreenSign(titleSign: 'Login to your account'),
@@ -169,9 +172,15 @@ class _BodySignInState extends State<BodySignIn> {
           ButtonCustom(
             title: 'Login',
             onPress: () {
-              // if (formKey.currentState!.validate()) {
-              //   loginButtonPressed(context);
-              // }
+              _scaffoldKey.currentState?.showSnackBar(SnackBar(
+                duration: const Duration(seconds: 4),
+                content: Row(
+                  children: const <Widget>[
+                    CircularProgressIndicator(),
+                    Text("  Signing-In...")
+                  ],
+                ),
+              ));
               FirebaseAuth.instance
                   .signInWithEmailAndPassword(
                       email: email.toString(), password: password.toString())
@@ -181,23 +190,23 @@ class _BodySignInState extends State<BodySignIn> {
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
+                    backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
                     textColor: Colors.white,
-                    fontSize: 16.0
-                );
-                Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName,
-                    (Route<dynamic> route) => false);
+                    fontSize: 16.0);
               }).catchError((error) {
                 Fluttertoast.showToast(
-                    msg: "Login Failed",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-              });
+                        msg: "Login Failed",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+              }
+              ).whenComplete(() => Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  BottomBar.routeName,
+                      (Route<dynamic> route) => false));
             },
           ),
           SizedBox(

@@ -78,7 +78,7 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
+                          backgroundColor:  const Color.fromRGBO(83, 232, 139, 1),
                           textColor: Colors.white,
                           fontSize: 16.0);
                       Navigator.pushNamedAndRemoveUntil(
