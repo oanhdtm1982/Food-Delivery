@@ -38,6 +38,7 @@ dependencies:
   geolocator: ^9.0.1
   geocoding: ^2.0.4
   modal_bottom_sheet: ^2.1.0
+  progress_hud: ^1.1.0
 
 
 

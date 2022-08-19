@@ -25,6 +25,7 @@ class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
   File? image;
   firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
   var uid = FirebaseAuth.instance.currentUser?.uid;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Future pickImage(ImageSource imageSoure) async {
     try {
       final image = await ImagePicker().pickImage(source: imageSoure);
@@ -55,9 +56,11 @@ class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
   }
   @override
   Widget build(BuildContext context) {
+
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: Padding(
           padding: EdgeInsets.fromLTRB(
               SizeConfig.screenWidth! * 0.05,
@@ -93,7 +96,21 @@ class _BodyUploadPhotoState extends State<BodyUploadPhoto> {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ButtonCustom(
-                      title: 'Next', onPress: (() => uploadImage(context))),
+                      title: 'Next', onPress: ((){
+                    _scaffoldKey.currentState?.showSnackBar(SnackBar(
+                      duration: const Duration(seconds: 4),
+                      content: Row(
+                        children: const <Widget>[
+                          CircularProgressIndicator(),
+                          Text("  Upload Image...")
+                        ],
+                      ),
+                    ));
+                    Future.delayed(const Duration(seconds: 4), () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const UploadPreviewScreen()));
+                    });
+                  })),
                 ),
               ),
               SizedBox(
