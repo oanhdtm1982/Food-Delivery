@@ -14,12 +14,12 @@ class BodyProfile extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          ImageProfile(
-            userModel: demoUsers[0],
-          ),
-          const DetailProfile(),
+          alignment: Alignment.topCenter,
+          children: [
+            ImageProfile(
+              userModel: demoUsers[0],
+            ),
+            const DetailProfile(),
         ],
       )),
     );
