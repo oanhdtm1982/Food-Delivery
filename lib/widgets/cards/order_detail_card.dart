@@ -73,7 +73,8 @@ class OrderDetailCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(foodModel.foodUrlImage),
+                    Image.asset(foodModel.foodUrlImage,
+                        width: 50, height: 50, fit: BoxFit.fill),
                     const SizedBox(
                       width: 15,
                     ),
