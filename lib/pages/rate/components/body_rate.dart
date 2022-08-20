@@ -6,6 +6,12 @@ import 'package:food_delivery/pages/rate/components/rating_button.dart';
 import 'package:food_delivery/pages/rate/components/skip_button.dart';
 import 'package:food_delivery/pages/rate/components/topbar_rate.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+import 'package:provider/provider.dart';
+
+import '../../../models/get_food.dart';
+import '../../../models/get_restaurant.dart';
+import '../../../notifier/food_notifier.dart';
+import '../../../notifier/restaurant_notifier.dart';
 
 class BodyRate extends StatefulWidget {
   static String routeName = '/BodyRate';
@@ -17,18 +23,29 @@ class BodyRate extends StatefulWidget {
 
 class _BodyRateState extends State<BodyRate> {
   final _formKey = GlobalKey<FormState>();
-
+  void initState() {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context, listen: false);
+    getRestaurants(restaurantNotifier);
+    FoodNotifier foodNotifier =
+    (Provider.of<FoodNotifier>(context, listen: false));
+    getFoods(foodNotifier);
+    super.initState();
+  }
   final _feedbackController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     num? ratingBill;
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context);
+    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     SizeConfig().init(context);
     return SingleChildScrollView(
       child: Column(
         children: [
           TopBarRate(
-            foodModel: foodDemo[0],
+            foodModel: foodNotifier.foodList[0],
           ),
           SizedBox(
             height: getProportionateScreenHeight(30),

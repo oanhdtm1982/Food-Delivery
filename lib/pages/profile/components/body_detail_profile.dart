@@ -8,9 +8,14 @@ import 'package:food_delivery/models/user_model.dart';
 import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
 import 'package:food_delivery/widgets/cards/discount_card.dart';
 import 'package:food_delivery/widgets/cards/favorite_card.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/food_model.dart';
+import '../../../models/get_food.dart';
+import '../../../models/get_restaurant.dart';
 import '../../../models/restaurant_model.dart';
+import '../../../notifier/food_notifier.dart';
+import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
 
 class BodyDetailProfile extends StatefulWidget {
@@ -29,7 +34,15 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   var first_name = '';
   var last_name = '';
   var mobile_phone = '';
-
+  void initState() {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context, listen: false);
+    getRestaurants(restaurantNotifier);
+    FoodNotifier foodNotifier =
+    (Provider.of<FoodNotifier>(context, listen: false));
+    getFoods(foodNotifier);
+    super.initState();
+  }
   Future<void> getName() async {
     await FirebaseFirestore.instance.collection("user").doc(uid?.uid).snapshots().listen((event) {
       setState(() {
@@ -44,6 +57,9 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   @override
   Widget build(BuildContext context) {
     getName();
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context);
+    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,10 +123,10 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: foodDemo.length,
+            itemCount: foodNotifier.foodList.length,
             itemBuilder: (context, index) => FavoriteCard(
-                restaurantModel: restaurantDemo[index],
-                foodModel: foodDemo[index],
+                restaurantModel: restaurantNotifier.restaurantList[index],
+                foodModel: foodNotifier.foodList[index],
                 onPress: () {}),
           ),
         ),

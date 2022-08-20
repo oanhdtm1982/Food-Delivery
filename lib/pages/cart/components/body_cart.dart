@@ -6,14 +6,38 @@ import 'package:food_delivery/pages/cart/components/total_order.dart';
 import 'package:food_delivery/widgets/cards/order_detail_card.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+import 'package:provider/provider.dart';
 
-class BodyCart extends StatelessWidget {
+import '../../../models/get_food.dart';
+import '../../../models/get_restaurant.dart';
+import '../../../notifier/food_notifier.dart';
+import '../../../notifier/restaurant_notifier.dart';
+
+class BodyCart extends StatefulWidget {
   static String routeName = '/BodyCart';
   const BodyCart({Key? key}) : super(key: key);
 
   @override
+  State<BodyCart> createState() => _BodyCartState();
+}
+
+class _BodyCartState extends State<BodyCart> {
+  @override
+  void initState() {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context, listen: false);
+    getRestaurants(restaurantNotifier);
+    FoodNotifier foodNotifier =
+    (Provider.of<FoodNotifier>(context, listen: false));
+    getFoods(foodNotifier);
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context);
+    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -38,11 +62,11 @@ class BodyCart extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: foodDemo.length,
+                itemCount: foodNotifier.foodList.length,
                 itemBuilder: (context, index) => OrderDetailCard(
                     deleteOrder: () {},
-                    restaurantModel: restaurantDemo[index],
-                    foodModel: foodDemo[index],
+                    restaurantModel: restaurantNotifier.restaurantList[index],
+                    foodModel: foodNotifier.foodList[index],
                     onPress: () {}),
               ),
             ),

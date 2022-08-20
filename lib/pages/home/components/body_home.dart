@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_model.dart';
+import 'package:food_delivery/models/get_food.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/pages/explore_food/explore_food_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
@@ -10,6 +11,11 @@ import 'package:food_delivery/widgets/screens/top_bar_home.dart';
 import 'package:food_delivery/widgets/cards/restaurant_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/title_group.dart';
+import 'package:provider/provider.dart';
+
+import '../../../models/get_restaurant.dart';
+import '../../../notifier/food_notifier.dart';
+import '../../../notifier/restaurant_notifier.dart';
 
 class BodyHome extends StatefulWidget {
   const BodyHome({Key? key}) : super(key: key);
@@ -19,9 +25,20 @@ class BodyHome extends StatefulWidget {
 }
 
 class _BodyHomeState extends State<BodyHome> {
-  late final RestaurantModel restaurantModel;
+  @override
+  void initState() {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context, listen: false);
+    getRestaurants(restaurantNotifier);
+    FoodNotifier foodNotifier =
+    (Provider.of<FoodNotifier>(context, listen: false));
+    getFoods(foodNotifier);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+    RestaurantNotifier restaurantNotifier = Provider.of<RestaurantNotifier>(context);
+    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Scaffold(
         body: SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -59,7 +76,7 @@ class _BodyHomeState extends State<BodyHome> {
                         RestaurantDetailScreen.routeName, (route) => false);
                   },
                   child: RestaurantCard(
-                      restaurantModel: restaurantDemo[index], onPress: () {}),
+                      restaurantModel: restaurantNotifier.restaurantList[index], onPress: () {}),
                 ),
               ),
             ),
@@ -77,10 +94,10 @@ class _BodyHomeState extends State<BodyHome> {
             width: SizeConfig.screenWidth! * 1,
             child: ListView.builder(
               scrollDirection: Axis.vertical,
-              itemCount: foodDemo.length,
+              itemCount: foodNotifier.foodList.length,
               itemBuilder: (context, index) => FoodCard(
-                  restaurantModel: restaurantDemo[index],
-                  foodModel: foodDemo[index],
+                  restaurantModel: restaurantNotifier.restaurantList[index],
+                  foodModel: foodNotifier.foodList[index],
                   onPress: () {}),
             ),
           )

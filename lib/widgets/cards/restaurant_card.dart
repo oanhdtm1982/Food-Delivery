@@ -26,7 +26,7 @@ class RestaurantCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(restaurantModel.restaurantUrlImage),
+              Image.network(restaurantModel.restaurantUrlImage),
               const SizedBox(height: 12,),
               Text(restaurantModel.restaurantName, style: const TextStyle(
                 fontFamily: 'BentonSans Bold',

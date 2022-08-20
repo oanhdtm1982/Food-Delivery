@@ -5,6 +5,12 @@ import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/cards/food_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/screens/top_bar_home.dart';
+import 'package:provider/provider.dart';
+
+import '../../../models/get_food.dart';
+import '../../../models/get_restaurant.dart';
+import '../../../notifier/food_notifier.dart';
+import '../../../notifier/restaurant_notifier.dart';
 
 class BodyExploreFood extends StatefulWidget {
   const BodyExploreFood({Key? key}) : super(key: key);
@@ -14,8 +20,20 @@ class BodyExploreFood extends StatefulWidget {
 }
 
 class _BodyExploreFoodState extends State<BodyExploreFood> {
+  void initState() {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context, listen: false);
+    getRestaurants(restaurantNotifier);
+    FoodNotifier foodNotifier =
+    (Provider.of<FoodNotifier>(context, listen: false));
+    getFoods(foodNotifier);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+    RestaurantNotifier restaurantNotifier =
+    Provider.of<RestaurantNotifier>(context);
+    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -40,10 +58,10 @@ class _BodyExploreFoodState extends State<BodyExploreFood> {
                 child: Expanded(
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: foodDemo.length,
+                    itemCount: foodNotifier.foodList.length,
                     itemBuilder: (context, index) => FoodCard(
-                        restaurantModel: restaurantDemo[index],
-                        foodModel: foodDemo[index],
+                        restaurantModel: restaurantNotifier.restaurantList[index],
+                        foodModel: foodNotifier.foodList[index],
                         onPress: () {}),
                   ),
                 ),

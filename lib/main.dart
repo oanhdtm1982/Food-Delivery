@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'notifier/food_notifier.dart';
+import 'notifier/restaurant_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => FoodNotifier(),
         ),
+        ChangeNotifierProvider(create: (context) => RestaurantNotifier()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -37,7 +37,7 @@ class FavoriteCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(foodModel.foodUrlImage,
+                  Image.network(foodModel.foodUrlImage,
                       width: 50,
                       height: 50,
                       fit:BoxFit.fill),
