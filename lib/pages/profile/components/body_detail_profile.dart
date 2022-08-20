@@ -44,7 +44,11 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
     super.initState();
   }
   Future<void> getName() async {
-    await FirebaseFirestore.instance.collection("user").doc(uid?.uid).snapshots().listen((event) {
+    await FirebaseFirestore.instance
+        .collection("user")
+        .doc(uid?.uid)
+        .snapshots()
+        .listen((event) {
       setState(() {
         first_name = event.get("first_name");
         last_name = event.get("last_name");
@@ -73,14 +77,14 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${first_name} ${last_name}',
+                  '$first_name $last_name',
                   style: textNameProfile,
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
-                  '${mobile_phone}',
+                  mobile_phone,
                   style: descRestaurantName,
                 )
               ],
