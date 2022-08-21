@@ -5,7 +5,7 @@ import '../notifier/restaurant_notifier.dart';
 
 getRestaurants(RestaurantNotifier restaurantNotifier) async {
   QuerySnapshot querySnapshot =
-  await FirebaseFirestore.instance.collection('restaurants').get();
+      await FirebaseFirestore.instance.collection('restaurants').get();
 
   List<RestaurantModel> restaurantList = [];
 

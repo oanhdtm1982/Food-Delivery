@@ -25,18 +25,19 @@ class _BodyCartState extends State<BodyCart> {
   @override
   void initState() {
     RestaurantNotifier restaurantNotifier =
-    Provider.of<RestaurantNotifier>(context, listen: false);
+        Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
-    (Provider.of<FoodNotifier>(context, listen: false));
+        (Provider.of<FoodNotifier>(context, listen: false));
     getFoods(foodNotifier);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     RestaurantNotifier restaurantNotifier =
-    Provider.of<RestaurantNotifier>(context);
+        Provider.of<RestaurantNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return SafeArea(
       child: Scaffold(

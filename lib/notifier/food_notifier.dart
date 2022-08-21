@@ -28,14 +28,17 @@ class FoodNotifier with ChangeNotifier {
     _foodList = foodList;
     notifyListeners();
   }
+
   set favoriteFoodList(List<FoodModel> foodList) {
     _favoriteFoodList = foodList;
     notifyListeners();
   }
+
   set currentFood(FoodModel food) {
     _currentFood = food;
     notifyListeners();
   }
+
   set cartFoodList(List<FoodModel> foodList) {
     _cartFoodList = foodList;
     notifyListeners();

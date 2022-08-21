@@ -6,7 +6,7 @@ import 'food_model.dart';
 
 getFoods(FoodNotifier foodNotifier) async {
   QuerySnapshot querySnapshot =
-  await FirebaseFirestore.instance.collection('foods').get();
+      await FirebaseFirestore.instance.collection('foods').get();
   List<FoodModel> foodList = [];
 
   for (var doc in querySnapshot.docs) {
@@ -21,7 +21,7 @@ getFoods(FoodNotifier foodNotifier) async {
 getfavoriteFoods(FoodNotifier foodNotifier) async {
   var uid = FirebaseAuth.instance.currentUser;
   QuerySnapshot querySnapshot =
-  await FirebaseFirestore.instance.collection("favFoods"+uid!.uid).get();
+      await FirebaseFirestore.instance.collection("favFoods" + uid!.uid).get();
   List<FoodModel> favfoodList = [];
 
   for (var doc in querySnapshot.docs) {
@@ -32,10 +32,11 @@ getfavoriteFoods(FoodNotifier foodNotifier) async {
 
   foodNotifier.favoriteFoodList = favfoodList;
 }
+
 getCartFoods(FoodNotifier foodNotifier) async {
   var uid = FirebaseAuth.instance.currentUser;
   QuerySnapshot querySnapshot =
-  await FirebaseFirestore.instance.collection("cartFoods"+uid!.uid).get();
+      await FirebaseFirestore.instance.collection("cartFoods" + uid!.uid).get();
   List<FoodModel> cartfoodList = [];
 
   for (var doc in querySnapshot.docs) {
