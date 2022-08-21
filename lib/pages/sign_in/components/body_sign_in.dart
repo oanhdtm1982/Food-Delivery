@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,23 +34,7 @@ class _BodySignInState extends State<BodySignIn> {
   final passwordController = TextEditingController();
   late String email;
   late String password;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  String? validateEmail(String? input) {
-    if (input != null && Validators.isValidEmail(input) as bool) {
-      return null;
-    } else {
-      return context.localize("invalid_field");
-    }
-  }
-
-  String? validatePassword(String? input) {
-    if (input!.length > 5) {
-      return null;
-    } else {
-      return context.localize("invalid_field");
-    }
-  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void loginButtonPressed(BuildContext context) {
     context.watch<CredentialsBloc>().add(LoginButtonPressed(
@@ -67,7 +52,13 @@ class _BodySignInState extends State<BodySignIn> {
     passwordController.dispose();
     super.dispose();
   }
-
+  bool validatePassword(String? input) {
+    if (input!.length > 5) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -172,41 +163,51 @@ class _BodySignInState extends State<BodySignIn> {
           ButtonCustom(
             title: 'Login',
             onPress: () {
-              _scaffoldKey.currentState?.showSnackBar(SnackBar(
-                duration: const Duration(seconds: 4),
-                content: Row(
-                  children: const <Widget>[
-                    CircularProgressIndicator(),
-                    Text("  Signing-In...")
-                  ],
-                ),
-              ));
-              FirebaseAuth.instance
-                  .signInWithEmailAndPassword(
-                      email: email.toString(), password: password.toString())
-                  .then((value) {
+              final bool isValid = EmailValidator.validate(email);
+              final bool isValidPassword = validatePassword(password);
+              if (isValid && isValidPassword) {
+                _scaffoldKey.currentState?.showSnackBar(SnackBar(
+                  duration: const Duration(seconds: 4),
+                  content: Row(
+                    children: const <Widget>[
+                      CircularProgressIndicator(),
+                      Text("  Signing-In...")
+                    ],
+                  ),
+                ));
+                FirebaseAuth.instance
+                    .signInWithEmailAndPassword(
+                        email: email.toString(), password: password.toString())
+                    .then((value) {
+                  Fluttertoast.showToast(
+                      msg: "Login Successful",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                }).catchError((error) {
+                  Fluttertoast.showToast(
+                      msg: "Login Failed",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                }).whenComplete(() => Navigator.pushNamedAndRemoveUntil(context,
+                        BottomBar.routeName, (Route<dynamic> route) => false));
+              } else {
                 Fluttertoast.showToast(
-                    msg: "Login Successful",
+                    msg: "Invalid Email or Password",
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
                     backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
                     textColor: Colors.white,
                     fontSize: 16.0);
-              }).catchError((error) {
-                Fluttertoast.showToast(
-                        msg: "Login Failed",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
-                        textColor: Colors.white,
-                        fontSize: 16.0);
               }
-              ).whenComplete(() => Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  BottomBar.routeName,
-                      (Route<dynamic> route) => false));
             },
           ),
           SizedBox(
