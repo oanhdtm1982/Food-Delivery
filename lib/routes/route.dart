@@ -39,4 +39,5 @@ final routes = <String, WidgetBuilder>{
   RateScreen.routeName: (context) => const RateScreen(),
   ChatScreen.routeName: (context) => const ChatScreen(),
   ChatDetailScreen.routeName: (context) => const ChatDetailScreen(),
+  RestaurantDetailScreen.routeName: (context) => const RestaurantDetailScreen(),
 };

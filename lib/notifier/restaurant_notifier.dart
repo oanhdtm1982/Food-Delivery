@@ -1,9 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 
 import '../models/restaurant_model.dart';
-import 'food_notifier.dart';
 
 class RestaurantNotifier with ChangeNotifier {
   List<RestaurantModel> _restaurantList = [];
@@ -14,6 +11,4 @@ class RestaurantNotifier with ChangeNotifier {
     _restaurantList = restaurantList;
     notifyListeners();
   }
-
-
 }

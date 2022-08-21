@@ -36,13 +36,14 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   var mobile_phone = '';
   void initState() {
     RestaurantNotifier restaurantNotifier =
-    Provider.of<RestaurantNotifier>(context, listen: false);
+        Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
-    (Provider.of<FoodNotifier>(context, listen: false));
+        (Provider.of<FoodNotifier>(context, listen: false));
     getFoods(foodNotifier);
     super.initState();
   }
+
   Future<void> getName() async {
     await FirebaseFirestore.instance
         .collection("user")
@@ -61,14 +62,21 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   Widget build(BuildContext context) {
     getName();
     RestaurantNotifier restaurantNotifier =
-    Provider.of<RestaurantNotifier>(context);
+        Provider.of<RestaurantNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const ButtonText(
-          textFilter: 'Member Gold',
+        Padding(
+          padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+          child: Row(
+            children: const [
+              ButtonText(
+                textFilter: 'Member Gold',
+              ),
+            ],
+          ),
         ),
         Row(
           children: [

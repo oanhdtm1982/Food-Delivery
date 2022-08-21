@@ -20,3 +20,9 @@ const textNameProfile =
     TextStyle(fontFamily: 'BentonSans Bold', fontSize: 27, color: appTextColor);
 const textBuyAgain = TextStyle(
     fontFamily: 'BentonSans Medium', fontSize: 12, color: Colors.white);
+
+const textDescriptionRestaurant = TextStyle(
+    fontFamily: 'BentonSans Book',
+    height: 1.4,
+    fontSize: 12,
+    color: Color.fromRGBO(0, 0, 0, 1));
