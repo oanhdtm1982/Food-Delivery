@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/get_food.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
@@ -101,7 +102,7 @@ class _BodyHomeState extends State<BodyHome> {
                         builder: (context) => const ExploreFoodScreen()));
               },
               child: Padding(
-                padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
+                padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.2, 0,
                     SizeConfig.screenWidth! * 0.05, 0),
                 child: const TitleGroup(mainTitle: 'Popular Menu'),
               )),
@@ -111,12 +112,24 @@ class _BodyHomeState extends State<BodyHome> {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: foodNotifier.foodList.length,
-              itemBuilder: (context, index) => FoodCard(
-                  restaurantModel: restaurantNotifier.restaurantList[index],
-                  foodModel: foodNotifier.foodList[index],
-                  onPress: () {}),
+              itemBuilder: (context, index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 375),
+                  child: SlideAnimation(
+                    verticalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: FoodCard(
+                          restaurantModel:
+                              restaurantNotifier.restaurantList[index],
+                          foodModel: foodNotifier.foodList[index],
+                          onPress: () {}),
+                    ),
+                  ),
+                );
+              },
             ),
-          )
+          ),
         ],
       ),
     ));

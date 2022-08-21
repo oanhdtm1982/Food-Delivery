@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,10 @@ class _ImageProfileState extends State<ImageProfile> {
     return SizedBox(
       height: SizeConfig.screenHeight! * 0.35,
       width: SizeConfig.screenWidth! * 1,
-      child: Image.network(url, fit: BoxFit.cover),
+      child: FancyShimmerImage(
+        imageUrl: url,
+        errorWidget: Image.network('https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1'),
+      ),
     );
   }
 }
