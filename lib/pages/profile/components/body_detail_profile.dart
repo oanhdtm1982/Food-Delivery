@@ -10,10 +10,8 @@ import 'package:food_delivery/widgets/cards/discount_card.dart';
 import 'package:food_delivery/widgets/cards/favorite_card.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/food_model.dart';
 import '../../../models/get_food.dart';
 import '../../../models/get_restaurant.dart';
-import '../../../models/restaurant_model.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
@@ -135,10 +133,10 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: foodNotifier.foodList.length,
+            itemCount: foodNotifier.favoriteFoodList.length,
             itemBuilder: (context, index) => FavoriteCard(
                 restaurantModel: restaurantNotifier.restaurantList[index],
-                foodModel: foodNotifier.foodList[index],
+                foodModel: foodNotifier.favoriteFoodList[index],
                 onPress: () {}),
           ),
         ),

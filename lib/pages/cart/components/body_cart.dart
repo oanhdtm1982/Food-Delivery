@@ -62,11 +62,11 @@ class _BodyCartState extends State<BodyCart> {
             Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: foodNotifier.foodList.length,
+                itemCount: foodNotifier.cartFoodList.length,
                 itemBuilder: (context, index) => OrderDetailCard(
                     deleteOrder: () {},
                     restaurantModel: restaurantNotifier.restaurantList[index],
-                    foodModel: foodNotifier.foodList[index],
+                    foodModel: foodNotifier.cartFoodList[index],
                     onPress: () {}),
               ),
             ),
