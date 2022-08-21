@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/user_model.dart';
-import 'package:food_delivery/pages/profile/components/detail_profile.dart';
-import 'package:food_delivery/pages/profile/components/image_profile.dart';
+import 'package:food_delivery/pages/restaurant_detail/components/detail_restaurant.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class BodyRestaurantDetail extends StatelessWidget {
@@ -16,10 +14,13 @@ class BodyRestaurantDetail extends StatelessWidget {
           body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          ImageProfile(
-            userModel: demoUsers[0],
+          SizedBox(
+            height: SizeConfig.screenHeight! * 0.35,
+            width: SizeConfig.screenWidth! * 1,
+            child: Image.asset('assets/images/RestaurantDetail.png',
+                fit: BoxFit.cover),
           ),
-          const DetailProfile(),
+          const DetailRestaurant(),
         ],
       )),
     );

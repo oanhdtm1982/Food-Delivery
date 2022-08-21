@@ -13,16 +13,19 @@ class ImageProfile extends StatefulWidget {
 }
 
 class _ImageProfileState extends State<ImageProfile> {
-  String url = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';
+  String url =
+      'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';
   void initState() {
     super.initState();
-    var ref = FirebaseStorage.instance.ref('files/${FirebaseAuth.instance.currentUser?.uid}/avatar/');
+    var ref = FirebaseStorage.instance
+        .ref('files/${FirebaseAuth.instance.currentUser?.uid}/avatar/');
     ref.getDownloadURL().then((loc) => setState(() => url = loc));
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight! * 0.4,
+      height: SizeConfig.screenHeight! * 0.35,
       width: SizeConfig.screenWidth! * 1,
       child: Image.network(url, fit: BoxFit.cover),
     );

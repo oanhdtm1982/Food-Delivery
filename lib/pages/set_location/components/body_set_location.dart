@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
-import 'package:food_delivery/pages/home/home_screen.dart';
 import 'package:food_delivery/pages/set_location/components/set_location_card.dart';
 import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';

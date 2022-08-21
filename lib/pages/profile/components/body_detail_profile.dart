@@ -53,7 +53,6 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
         first_name = event.get("first_name");
         last_name = event.get("last_name");
         mobile_phone = event.get("mobile_phone");
-
       });
     });
   }
@@ -100,7 +99,8 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor:  const Color.fromRGBO(83, 232, 139, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(83, 232, 139, 1),
                           textColor: Colors.white,
                           fontSize: 16.0);
                       Navigator.pushNamedAndRemoveUntil(
@@ -116,7 +116,7 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
             )
           ],
         ),
-        DiscountCard(),
+        const DiscountCard(),
         const Text(
           'Favorite',
           style: titleGroup,
