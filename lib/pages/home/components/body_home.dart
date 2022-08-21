@@ -102,7 +102,7 @@ class _BodyHomeState extends State<BodyHome> {
                         builder: (context) => const ExploreFoodScreen()));
               },
               child: Padding(
-                padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.2, 0,
+                padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
                     SizeConfig.screenWidth! * 0.05, 0),
                 child: const TitleGroup(mainTitle: 'Popular Menu'),
               )),
