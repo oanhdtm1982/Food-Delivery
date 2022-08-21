@@ -28,16 +28,18 @@ class _BodyHomeState extends State<BodyHome> {
   @override
   void initState() {
     RestaurantNotifier restaurantNotifier =
-    Provider.of<RestaurantNotifier>(context, listen: false);
+        Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
-    (Provider.of<FoodNotifier>(context, listen: false));
+        (Provider.of<FoodNotifier>(context, listen: false));
     getFoods(foodNotifier);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    RestaurantNotifier restaurantNotifier = Provider.of<RestaurantNotifier>(context);
+    RestaurantNotifier restaurantNotifier =
+        Provider.of<RestaurantNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Scaffold(
         body: SingleChildScrollView(
@@ -59,8 +61,12 @@ class _BodyHomeState extends State<BodyHome> {
                   MaterialPageRoute(
                       builder: (context) => const ExploreRestaurantScreen()));
             },
-            child: const TitleGroup(
-              mainTitle: 'Nearest Restaurant',
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
+                  SizeConfig.screenWidth! * 0.05, 0),
+              child: const TitleGroup(
+                mainTitle: 'Nearest Restaurant',
+              ),
             ),
           ),
           SizedBox(
@@ -75,8 +81,14 @@ class _BodyHomeState extends State<BodyHome> {
                     Navigator.pushNamedAndRemoveUntil(context,
                         RestaurantDetailScreen.routeName, (route) => false);
                   },
-                  child: RestaurantCard(
-                      restaurantModel: restaurantNotifier.restaurantList[index], onPress: () {}),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
+                        15, SizeConfig.screenWidth! * 0.05, 20),
+                    child: RestaurantCard(
+                        restaurantModel:
+                            restaurantNotifier.restaurantList[index],
+                        onPress: () {}),
+                  ),
                 ),
               ),
             ),
@@ -88,7 +100,11 @@ class _BodyHomeState extends State<BodyHome> {
                     MaterialPageRoute(
                         builder: (context) => const ExploreFoodScreen()));
               },
-              child: const TitleGroup(mainTitle: 'Popular Menu')),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
+                    SizeConfig.screenWidth! * 0.05, 0),
+                child: const TitleGroup(mainTitle: 'Popular Menu'),
+              )),
           SizedBox(
             height: SizeConfig.screenWidth! * 0.6,
             width: SizeConfig.screenWidth! * 1,

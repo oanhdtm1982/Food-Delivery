@@ -10,6 +10,7 @@ class RestaurantDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return const Scaffold(
+      
       body: BodyRestaurantDetail(),
     );
   }

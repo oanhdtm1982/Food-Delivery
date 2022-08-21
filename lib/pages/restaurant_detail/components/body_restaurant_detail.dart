@@ -10,19 +10,25 @@ class BodyRestaurantDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SafeArea(
-      child: Scaffold(
-          body: Stack(
-        alignment: Alignment.topCenter,
+      child: Stack(
+        alignment: Alignment.topLeft,
         children: [
-          SizedBox(
-            height: SizeConfig.screenHeight! * 0.35,
-            width: SizeConfig.screenWidth! * 1,
-            child: Image.asset('assets/images/RestaurantDetail.png',
-                fit: BoxFit.cover),
-          ),
-          const DetailRestaurant(),
+          Scaffold(
+              body: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              SizedBox(
+                height: SizeConfig.screenHeight! * 0.35,
+                width: SizeConfig.screenWidth! * 1,
+                child: Image.asset('assets/images/RestaurantDetail.png',
+                    fit: BoxFit.cover),
+              ),
+              const DetailRestaurant(),
+            ],
+          )),
+          const BackButton(),
         ],
-      )),
+      ),
     );
   }
 }

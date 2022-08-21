@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
-import 'package:food_delivery/widgets/size_config.dart';
 
 class TitleGroup extends StatelessWidget {
   const TitleGroup({Key? key, required this.mainTitle}) : super(key: key);
@@ -11,24 +10,21 @@ class TitleGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth!*0.05, 0, SizeConfig.screenWidth!*0.05, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(mainTitle, style: titleGroup,),
-          const Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text('View More', style: TextStyle(
-                fontFamily: 'BentonSans Book',
-                fontSize: 12,
-                color: appTextViewMore
-              ),),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(mainTitle, style: titleGroup,),
+        const Expanded(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Text('View More', style: TextStyle(
+              fontFamily: 'BentonSans Book',
+              fontSize: 12,
+              color: appTextViewMore
+            ),),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
