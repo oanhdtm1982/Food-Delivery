@@ -21,19 +21,15 @@ class BodyExploreRestaurant extends StatefulWidget {
 class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
   @override
   void initState() {
+    super.initState();
     RestaurantNotifier restaurantNotifier =
     Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
-    FoodNotifier foodNotifier =
-    (Provider.of<FoodNotifier>(context, listen: false));
-    getFoods(foodNotifier);
-    super.initState();
   }
   @override
   Widget build(BuildContext context) {
     RestaurantNotifier restaurantNotifier =
     Provider.of<RestaurantNotifier>(context);
-    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

@@ -38,7 +38,10 @@ class FoodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FancyShimmerImage(imageUrl: foodModel.foodUrlImage),
+                  FancyShimmerImage(imageUrl: foodModel.foodUrlImage,
+                      height: SizeConfig.screenWidth! * 0.15,
+                      width: SizeConfig.screenWidth! * 0.15,
+                      boxFit: BoxFit.contain),
                   const SizedBox(
                     width: 15,
                   ),

@@ -44,6 +44,7 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
     FoodNotifier foodNotifier =
         (Provider.of<FoodNotifier>(context, listen: false));
     getfavoriteFoods(foodNotifier);
+    getName();
   }
 
   Future<void> getName() async {
@@ -62,7 +63,6 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
 
   @override
   Widget build(BuildContext context) {
-    getName();
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context);
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);

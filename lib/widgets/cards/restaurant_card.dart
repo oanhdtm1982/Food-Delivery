@@ -24,7 +24,10 @@ class RestaurantCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FancyShimmerImage(imageUrl: restaurantModel.restaurantUrlImage),
+            FancyShimmerImage(imageUrl: restaurantModel.restaurantUrlImage,
+                height: SizeConfig.screenWidth! * 0.25,
+                width: SizeConfig.screenWidth! * 0.25,
+                boxFit: BoxFit.contain),
             const SizedBox(
               height: 12,
             ),

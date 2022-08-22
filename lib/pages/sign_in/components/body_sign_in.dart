@@ -169,7 +169,7 @@ class _BodySignInState extends State<BodySignIn> {
               final bool isValidPassword = validatePassword(password);
               if (isValid && isValidPassword) {
                 _scaffoldKey.currentState?.showSnackBar(SnackBar(
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(seconds: 1),
                   content: Row(
                     children: const <Widget>[
                       CircularProgressIndicator(),
