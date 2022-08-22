@@ -6,8 +6,8 @@ class FoodDataBase{
   String foodUrlImage;
   num price;
   String idRestaurant;
-  num? ratingFood;
-  num? quantity;
+  num ratingFood;
+  num quantity;
   FoodDataBase({
     this.idRestaurant = '',
     this.idFood = '',
@@ -16,8 +16,8 @@ class FoodDataBase{
     this.foodName = '',
     this.price = 0,
     this.desc = '',
-    this.ratingFood,
-    this.quantity,
+    this.ratingFood = 0,
+    this.quantity = 1
   });
 
   factory FoodDataBase.fromMap(Map<dynamic, dynamic> map) {

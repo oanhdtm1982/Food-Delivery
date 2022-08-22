@@ -110,10 +110,11 @@ class OrderDetailCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Align(
                           alignment: Alignment.centerRight,
-                          child: AddSubButton()),
+                          child: AddSubButton(
+                          )),
                     ),
                   ],
                 ),

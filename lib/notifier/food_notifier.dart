@@ -8,7 +8,6 @@ class FoodNotifier with ChangeNotifier {
   List<FoodModel> _foodList = [];
   List<FoodModel> _categoryFoodList = [];
   List<FoodDataBase> _favoriteFoodList = [];
-  List<FoodDataBase> _cartFoodList = [];
   FoodModel? _currentFood;
   UnmodifiableListView<FoodModel> get foodList =>
       UnmodifiableListView(_foodList);
@@ -16,8 +15,7 @@ class FoodNotifier with ChangeNotifier {
       UnmodifiableListView(_categoryFoodList);
   UnmodifiableListView<FoodDataBase> get favoriteFoodList =>
       UnmodifiableListView(_favoriteFoodList);
-  UnmodifiableListView<FoodDataBase> get cartFoodList =>
-      UnmodifiableListView(_cartFoodList);
+
   FoodModel get currentFood => _currentFood!;
 
   set categoryFoodList(List<FoodModel> foodList) {
@@ -40,8 +38,4 @@ class FoodNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  set cartFoodList(List<FoodDataBase> foodList) {
-    _cartFoodList = foodList;
-    notifyListeners();
-  }
 }

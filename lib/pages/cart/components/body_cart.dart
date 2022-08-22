@@ -9,6 +9,7 @@ import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
+import '../../../notifier/cart_notifier.dart';
 import '../../../repositories/get_food.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
@@ -29,9 +30,9 @@ class _BodyCartState extends State<BodyCart> {
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
-    FoodNotifier foodNotifier =
-        (Provider.of<FoodNotifier>(context, listen: false));
-    getCartFoods(foodNotifier);
+    CartNotifier cartNotifier =
+        (Provider.of<CartNotifier>(context, listen: false));
+    getCartFoods(cartNotifier);
 
   }
 
@@ -40,7 +41,7 @@ class _BodyCartState extends State<BodyCart> {
     SizeConfig().init(context);
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context);
-    FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
+    CartNotifier cartNotifier = Provider.of<CartNotifier>(context);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -65,7 +66,7 @@ class _BodyCartState extends State<BodyCart> {
             Expanded(
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: foodNotifier.cartFoodList.length,
+                  itemCount: cartNotifier.cartFoodList.length,
                   itemBuilder: (context, index) {
                     return AnimationConfiguration.staggeredList(
                       position: index,
@@ -77,7 +78,7 @@ class _BodyCartState extends State<BodyCart> {
                               deleteOrder: () {},
                               restaurantModel:
                                   restaurantNotifier.restaurantList[index],
-                              foodModel: foodNotifier.cartFoodList[index],
+                              foodModel: cartNotifier.cartFoodList[index],
                               onPress: () {}),
                         ),
                       ),

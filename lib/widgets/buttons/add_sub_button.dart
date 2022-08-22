@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 
 class AddSubButton extends StatefulWidget {
-  const AddSubButton({Key? key}) : super(key: key);
+  const AddSubButton({Key? key,}) : super(key: key);
 
   @override
   State<AddSubButton> createState() => _AddSubButtonState();

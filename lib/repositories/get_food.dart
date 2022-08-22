@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:food_delivery/models/food_database.dart';
+import 'package:food_delivery/notifier/cart_notifier.dart';
 
 import '../notifier/food_notifier.dart';
 import '../models/food_model.dart';
@@ -33,7 +34,7 @@ getfavoriteFoods(FoodNotifier foodNotifier) async {
   foodNotifier.favoriteFoodList = favfoodList;
 }
 
-getCartFoods(FoodNotifier foodNotifier) async {
+getCartFoods(CartNotifier cartNotifier) async {
   var uid = FirebaseAuth.instance.currentUser;
   List<FoodDataBase> cartfoodList = [];
 
@@ -47,5 +48,5 @@ getCartFoods(FoodNotifier foodNotifier) async {
 
     cartfoodList.add(cart);
   });
-  foodNotifier.cartFoodList = cartfoodList;
+  cartNotifier.cartFoodList = cartfoodList;
 }

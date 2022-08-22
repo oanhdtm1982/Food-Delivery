@@ -6,6 +6,7 @@ import 'package:food_delivery/routes/route.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'notifier/cart_notifier.dart';
 import 'notifier/food_notifier.dart';
 import 'notifier/restaurant_notifier.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => FoodNotifier()),
         ChangeNotifierProvider(create: (context) => RestaurantNotifier()),
+        ChangeNotifierProvider(create: (context) => CartNotifier()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
