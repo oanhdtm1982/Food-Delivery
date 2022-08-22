@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/set_location/components/set_location_card.dart';
 import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
@@ -11,6 +10,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../widgets/buttons/button_next_custom.dart';
+import '../../success_screens/register_success.dart';
 
 class BodySetLocation extends StatefulWidget {
   static String routeName = '/BodySetLocation';
@@ -105,9 +105,8 @@ class _BodySetLocationState extends State<BodySetLocation> {
                   child: ButtonCustom(
                     title: 'Next',
                     onPress: () {
-                      //Chinh lai cho nay giup em
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const BottomBar()));
+                          builder: (context) => const SuccessRegister()));
                     },
                   ),
                 ),
