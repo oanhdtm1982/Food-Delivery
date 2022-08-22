@@ -21,13 +21,13 @@ getFoods(FoodNotifier foodNotifier) async {
 getfavoriteFoods(FoodNotifier foodNotifier) async {
   var uid = FirebaseAuth.instance.currentUser;
   QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance.collection("favFoods" + uid!.uid).get();
+      await FirebaseFirestore.instance.collection("favFoods${uid!.uid}").get();
   List<FoodModel> favfoodList = [];
 
   for (var doc in querySnapshot.docs) {
-    FoodModel foodModel = FoodModel.fromDocument(doc);
+    FoodModel favModel = FoodModel.fromDocument(doc);
 
-    favfoodList.add(foodModel);
+    favfoodList.add(favModel);
   }
 
   foodNotifier.favoriteFoodList = favfoodList;
@@ -36,7 +36,7 @@ getfavoriteFoods(FoodNotifier foodNotifier) async {
 getCartFoods(FoodNotifier foodNotifier) async {
   var uid = FirebaseAuth.instance.currentUser;
   QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance.collection("cartFoods" + uid!.uid).get();
+      await FirebaseFirestore.instance.collection("cartFoods${uid!.uid}").get();
   List<FoodModel> cartfoodList = [];
 
   for (var doc in querySnapshot.docs) {

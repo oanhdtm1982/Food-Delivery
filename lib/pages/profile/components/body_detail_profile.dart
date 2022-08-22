@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/main.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
@@ -32,13 +34,15 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
   var first_name = '';
   var last_name = '';
   var mobile_phone = '';
+
+  @override
   void initState() {
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
         (Provider.of<FoodNotifier>(context, listen: false));
-    getFoods(foodNotifier);
+    getfavoriteFoods(foodNotifier);
     super.initState();
   }
 
@@ -132,13 +136,24 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
         ),
         Expanded(
           child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: foodNotifier.favoriteFoodList.length,
-            itemBuilder: (context, index) => FavoriteCard(
-                restaurantModel: restaurantNotifier.restaurantList[index],
-                foodModel: foodNotifier.favoriteFoodList[index],
-                onPress: () {}),
-          ),
+              scrollDirection: Axis.vertical,
+              itemCount: foodNotifier.favoriteFoodList.length,
+              itemBuilder: (context, index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 375),
+                  child: SlideAnimation(
+                    verticalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: FavoriteCard(
+                          restaurantModel:
+                              restaurantNotifier.restaurantList[index],
+                          foodModel: foodNotifier.favoriteFoodList[index],
+                          onPress: () {}),
+                    ),
+                  ),
+                );
+              }),
         ),
       ],
     );
