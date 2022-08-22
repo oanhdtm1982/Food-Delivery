@@ -6,13 +6,31 @@ import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import '../../../widgets/buttons/button_next_custom.dart';
 
-class BodyVertificationCode extends StatelessWidget {
+class BodyVertificationCode extends StatefulWidget {
   static String routeName = '/BodyVertificationCode';
   const BodyVertificationCode({Key? key}) : super(key: key);
 
   @override
+  State<BodyVertificationCode> createState() => _BodyVertificationCodeState();
+}
+
+class _BodyVertificationCodeState extends State<BodyVertificationCode> {
+  late int timerCount;
+  countDownTimer() async {
+
+    for (int x = 90; x > 0; x--) {
+      await Future.delayed(const Duration(seconds: 1)).then((_) {
+        setState(() {
+          timerCount -= 1;
+        });
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    countDownTimer();
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -26,7 +44,7 @@ class BodyVertificationCode extends StatelessWidget {
               AppBarCustom(
                 title: 'Enter 4-digit Verification code',
                 description:
-                    'Code send to your mobile phone. This code will expired in 01:30',
+                    'Code send to your mobile phone. This code will expired in $timerCount seconds',
                 onPress: () {
                   Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const SignUpProcessScreen()));

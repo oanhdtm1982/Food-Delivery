@@ -37,13 +37,13 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
 
   @override
   void initState() {
+    super.initState();
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
         (Provider.of<FoodNotifier>(context, listen: false));
     getfavoriteFoods(foodNotifier);
-    super.initState();
   }
 
   Future<void> getName() async {
