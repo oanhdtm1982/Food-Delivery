@@ -1,13 +1,13 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
 class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({
-    Key? key,
-    required this.restaurantModel,
-    required this.onPress}) : super(key: key);
+  const RestaurantCard(
+      {Key? key, required this.restaurantModel, required this.onPress})
+      : super(key: key);
   final RestaurantModel restaurantModel;
   final Function onPress;
 
@@ -24,19 +24,24 @@ class RestaurantCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(restaurantModel.restaurantUrlImage),
-            const SizedBox(height: 12,),
-            Text(restaurantModel.restaurantName, style: const TextStyle(
-              fontFamily: 'BentonSans Bold',
-              fontSize: 16
-            ),),
-            const SizedBox(height: 10,),
-            Text(restaurantModel.restaurantTime, style: const TextStyle(
-              fontFamily: 'BentonSans Book',
-              fontSize: 13
-            ),),
+            FancyShimmerImage(imageUrl: restaurantModel.restaurantUrlImage),
+            const SizedBox(
+              height: 12,
+            ),
+            Text(
+              restaurantModel.restaurantName,
+              style:
+                  const TextStyle(fontFamily: 'BentonSans Bold', fontSize: 16),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              restaurantModel.restaurantTime,
+              style:
+                  const TextStyle(fontFamily: 'BentonSans Book', fontSize: 13),
+            ),
           ],
-        )
-        );
+        ));
   }
 }

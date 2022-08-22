@@ -75,20 +75,35 @@ class _BodyHomeState extends State<BodyHome> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 2,
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(context,
-                        RestaurantDetailScreen.routeName, (route) => false);
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
-                        15, SizeConfig.screenWidth! * 0.05, 20),
-                    child: RestaurantCard(
-                        restaurantModel:
-                            restaurantNotifier.restaurantList[index],
-                        onPress: () {}),
-                  ),
-                ),
+                itemBuilder: (context, index) {
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  RestaurantDetailScreen.routeName,
+                                  (route) => false);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  SizeConfig.screenWidth! * 0.05,
+                                  15,
+                                  SizeConfig.screenWidth! * 0.05,
+                                  20),
+                              child: RestaurantCard(
+                                  restaurantModel:
+                                      restaurantNotifier.restaurantList[index],
+                                  onPress: () {}),
+                            ),
+                          ),
+                        )),
+                  );
+                },
               ),
             ),
           ),

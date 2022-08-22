@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
@@ -37,7 +38,7 @@ class FoodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.network(foodModel.foodUrlImage),
+                  FancyShimmerImage(imageUrl: foodModel.foodUrlImage),
                   const SizedBox(
                     width: 15,
                   ),
