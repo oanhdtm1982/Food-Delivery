@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:977444080570:ios:eb4f1840050b345bb9eb83",
-  "FIREBASE_PROJECT_ID": "food-delivery-c45c1",
-  "GCM_SENDER_ID": "977444080570"
+  "GOOGLE_APP_ID": "1:846649424085:ios:615fc15b99a3aa14f08a5c",
+  "FIREBASE_PROJECT_ID": "food-beauty-ninja",
+  "GCM_SENDER_ID": "846649424085"
 }

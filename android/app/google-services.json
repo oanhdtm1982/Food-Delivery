@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "977444080570",
-    "project_id": "food-delivery-c45c1",
-    "storage_bucket": "food-delivery-c45c1.appspot.com"
+    "project_number": "846649424085",
+    "firebase_url": "https://food-beauty-ninja-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "food-beauty-ninja",
+    "storage_bucket": "food-beauty-ninja.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:977444080570:android:f10c5ebd72f8b221b9eb83",
+        "mobilesdk_app_id": "1:846649424085:android:4e5ff065816b8a52f08a5c",
         "android_client_info": {
           "package_name": "com.example.food_delivery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "977444080570-vohbtfv2qui2th1eefreh0ro8vl524fg.apps.googleusercontent.com",
+          "client_id": "846649424085-aohclt46953d640rgvbhqqldq45s92tg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANds5cwPC54gSu0Hk0TG4CYszCGz7XmKc"
+          "current_key": "AIzaSyC-4M0XLBKdZQJrlOZ_doiMcutdvQnvcEc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "977444080570-vohbtfv2qui2th1eefreh0ro8vl524fg.apps.googleusercontent.com",
+              "client_id": "846649424085-aohclt46953d640rgvbhqqldq45s92tg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -52,6 +52,7 @@ class _BodySignInState extends State<BodySignIn> {
     passwordController.dispose();
     super.dispose();
   }
+
   bool validatePassword(String? input) {
     if (input!.length > 5) {
       return true;
@@ -59,6 +60,7 @@ class _BodySignInState extends State<BodySignIn> {
       return false;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -167,7 +169,7 @@ class _BodySignInState extends State<BodySignIn> {
               final bool isValidPassword = validatePassword(password);
               if (isValid && isValidPassword) {
                 _scaffoldKey.currentState?.showSnackBar(SnackBar(
-                  duration: const Duration(seconds: 4),
+                  duration: const Duration(seconds: 2),
                   content: Row(
                     children: const <Widget>[
                       CircularProgressIndicator(),
@@ -180,13 +182,18 @@ class _BodySignInState extends State<BodySignIn> {
                         email: email.toString(), password: password.toString())
                     .then((value) {
                   Fluttertoast.showToast(
-                      msg: "Login Successful",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
-                      textColor: Colors.white,
-                      fontSize: 16.0);
+                          msg: "Login Successful",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor:
+                              const Color.fromRGBO(83, 232, 139, 1),
+                          textColor: Colors.white,
+                          fontSize: 16.0)
+                      .whenComplete(() => Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          BottomBar.routeName,
+                          (Route<dynamic> route) => false));
                 }).catchError((error) {
                   Fluttertoast.showToast(
                       msg: "Login Failed",
@@ -196,8 +203,7 @@ class _BodySignInState extends State<BodySignIn> {
                       backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
                       textColor: Colors.white,
                       fontSize: 16.0);
-                }).whenComplete(() => Navigator.pushNamedAndRemoveUntil(context,
-                        BottomBar.routeName, (Route<dynamic> route) => false));
+                });
               } else {
                 Fluttertoast.showToast(
                     msg: "Invalid Email or Password",

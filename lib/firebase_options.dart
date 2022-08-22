@@ -47,30 +47,33 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCm1VkCDQC65ioTr29dpga9XvcjNIEuzWQ',
-    appId: '1:977444080570:web:d987f576bdc2b34bb9eb83',
-    messagingSenderId: '977444080570',
-    projectId: 'food-delivery-c45c1',
-    authDomain: 'food-delivery-c45c1.firebaseapp.com',
-    storageBucket: 'food-delivery-c45c1.appspot.com',
-    measurementId: 'G-J5MTK7CTYK',
+    apiKey: 'AIzaSyBn28mztAvzFozCjIlCWtWrsdEpU39G2mM',
+    appId: '1:846649424085:web:12ec7724336f0e0ef08a5c',
+    messagingSenderId: '846649424085',
+    projectId: 'food-beauty-ninja',
+    authDomain: 'food-beauty-ninja.firebaseapp.com',
+    databaseURL: 'https://food-beauty-ninja-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'food-beauty-ninja.appspot.com',
+    measurementId: 'G-47TGZCZ2YF',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyANds5cwPC54gSu0Hk0TG4CYszCGz7XmKc',
-    appId: '1:977444080570:android:f10c5ebd72f8b221b9eb83',
-    messagingSenderId: '977444080570',
-    projectId: 'food-delivery-c45c1',
-    storageBucket: 'food-delivery-c45c1.appspot.com',
+    apiKey: 'AIzaSyC-4M0XLBKdZQJrlOZ_doiMcutdvQnvcEc',
+    appId: '1:846649424085:android:4e5ff065816b8a52f08a5c',
+    messagingSenderId: '846649424085',
+    projectId: 'food-beauty-ninja',
+    databaseURL: 'https://food-beauty-ninja-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'food-beauty-ninja.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDtVg1cnS9mzopdAOYeLckWh4uFMJSi6YY',
-    appId: '1:977444080570:ios:eb4f1840050b345bb9eb83',
-    messagingSenderId: '977444080570',
-    projectId: 'food-delivery-c45c1',
-    storageBucket: 'food-delivery-c45c1.appspot.com',
-    iosClientId: '977444080570-dha61u35sph5kfftkkghkkdm0325fr45.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCpAwFs48LX-H5_893vVcgmNvHiS2FQD1A',
+    appId: '1:846649424085:ios:615fc15b99a3aa14f08a5c',
+    messagingSenderId: '846649424085',
+    projectId: 'food-beauty-ninja',
+    databaseURL: 'https://food-beauty-ninja-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'food-beauty-ninja.appspot.com',
+    iosClientId: '846649424085-qja35juh3dpvcm47pr57jm9j1fujruvc.apps.googleusercontent.com',
     iosBundleId: 'com.example.foodDelivery',
   );
 }

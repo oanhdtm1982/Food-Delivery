@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/get_food.dart';
-import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/pages/explore_food/explore_food_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
 import 'package:food_delivery/pages/home/components/banner_home.dart';

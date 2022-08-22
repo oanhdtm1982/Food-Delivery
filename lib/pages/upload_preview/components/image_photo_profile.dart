@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,9 @@ class _ImagePhotoProfileState extends State<ImagePhotoProfile> {
           color: appBackgroundButtonColor.withOpacity(0.1),
           boxShadow: const [BoxShadow(color: Colors.white, blurRadius: 22)]),
       child: Stack(alignment: Alignment.topRight, children: [
-        Image.network(
-          url,
-          fit: BoxFit.cover,
+        FancyShimmerImage(
+          imageUrl: url,
+          errorWidget: Image.network('https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1'),
         ),
         GestureDetector(
           onTap: () {},
