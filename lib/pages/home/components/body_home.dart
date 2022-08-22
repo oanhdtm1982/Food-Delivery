@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery/models/get_food.dart';
+import 'package:food_delivery/repositories/get_food.dart';
 import 'package:food_delivery/pages/explore_food/explore_food_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
 import 'package:food_delivery/pages/home/components/banner_home.dart';
@@ -12,7 +12,7 @@ import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/title_group.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/get_restaurant.dart';
+import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 

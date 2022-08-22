@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../notifier/food_notifier.dart';
-import 'food_model.dart';
+import '../models/food_model.dart';
 
 getFoods(FoodNotifier foodNotifier) async {
   QuerySnapshot querySnapshot =

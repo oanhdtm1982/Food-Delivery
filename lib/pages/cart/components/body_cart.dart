@@ -9,8 +9,8 @@ import 'package:food_delivery/widgets/screens/app_bar_custom.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/get_food.dart';
-import '../../../models/get_restaurant.dart';
+import '../../../repositories/get_food.dart';
+import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 

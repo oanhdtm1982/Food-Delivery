@@ -12,8 +12,8 @@ import 'package:food_delivery/widgets/cards/discount_card.dart';
 import 'package:food_delivery/widgets/cards/favorite_card.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/get_food.dart';
-import '../../../models/get_restaurant.dart';
+import '../../../repositories/get_food.dart';
+import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
