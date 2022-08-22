@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
+import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/buttons/add_sub_button.dart';
@@ -16,7 +17,7 @@ class OrderDetailCard extends StatelessWidget {
       required this.onPress,
       required this.deleteOrder})
       : super(key: key);
-  final FoodModel foodModel;
+  final FoodDataBase foodModel;
   final RestaurantModel restaurantModel;
   final Function() onPress;
   final Function() deleteOrder;
@@ -47,7 +48,8 @@ class OrderDetailCard extends StatelessWidget {
                     if (await _showConfirmationDialog(context, "delete") ==
                         true) {
                       // ignore: unused_element
-                      deleteOrder() {}
+                      deleteOrder() {
+                      }
                     }
                   },
                   backgroundColor: appButtonDeleteOrder,
@@ -108,7 +110,7 @@ class OrderDetailCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Align(
                           alignment: Alignment.centerRight,
                           child: AddSubButton()),

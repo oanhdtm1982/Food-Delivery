@@ -25,13 +25,14 @@ class BodyCart extends StatefulWidget {
 class _BodyCartState extends State<BodyCart> {
   @override
   void initState() {
+    super.initState();
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context, listen: false);
     getRestaurants(restaurantNotifier);
     FoodNotifier foodNotifier =
         (Provider.of<FoodNotifier>(context, listen: false));
     getCartFoods(foodNotifier);
-    super.initState();
+
   }
 
   @override

@@ -9,7 +9,7 @@ class AddSubButton extends StatefulWidget {
 }
 
 class _AddSubButtonState extends State<AddSubButton> {
-  int _valueOrder = 1;
+  int _valueOrder = 0;
 
   @override
   Widget build(BuildContext context) {

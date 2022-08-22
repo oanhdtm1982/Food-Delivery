@@ -1,21 +1,22 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
 
 class FoodNotifier with ChangeNotifier {
   List<FoodModel> _foodList = [];
   List<FoodModel> _categoryFoodList = [];
-  List<FoodModel> _favoriteFoodList = [];
-  List<FoodModel> _cartFoodList = [];
+  List<FoodDataBase> _favoriteFoodList = [];
+  List<FoodDataBase> _cartFoodList = [];
   FoodModel? _currentFood;
   UnmodifiableListView<FoodModel> get foodList =>
       UnmodifiableListView(_foodList);
   UnmodifiableListView<FoodModel> get categoryFoodList =>
       UnmodifiableListView(_categoryFoodList);
-  UnmodifiableListView<FoodModel> get favoriteFoodList =>
+  UnmodifiableListView<FoodDataBase> get favoriteFoodList =>
       UnmodifiableListView(_favoriteFoodList);
-  UnmodifiableListView<FoodModel> get cartFoodList =>
+  UnmodifiableListView<FoodDataBase> get cartFoodList =>
       UnmodifiableListView(_cartFoodList);
   FoodModel get currentFood => _currentFood!;
 
@@ -29,7 +30,7 @@ class FoodNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  set favoriteFoodList(List<FoodModel> foodList) {
+  set favoriteFoodList(List<FoodDataBase> foodList) {
     _favoriteFoodList = foodList;
     notifyListeners();
   }
@@ -39,7 +40,7 @@ class FoodNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  set cartFoodList(List<FoodModel> foodList) {
+  set cartFoodList(List<FoodDataBase> foodList) {
     _cartFoodList = foodList;
     notifyListeners();
   }

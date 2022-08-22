@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/buttons/button_buy_again.dart';
@@ -14,7 +15,7 @@ class FavoriteCard extends StatelessWidget {
       required this.restaurantModel,
       required this.onPress})
       : super(key: key);
-  final FoodModel foodModel;
+  final FoodDataBase foodModel;
   final RestaurantModel restaurantModel;
   final Function onPress;
 
