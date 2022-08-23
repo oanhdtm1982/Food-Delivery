@@ -7,7 +7,7 @@ class FoodDataBase{
   num price;
   String idRestaurant;
   num ratingFood;
-  num quantity;
+  int quantity;
   FoodDataBase({
     this.idRestaurant = '',
     this.idFood = '',
@@ -17,7 +17,7 @@ class FoodDataBase{
     this.price = 0,
     this.desc = '',
     this.ratingFood = 0,
-    this.quantity = 1
+    this.quantity = 1,
   });
 
   factory FoodDataBase.fromMap(Map<dynamic, dynamic> map) {
@@ -30,7 +30,7 @@ class FoodDataBase{
       price: map['price'] as num,
       idRestaurant: map['idRestaurant'] as String,
       ratingFood: map['ratingFood'] as num,
-      quantity: map['quantity'] as num,
+      quantity: map['quantity'] as int,
     );
   }
 

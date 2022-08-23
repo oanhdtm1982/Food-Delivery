@@ -1,18 +1,33 @@
+import 'dart:ffi';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 
 class AddSubButton extends StatefulWidget {
-  const AddSubButton({Key? key,}) : super(key: key);
-
+  const AddSubButton({Key? key, required this.quantity, required this.foodName})
+      : super(key: key);
+  final int quantity;
+  final String foodName;
   @override
   State<AddSubButton> createState() => _AddSubButtonState();
 }
 
 class _AddSubButtonState extends State<AddSubButton> {
-  int _valueOrder = 0;
+  @override
+  initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    int quantity = widget.quantity;
+    var uid = FirebaseAuth.instance.currentUser;
+    DatabaseReference ref = FirebaseDatabase.instance
+        .ref(uid!.uid)
+        .child('Cart')
+        .child(widget.foodName);
     return SizedBox(
       height: 26,
       width: 100,
@@ -21,7 +36,12 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                  _valueOrder > 1 ? _valueOrder-- : _valueOrder;
+                  if (quantity > 1) {
+                    quantity--;
+                    ref.update({'quantity': quantity});
+                  } else {
+                    ref.update({'quantity': quantity});
+                  }
                 });
               },
               child: const SubButton()),
@@ -29,7 +49,7 @@ class _AddSubButtonState extends State<AddSubButton> {
             width: 16,
           ),
           Text(
-            '$_valueOrder',
+            '$quantity',
             style: const TextStyle(
                 fontSize: 16, color: Color.fromARGB(177, 26, 22, 22)),
           ),
@@ -39,7 +59,8 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                  _valueOrder++;
+                  quantity++;
+                  ref.update({'quantity': quantity});
                 });
               },
               child: const AddButton()),
@@ -49,9 +70,14 @@ class _AddSubButtonState extends State<AddSubButton> {
   }
 }
 
-class AddButton extends StatelessWidget {
+class AddButton extends StatefulWidget {
   const AddButton({Key? key}) : super(key: key);
 
+  @override
+  State<AddButton> createState() => _AddButtonState();
+}
+
+class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,9 +99,14 @@ class AddButton extends StatelessWidget {
   }
 }
 
-class SubButton extends StatelessWidget {
+class SubButton extends StatefulWidget {
   const SubButton({Key? key}) : super(key: key);
 
+  @override
+  State<SubButton> createState() => _SubButtonState();
+}
+
+class _SubButtonState extends State<SubButton> {
   @override
   Widget build(BuildContext context) {
     return Container(

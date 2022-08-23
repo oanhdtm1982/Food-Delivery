@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
@@ -5,11 +7,12 @@ import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
+import 'package:food_delivery/repositories/get_food.dart';
 import 'package:food_delivery/widgets/buttons/add_sub_button.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
-class OrderDetailCard extends StatelessWidget {
+class OrderDetailCard extends StatefulWidget {
   const OrderDetailCard(
       {Key? key,
       required this.foodModel,
@@ -23,9 +26,14 @@ class OrderDetailCard extends StatelessWidget {
   final Function() deleteOrder;
 
   @override
+  State<OrderDetailCard> createState() => _OrderDetailCardState();
+}
+
+class _OrderDetailCardState extends State<OrderDetailCard> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPress,
+      onTap: widget.onPress,
       child: Padding(
         padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05, 0,
             SizeConfig.screenWidth! * 0.05, 20),
@@ -37,7 +45,8 @@ class OrderDetailCard extends StatelessWidget {
                 onDismissed: () {},
                 closeOnCancel: true,
                 confirmDismiss: () async {
-                  return await _showConfirmationDialog(context, "delete") ??
+                  return await _showConfirmationDialog(
+                          context, "delete", widget.foodModel.foodName) ??
                       false;
                 },
               ),
@@ -45,12 +54,9 @@ class OrderDetailCard extends StatelessWidget {
                 SlidableAction(
                   flex: 1,
                   onPressed: (context) async {
-                    if (await _showConfirmationDialog(context, "delete") ==
-                        true) {
-                      // ignore: unused_element
-                      deleteOrder() {
-                      }
-                    }
+                    if (await _showConfirmationDialog(
+                            context, 'delete', widget.foodModel.foodName) ==
+                        true) {}
                   },
                   backgroundColor: appButtonDeleteOrder,
                   foregroundColor: Colors.white,
@@ -75,7 +81,7 @@ class OrderDetailCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.network(foodModel.foodUrlImage,
+                    Image.network(widget.foodModel.foodUrlImage,
                         width: 50, height: 50, fit: BoxFit.fill),
                     const SizedBox(
                       width: 15,
@@ -85,23 +91,23 @@ class OrderDetailCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          foodModel.foodName,
+                          widget.foodModel.foodName,
                           style: titleFood,
                         ),
                         const SizedBox(
                           height: 4,
                         ),
                         Text(
-                            foodModel.idRestaurant ==
-                                    restaurantModel.idRestaurant
-                                ? restaurantModel.restaurantName
+                            widget.foodModel.idRestaurant ==
+                                    widget.restaurantModel.idRestaurant
+                                ? widget.restaurantModel.restaurantName
                                 : 'null',
                             style: descRestaurantName),
                         const SizedBox(
                           height: 8,
                         ),
                         GradientText(
-                          '\$ ${foodModel.price}',
+                          '\$ ${widget.foodModel.price}',
                           style: textPriceFoodOrder,
                           gradient: const LinearGradient(colors: [
                             appPrimaryColor,
@@ -110,10 +116,12 @@ class OrderDetailCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Align(
                           alignment: Alignment.centerRight,
                           child: AddSubButton(
+                            quantity: widget.foodModel.quantity,
+                            foodName: widget.foodModel.foodName,
                           )),
                     ),
                   ],
@@ -125,7 +133,7 @@ class OrderDetailCard extends StatelessWidget {
   }
 }
 
-_showConfirmationDialog(BuildContext context, String action) {
+_showConfirmationDialog(BuildContext context, String action, String name) {
   return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
@@ -134,7 +142,13 @@ _showConfirmationDialog(BuildContext context, String action) {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.pop(context, true);
+                var uid = FirebaseAuth.instance.currentUser;
+                DatabaseReference ref = FirebaseDatabase.instance
+                    .ref(uid!.uid)
+                    .child('Cart')
+                    .child(name);
+                ref.remove();
+                Navigator.of(context).pop(true);
               },
               child: const Text('Yes')),
           TextButton(

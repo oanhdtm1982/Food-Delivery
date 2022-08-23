@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 import '../../../notifier/cart_notifier.dart';
 import '../../../repositories/get_food.dart';
 import '../../../repositories/get_restaurant.dart';
-import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 
 class BodyCart extends StatefulWidget {

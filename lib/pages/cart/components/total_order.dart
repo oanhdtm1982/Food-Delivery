@@ -1,14 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:provider/provider.dart';
 
+import '../../../notifier/cart_notifier.dart';
+import '../../../repositories/get_food.dart';
 import '../../../widgets/gradient_text.dart';
 import '../../../widgets/size_config.dart';
 
-class TotalOrder extends StatelessWidget {
+class TotalOrder extends StatefulWidget {
   const TotalOrder({Key? key}) : super(key: key);
 
   @override
+  State<TotalOrder> createState() => _TotalOrderState();
+}
+
+class _TotalOrderState extends State<TotalOrder> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    CartNotifier cartNotifier =
+    (Provider.of<CartNotifier>(context, listen: false));
+    getCartFoods(cartNotifier);
+
+  }
+  @override
   Widget build(BuildContext context) {
+    CartNotifier cartNotifier = Provider.of<CartNotifier>(context);
+    double subtotal = 0;
+    double deliveryCharge = 0;
+    double discount = 0;
+    double total = 0;
+    subtotal = cartNotifier.totalAmount();
+    if(subtotal > 0){
+      deliveryCharge = subtotal * 0.1;
+    }
+    total = subtotal + deliveryCharge - discount;
     return Container(
       decoration: const BoxDecoration(
         gradient: appLinearColor,
@@ -21,17 +48,17 @@ class TotalOrder extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TextTotalOrder(title: 'Sub-Total', price: '120\$'),
-            const TextTotalOrder(title: 'Delivery Charge', price: '10\$'),
-            const TextTotalOrder(title: 'Discount', price: '20\$'),
+            TextTotalOrder(title: 'Sub-Total', price: '$subtotal\$'),
+            TextTotalOrder(title: 'Delivery Charge', price: '$deliveryCharge\$'),
+            TextTotalOrder(title: 'Discount', price: '$discount\$'),
             const SizedBox(
               height: 20,
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
               child: Row(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Total',
                     style: TextStyle(
                         color: Colors.white,
@@ -42,8 +69,8 @@ class TotalOrder extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        'Total',
-                        style: TextStyle(
+                        '$total\$',
+                        style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'BentonSans Medium',
                             fontSize: 18),
