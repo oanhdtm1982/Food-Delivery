@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
@@ -37,5 +38,7 @@ class FoodNotifier with ChangeNotifier {
     _currentFood = food;
     notifyListeners();
   }
+
+
 
 }

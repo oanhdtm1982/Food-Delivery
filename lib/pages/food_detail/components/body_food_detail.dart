@@ -5,10 +5,11 @@ import 'package:food_delivery/pages/food_detail/components/detail_food.dart';
 import 'package:food_delivery/pages/restaurant_detail/components/detail_restaurant.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 
-class BodyRestaurantDetail extends StatelessWidget {
-  static String routeName = '/BodyRestaurantDetail';
-  const BodyRestaurantDetail({Key? key, required this.restaurantModel}) : super(key: key);
+class BodyFoodDetail extends StatelessWidget {
+  static String routeName = '/BodyFoodDetail';
+  const BodyFoodDetail({Key? key, required this.restaurantModel, required this.foodModel}) : super(key: key);
   final RestaurantModel restaurantModel;
+  final FoodModel foodModel;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -24,12 +25,12 @@ class BodyRestaurantDetail extends StatelessWidget {
                 height: SizeConfig.screenHeight! * 0.35,
                 width: SizeConfig.screenWidth! * 1,
                   child: Image.network(
-                    restaurantModel.restaurantUrlImage2,
+                    foodModel.foodUrlImage,
                   fit: BoxFit.cover,
                 ),
               ),
-              DetailRestaurant(
-                restaurantModel: restaurantModel,
+              DetailFood(
+                restaurantModel: restaurantModel, foodModel: foodModel,
               ),
             ],
           )),

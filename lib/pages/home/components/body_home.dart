@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:food_delivery/pages/food_detail/food_detail_screen.dart';
 import 'package:food_delivery/repositories/get_food.dart';
 import 'package:food_delivery/pages/explore_food/explore_food_screen.dart';
 import 'package:food_delivery/pages/explore_restaurant/explore_restaurant_screen.dart';
@@ -137,11 +138,25 @@ class _BodyHomeState extends State<BodyHome> {
                   child: SlideAnimation(
                     verticalOffset: 50.0,
                     child: FadeInAnimation(
-                      child: FoodCard(
-                          restaurantModel:
-                              restaurantNotifier.restaurantList[index],
-                          foodModel: foodNotifier.foodList[index],
-                          onPress: () {}),
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FoodDetailScreen(
+                                restaurantModel: restaurantNotifier.restaurantList[index],
+                                foodModel: foodNotifier.foodList[index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: FoodCard(
+                            restaurantModel:
+                                restaurantNotifier.restaurantList[index],
+                            foodModel: foodNotifier.foodList[index],
+                            onPress: () {
+                            }),
+                      ),
                     ),
                   ),
                 );

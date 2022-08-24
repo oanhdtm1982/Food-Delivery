@@ -25,4 +25,6 @@ const textDescriptionRestaurant = TextStyle(
     fontFamily: 'BentonSans Book',
     height: 1.4,
     fontSize: 12,
+    wordSpacing: 2,
     color: Color.fromRGBO(0, 0, 0, 1));
+
