@@ -31,18 +31,15 @@ class CartNotifier extends ChangeNotifier {
     }
     return total;
   }
+//
 
-  addQuantity(FoodDataBase food) {
-    food.quantity++;
-    notifyListeners();
-  }
 
-  removeQuantity(FoodDataBase food) {
-    food.quantity--;
-    notifyListeners();
-  }
-
-  getNameInCart(FoodDataBase food) {
-    return food.foodName;
+//  Get all name in cart
+  getNameInCartAll() {
+    List<String> name = [];
+    for (var food in _cartFoodList) {
+      name.add(food.foodName);
+    }
+    return name;
   }
 }

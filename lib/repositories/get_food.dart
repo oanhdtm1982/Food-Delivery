@@ -20,33 +20,6 @@ getFoods(FoodNotifier foodNotifier) async {
   foodNotifier.foodList = foodList;
 }
 
-getfavoriteFoods(FoodNotifier foodNotifier) async {
-  var uid = FirebaseAuth.instance.currentUser;
-  final snapshot = await FirebaseDatabase.instance.ref(uid?.uid).child('Favorite').get();
-  List<FoodDataBase> favfoodList = [];
-  final map = snapshot.value as Map<dynamic, dynamic>;
 
-  map.forEach((key, value) {
-    final fav = FoodDataBase.fromMap(value);
 
-    favfoodList.add(fav);
-  });
-  foodNotifier.favoriteFoodList = favfoodList;
-}
 
-getCartFoods(CartNotifier cartNotifier) async {
-  var uid = FirebaseAuth.instance.currentUser;
-  List<FoodDataBase> cartfoodList = [];
-
-  final snapshot =
-      await FirebaseDatabase.instance.ref(uid?.uid).child('Cart').get();
-
-  final map = snapshot.value as Map<dynamic, dynamic>;
-
-  map.forEach((key, value) {
-    final cart = FoodDataBase.fromMap(value);
-
-    cartfoodList.add(cart);
-  });
-  cartNotifier.cartFoodList = cartfoodList;
-}

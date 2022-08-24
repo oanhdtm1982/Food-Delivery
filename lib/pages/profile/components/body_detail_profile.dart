@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/main.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
@@ -12,7 +11,7 @@ import 'package:food_delivery/widgets/cards/discount_card.dart';
 import 'package:food_delivery/widgets/cards/favorite_card.dart';
 import 'package:provider/provider.dart';
 
-import '../../../repositories/get_food.dart';
+import '../../../repositories/get_favouriteFoods.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';

@@ -3,7 +3,7 @@ import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../../notifier/cart_notifier.dart';
-import '../../../repositories/get_food.dart';
+import '../../../repositories/get_cart.dart';
 import '../../../widgets/gradient_text.dart';
 import '../../../widgets/size_config.dart';
 

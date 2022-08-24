@@ -8,7 +8,7 @@ import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
 import '../../../notifier/cart_notifier.dart';
-import '../../../repositories/get_food.dart';
+import '../../../repositories/get_cart.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
 
