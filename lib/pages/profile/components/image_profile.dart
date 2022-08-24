@@ -15,7 +15,8 @@ class ImageProfile extends StatefulWidget {
 
 class _ImageProfileState extends State<ImageProfile> {
   String url =
-      'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';
+      'https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1';
+  @override
   void initState() {
     super.initState();
     var ref = FirebaseStorage.instance
@@ -30,7 +31,9 @@ class _ImageProfileState extends State<ImageProfile> {
       width: SizeConfig.screenWidth! * 1,
       child: FancyShimmerImage(
         imageUrl: url,
-        errorWidget: Image.network('https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1'),
+        errorWidget: Image.network(
+            'https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1'),
+        boxFit: BoxFit.cover,
       ),
     );
   }
