@@ -31,7 +31,6 @@ final routes = <String, WidgetBuilder>{
   UploadPhotoScreen.routeName: (context) => const UploadPhotoScreen(),
   ExploreRestaurantScreen.routeName: (context) =>
       const ExploreRestaurantScreen(),
-  RestaurantDetailScreen.routeName: (context) => const RestaurantDetailScreen(),
   ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
   ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
   UploadPreviewScreen.routeName: (context) => const UploadPreviewScreen(),
@@ -39,5 +38,4 @@ final routes = <String, WidgetBuilder>{
   RateScreen.routeName: (context) => const RateScreen(),
   ChatScreen.routeName: (context) => const ChatScreen(),
   ChatDetailScreen.routeName: (context) => const ChatDetailScreen(),
-  RestaurantDetailScreen.routeName: (context) => const RestaurantDetailScreen(),
 };

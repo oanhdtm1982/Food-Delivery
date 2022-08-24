@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:food_delivery/models/restaurant_model.dart';
+import 'package:food_delivery/notifier/food_notifier.dart';
 import 'package:food_delivery/pages/restaurant_detail/components/testimonials_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +13,7 @@ import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
 import '../../../widgets/cards/chat_card.dart';
+import '../../../widgets/cards/food_card.dart';
 import '../../../widgets/cards/restaurant_card.dart';
 import '../../../widgets/title_group.dart';
 import '../../chat_detail/chat_detail_screen.dart';
@@ -17,14 +21,15 @@ import '../../explore_food/explore_food_screen.dart';
 import '../restaurant_detail_screen.dart';
 
 class DetailRestaurant extends StatelessWidget {
-  const DetailRestaurant({Key? key}) : super(key: key);
-
+  const DetailRestaurant({Key? key, required this.restaurantModel}) : super(key: key);
+  final RestaurantModel restaurantModel;
   @override
   Widget build(BuildContext context) {
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context);
     getRestaurants(restaurantNotifier);
-
+    FoodNotifier foodNotifier =
+        (Provider.of<FoodNotifier>(context, listen: false));
     return Expanded(
       child: Align(
         alignment: Alignment.bottomCenter,
@@ -53,19 +58,19 @@ class DetailRestaurant extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Text(
-                        'Wijie Bar and Resto',
+                      Text(
+                        restaurantModel.restaurantName,
                         style: textNameProfile,
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      const Text(
-                        'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole . . . .',
+                      Text(
+                        restaurantModel.restaurantDescription,
                         style: textDescriptionRestaurant,
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 16,
                       ),
                     ],
                   ),
@@ -85,34 +90,37 @@ class DetailRestaurant extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
                 SizedBox(
-                  height: SizeConfig.screenWidth! * 0.4,
+                  height: SizeConfig.screenWidth! * 0.3,
                   width: SizeConfig.screenWidth! * 1,
                   child: Expanded(
                     child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 2,
-                      itemBuilder: (context, index) => GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              RestaurantDetailScreen.routeName,
-                              (route) => false);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(
-                              SizeConfig.screenWidth! * 0.05,
-                              15,
-                              SizeConfig.screenWidth! * 0.05,
-                              20),
-                          child: RestaurantCard(
-                              restaurantModel:
+                      scrollDirection: Axis.vertical,
+                      itemCount: foodNotifier.foodList.length,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: FoodCard(
+                                  restaurantModel:
                                   restaurantNotifier.restaurantList[index],
-                              onPress: () {}),
-                        ),
-                      ),
+                                  foodModel: foodNotifier.foodList[index],
+                                  onPress: () {}),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 4,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -129,8 +137,9 @@ class DetailRestaurant extends StatelessWidget {
                     ),
                   ),
                 ),
+               const SizedBox(height: 10,),
                 SizedBox(
-                  height: SizeConfig.screenWidth! * 1,
+                  height: SizeConfig.screenWidth! * 0.3,
                   width: SizeConfig.screenWidth! * 1,
                   child: MediaQuery.removePadding(
                     removeTop: true,

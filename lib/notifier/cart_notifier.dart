@@ -31,8 +31,10 @@ class CartNotifier extends ChangeNotifier {
     }
     return total;
   }
-//
-
+  //Get all name, quantity, price of food in cart
+  getCartFoods() {
+    return _cartFoodList;
+  }
 
 //  Get all name in cart
   getNameInCartAll() {

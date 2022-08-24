@@ -84,10 +84,15 @@ class _BodyHomeState extends State<BodyHome> {
                         child: FadeInAnimation(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  RestaurantDetailScreen.routeName,
-                                  (route) => false);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RestaurantDetailScreen(
+                                    restaurantModel: restaurantNotifier
+                                        .restaurantList[index],
+                                  ),
+                                ),
+                              );
                             },
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(
