@@ -49,7 +49,10 @@ class BodyForgotPassword extends StatelessWidget {
                 forgotPasswordUrlImage: 'assets/images/mail.png',
                 textForgotPassword: 'Via email',
                 descForgotPassword: '.... @gmail.com',
-                onPress: (){},
+                onPress: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ResetPasswordScreen()));
+                },
               ),
               Expanded(
                 child: Align(

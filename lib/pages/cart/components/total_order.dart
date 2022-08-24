@@ -15,6 +15,10 @@ class TotalOrder extends StatefulWidget {
 }
 
 class _TotalOrderState extends State<TotalOrder> {
+  double subtotal = 0;
+  double deliveryCharge = 0;
+  double discount = 0;
+  double total = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -22,15 +26,11 @@ class _TotalOrderState extends State<TotalOrder> {
     CartNotifier cartNotifier =
         (Provider.of<CartNotifier>(context, listen: false));
     getCartFoods(cartNotifier);
+    subtotal = cartNotifier.totalAmount();
   }
-
   @override
   Widget build(BuildContext context) {
     CartNotifier cartNotifier = Provider.of<CartNotifier>(context);
-    double subtotal = 0;
-    double deliveryCharge = 0;
-    double discount = 0;
-    double total = 0;
     setState(() {
       subtotal = cartNotifier.totalAmount();
       if (subtotal > 0) {
@@ -38,7 +38,7 @@ class _TotalOrderState extends State<TotalOrder> {
       }
       if(subtotal >= 150)
         {
-          discount = subtotal * 0.15;
+          discount = subtotal * 0.2;
         }
       total = subtotal + deliveryCharge - discount;
     });
@@ -88,7 +88,9 @@ class _TotalOrderState extends State<TotalOrder> {
               ),
             ),
             ButtonOrder(
-              onPress: () {},
+              onPress: () {
+
+              },
             ),
             const SizedBox(
               height: 20,

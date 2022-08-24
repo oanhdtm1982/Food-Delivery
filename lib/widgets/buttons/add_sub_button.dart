@@ -20,7 +20,7 @@ class _AddSubButtonState extends State<AddSubButton> {
   }
   @override
   Widget build(BuildContext context) {
-    int quantity = widget.quantity;
+    int valueOrder = widget.quantity;
     var uid = FirebaseAuth.instance.currentUser;
     DatabaseReference ref = FirebaseDatabase.instance
         .ref(uid!.uid)
@@ -34,12 +34,11 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                 if (quantity > 1) {
-                   quantity--;
-                   ref.update({'quantity': quantity--});
-
+                 if (valueOrder > 1) {
+                   valueOrder--;
+                   ref.update({'quantity': valueOrder--});
                  } else {
-                   ref.update({'quantity': quantity});
+                   ref.update({'quantity': valueOrder});
                  }
                 });
               },
@@ -48,7 +47,7 @@ class _AddSubButtonState extends State<AddSubButton> {
             width: 16,
           ),
           Text(
-            '$quantity',
+            '$valueOrder',
             style: const TextStyle(
                 fontSize: 14, color: Color.fromARGB(177, 26, 22, 22)),
           ),
@@ -58,8 +57,8 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                  quantity++;
-                  ref.update({'quantity': quantity++});
+                  valueOrder++;
+                  ref.update({'quantity': valueOrder++});
                 });
               },
               child: const AddButton()),
