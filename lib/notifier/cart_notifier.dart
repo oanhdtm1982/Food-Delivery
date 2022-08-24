@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
@@ -19,10 +18,12 @@ class CartNotifier extends ChangeNotifier {
     _currentFood = food;
     notifyListeners();
   }
+
   removeFromCart(FoodDataBase food) {
     _cartFoodList.removeWhere((element) => element.idFood == food.idFood);
     notifyListeners();
   }
+
   totalAmount() {
     double total = 0;
     for (var food in _cartFoodList) {
@@ -30,14 +31,17 @@ class CartNotifier extends ChangeNotifier {
     }
     return total;
   }
+
   addQuantity(FoodDataBase food) {
     food.quantity++;
     notifyListeners();
   }
+
   removeQuantity(FoodDataBase food) {
     food.quantity--;
     notifyListeners();
   }
+
   getNameInCart(FoodDataBase food) {
     return food.foodName;
   }

@@ -1,4 +1,4 @@
-class FoodDataBase{
+class FoodDataBase {
   final String? idFood;
   String foodName;
   String category;
@@ -33,7 +33,4 @@ class FoodDataBase{
       quantity: map['quantity'] as int,
     );
   }
-
 }
-
-

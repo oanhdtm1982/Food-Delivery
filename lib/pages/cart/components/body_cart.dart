@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery/models/food_model.dart';
-import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 import 'package:food_delivery/pages/cart/components/total_order.dart';
 import 'package:food_delivery/widgets/cards/order_detail_card.dart';
@@ -32,7 +30,6 @@ class _BodyCartState extends State<BodyCart> {
     CartNotifier cartNotifier =
         (Provider.of<CartNotifier>(context, listen: false));
     getCartFoods(cartNotifier);
-
   }
 
   @override

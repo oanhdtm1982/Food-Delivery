@@ -20,10 +20,10 @@ class _TotalOrderState extends State<TotalOrder> {
     // TODO: implement initState
     super.initState();
     CartNotifier cartNotifier =
-    (Provider.of<CartNotifier>(context, listen: false));
+        (Provider.of<CartNotifier>(context, listen: false));
     getCartFoods(cartNotifier);
-
   }
+
   @override
   Widget build(BuildContext context) {
     CartNotifier cartNotifier = Provider.of<CartNotifier>(context);
@@ -31,11 +31,17 @@ class _TotalOrderState extends State<TotalOrder> {
     double deliveryCharge = 0;
     double discount = 0;
     double total = 0;
-    subtotal = cartNotifier.totalAmount();
-    if(subtotal > 0){
-      deliveryCharge = subtotal * 0.1;
-    }
-    total = subtotal + deliveryCharge - discount;
+    setState(() {
+      subtotal = cartNotifier.totalAmount();
+      if (subtotal > 0) {
+        deliveryCharge = subtotal * 0.1;
+      }
+      if(subtotal >= 150)
+        {
+          discount = subtotal * 0.15;
+        }
+      total = subtotal + deliveryCharge - discount;
+    });
     return Container(
       decoration: const BoxDecoration(
         gradient: appLinearColor,
@@ -49,7 +55,8 @@ class _TotalOrderState extends State<TotalOrder> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextTotalOrder(title: 'Sub-Total', price: '$subtotal\$'),
-            TextTotalOrder(title: 'Delivery Charge', price: '$deliveryCharge\$'),
+            TextTotalOrder(
+                title: 'Delivery Charge', price: '$deliveryCharge\$'),
             TextTotalOrder(title: 'Discount', price: '$discount\$'),
             const SizedBox(
               height: 20,

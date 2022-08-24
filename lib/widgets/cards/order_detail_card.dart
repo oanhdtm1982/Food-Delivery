@@ -5,9 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/food_database.dart';
-import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
-import 'package:food_delivery/repositories/get_food.dart';
 import 'package:food_delivery/widgets/buttons/add_sub_button.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
 import 'package:food_delivery/widgets/size_config.dart';
@@ -30,6 +28,10 @@ class OrderDetailCard extends StatefulWidget {
 }
 
 class _OrderDetailCardState extends State<OrderDetailCard> {
+  @override
+  initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return InkWell(

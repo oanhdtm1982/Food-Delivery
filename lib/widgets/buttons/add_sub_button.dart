@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +16,8 @@ class _AddSubButtonState extends State<AddSubButton> {
   @override
   initState() {
     super.initState();
-  }
 
+  }
   @override
   Widget build(BuildContext context) {
     int quantity = widget.quantity;
@@ -36,12 +34,13 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                  if (quantity > 1) {
-                    quantity--;
-                    ref.update({'quantity': quantity});
-                  } else {
-                    ref.update({'quantity': quantity});
-                  }
+                 if (quantity > 1) {
+                   quantity--;
+                   ref.update({'quantity': quantity--});
+
+                 } else {
+                   ref.update({'quantity': quantity});
+                 }
                 });
               },
               child: const SubButton()),
@@ -51,7 +50,7 @@ class _AddSubButtonState extends State<AddSubButton> {
           Text(
             '$quantity',
             style: const TextStyle(
-                fontSize: 16, color: Color.fromARGB(177, 26, 22, 22)),
+                fontSize: 14, color: Color.fromARGB(177, 26, 22, 22)),
           ),
           const SizedBox(
             width: 16,
@@ -60,7 +59,7 @@ class _AddSubButtonState extends State<AddSubButton> {
               onTap: () {
                 setState(() {
                   quantity++;
-                  ref.update({'quantity': quantity});
+                  ref.update({'quantity': quantity++});
                 });
               },
               child: const AddButton()),

@@ -38,6 +38,11 @@ class MyApp extends StatelessWidget {
           primaryColor: appPrimaryColor,
           shadowColor: appPrimaryColor,
         ),
+        darkTheme: ThemeData.dark().copyWith(
+          primaryColor: appPrimaryColor,
+          shadowColor: appPrimaryColor,
+        ),
+        themeMode: ThemeMode.light,
         routes: routes,
         initialRoute: SplashScreen.routeName,
       ),
