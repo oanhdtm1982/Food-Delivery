@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:food_delivery/pages/bottom_bar/bottom_bar.dart';
 
 import '../../widgets/screens/success_notification.dart';
 import 'package:flutter/material.dart';
+
+import '../sign_in/sign_in_screen.dart';
 
 class SuccessRegister extends StatefulWidget {
   const SuccessRegister({Key? key}) : super(key: key);
@@ -19,14 +20,14 @@ class _SuccessRegisterState extends State<SuccessRegister> {
     super.initState();
     Timer(const Duration(seconds: 2), () {
       Navigator.pushNamedAndRemoveUntil(
-          context, BottomBar.routeName, (route) => false);
+          context, SignInScreen.routeName, (route) => false);
     });
 
   }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SuccessScreen(text: 'Register',)
+      body: SuccessScreen(text: 'Your Profile Is Ready To Use',)
     );
   }
 }

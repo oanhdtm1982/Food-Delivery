@@ -12,6 +12,7 @@ import 'package:food_delivery/pages/set_location/set_location_screen.dart';
 import 'package:food_delivery/pages/sign_in/sign_in_screen.dart';
 import 'package:food_delivery/pages/sign_up/sign_up_process/sign_up_process_screen.dart';
 import 'package:food_delivery/pages/sign_up/sign_up_screen/sign_up_screen.dart';
+import 'package:food_delivery/pages/success_screens/purchased_success.dart';
 import 'package:food_delivery/pages/upload_photo/upload_photo_screen.dart';
 import 'package:food_delivery/pages/upload_preview/upload_preview_screen.dart';
 import 'package:food_delivery/pages/verification_code/verification_code_screen.dart';
@@ -38,4 +39,5 @@ final routes = <String, WidgetBuilder>{
   RateScreen.routeName: (context) => const RateScreen(),
   ChatScreen.routeName: (context) => const ChatScreen(),
   ChatDetailScreen.routeName: (context) => const ChatDetailScreen(),
+  PurchasedSuccess.routeName: (context) => const PurchasedSuccess(),
 };

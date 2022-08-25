@@ -120,7 +120,7 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
                           (Route<dynamic> route) => false);
                     },
                     icon: const Icon(
-                      Icons.drive_file_rename_outline_sharp,
+                      Icons.exit_to_app,
                       color: appSecondaryColor,
                     )),
               ),

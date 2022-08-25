@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
-import 'package:food_delivery/models/chat_model.dart';
 import 'package:food_delivery/widgets/size_config.dart';
+
+import '../../../models/testimonial_model.dart';
 
 class TestimonialCard extends StatelessWidget {
   const TestimonialCard({
     Key? key,
     required this.onPress,
-    required this.chatModel,
+    required this.testimonialModel,
   }) : super(key: key);
-  final ChatModel chatModel;
+  final TestimonialModel testimonialModel;
   final Function() onPress;
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,8 @@ class TestimonialCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(chatModel.chatUrlImage),
+                  Image.asset(testimonialModel.image,
+                      height: SizeConfig.screenWidth! * 0.1),
                   const SizedBox(
                     width: 15,
                   ),
@@ -42,13 +44,13 @@ class TestimonialCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        chatModel.chatName,
+                        testimonialModel.name,
                         style: titleFood,
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(chatModel.messageLast, style: descRestaurantName),
+                      Text(testimonialModel.comment, style: descRestaurantName),
                     ],
                   ),
                   Expanded(
@@ -57,7 +59,7 @@ class TestimonialCard extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.topRight,
                         child: Text(
-                          chatModel.time,
+                          testimonialModel.time,
                           textAlign: TextAlign.right,
                           style: descRestaurantName,
                         )),

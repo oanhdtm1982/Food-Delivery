@@ -9,6 +9,7 @@ class CartNotifier extends ChangeNotifier {
   UnmodifiableListView<FoodDataBase> get cartFoodList =>
       UnmodifiableListView(_cartFoodList);
   FoodDataBase? _currentFood;
+
   set cartFoodList(List<FoodDataBase> foodList) {
     _cartFoodList = foodList;
     notifyListeners();
@@ -18,7 +19,8 @@ class CartNotifier extends ChangeNotifier {
     _currentFood = food;
     notifyListeners();
   }
-
+  get foodNamesQuantity => _cartFoodList.map((e) => e.foodName).toList();
+  get quantity => _cartFoodList.map((e) => e.quantity).toList();
   removeFromCart(FoodDataBase food) {
     _cartFoodList.removeWhere((element) => element.idFood == food.idFood);
     notifyListeners();

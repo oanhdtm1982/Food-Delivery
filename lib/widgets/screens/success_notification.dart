@@ -12,7 +12,8 @@ class SuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Stack(
           alignment: Alignment.bottomCenter,
@@ -25,12 +26,12 @@ class SuccessScreen extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: SizeConfig.screenHeight! * 0.01,
+          height: SizeConfig.screenHeight! * 0.05,
         ),
         const GradientText(
           'Congrats!',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w400,
             fontFamily: 'BentonSans Bold',
             fontSize: 30,
           ),
@@ -39,6 +40,9 @@ class SuccessScreen extends StatelessWidget {
             appSecondaryColor,
           ]),
         ),
+        SizedBox(
+          height: SizeConfig.screenHeight! * 0.05,
+        ),
         Text(text,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
@@ -46,10 +50,6 @@ class SuccessScreen extends StatelessWidget {
               fontSize: 23,
               color: appTextColor,
             )),
-        SizedBox(
-          height: SizeConfig.screenHeight! * 0.1,
-        ),
-        ButtonCustom(onPress: () {}, title: text)
       ],
     );
   }

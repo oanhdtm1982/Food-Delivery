@@ -12,14 +12,11 @@ import '../../../models/testimonial_model.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
-import '../../../widgets/cards/chat_card.dart';
 import '../../../widgets/cards/food_card.dart';
-import '../../../widgets/cards/restaurant_card.dart';
 import '../../../widgets/title_group.dart';
 import '../../chat_detail/chat_detail_screen.dart';
 import '../../explore_food/explore_food_screen.dart';
 import '../../food_detail/food_detail_screen.dart';
-import '../restaurant_detail_screen.dart';
 
 class DetailRestaurant extends StatelessWidget {
   const DetailRestaurant({Key? key, required this.restaurantModel}) : super(key: key);
@@ -163,9 +160,9 @@ class DetailRestaurant extends StatelessWidget {
                     child: Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: chatDemo.length,
+                        itemCount: testimonialDemo.length,
                         itemBuilder: (context, index) => TestimonialCard(
-                            chatModel: chatDemo[index],
+                            testimonialModel: testimonialDemo[index],
                             onPress: () {
                               Navigator.push(
                                   context,

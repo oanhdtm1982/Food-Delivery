@@ -1,25 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
-import 'package:food_delivery/pages/payments/payments_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../notifier/cart_notifier.dart';
 import '../../../repositories/get_cart.dart';
 import '../../../widgets/gradient_text.dart';
 import '../../../widgets/size_config.dart';
+import '../../success_screens/purchased_success.dart';
 
-class TotalOrder extends StatefulWidget {
-  const TotalOrder({Key? key}) : super(key: key);
+class TotalOrderPayment extends StatefulWidget {
+  const TotalOrderPayment({Key? key}) : super(key: key);
 
   @override
-  State<TotalOrder> createState() => _TotalOrderState();
+  State<TotalOrderPayment> createState() => _TotalOrderPaymentState();
 }
 
-class _TotalOrderState extends State<TotalOrder> {
+class _TotalOrderPaymentState extends State<TotalOrderPayment> {
   double subtotal = 0;
   double deliveryCharge = 0;
   double discount = 0;
   double total = 0;
+  var uid = FirebaseAuth.instance.currentUser;
+  String address = '';
   @override
   void initState() {
     // TODO: implement initState
@@ -28,21 +34,31 @@ class _TotalOrderState extends State<TotalOrder> {
         (Provider.of<CartNotifier>(context, listen: false));
     getCartFoods(cartNotifier);
     subtotal = cartNotifier.totalAmount();
+    getName();
+  }
+  Future<void> getName() async {
+    await FirebaseFirestore.instance
+        .collection("user")
+        .doc(uid?.uid)
+        .snapshots()
+        .listen((event) {
+      setState(() {
+        address = event.get("address");
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
     CartNotifier cartNotifier = Provider.of<CartNotifier>(context);
     setState(() {
       subtotal = cartNotifier.totalAmount();
-      if (subtotal > 0) {
-        deliveryCharge = subtotal * 0.1;
+      deliveryCharge = subtotal * 0.1;
+      if (subtotal >= 150) {
+        discount = subtotal * 0.2;
       }
-      if(subtotal >= 150)
-        {
-          discount = subtotal * 0.2;
-        }
       total = subtotal + deliveryCharge - discount;
     });
+
     return Container(
       decoration: const BoxDecoration(
         gradient: appLinearColor,
@@ -90,7 +106,32 @@ class _TotalOrderState extends State<TotalOrder> {
             ),
             ButtonOrder(
               onPress: () {
-
+                DatabaseReference ref = FirebaseDatabase.instance
+                    .ref(uid!.uid)
+                    .child('Purchased')
+                    .child((DateTime.now().millisecondsSinceEpoch).toString());
+                ref.set({
+                  'Subtotal': subtotal,
+                  'Delivery Charge': deliveryCharge,
+                  'Discount': discount,
+                  'Total': total,
+                  'Address': address,
+                });
+                FirebaseDatabase.instance
+                    .ref(uid!.uid)
+                    .child('Cart').remove();
+                Fluttertoast.showToast(
+                    msg: 'Order Placed',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: const Color.fromRGBO(83, 232, 139, 1),
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PurchasedSuccess()));
               },
             ),
             const SizedBox(
@@ -145,31 +186,22 @@ class ButtonOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    onTap: onPress,
-      child: GestureDetector(
-        onTap: ()
-        {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const PaymentScreen()),
-          );
-        },
-        child: Container(
-          width: SizeConfig.screenWidth! * 0.9,
-          height: 50,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: const Center(
-            child: GradientText(
-              'Place My Order',
-              style: TextStyle(fontFamily: 'BentonSans Bold', fontSize: 14),
-              gradient: LinearGradient(colors: [
-                appPrimaryColor,
-                appSecondaryColor,
-              ]),
-            ),
+      onTap: onPress,
+      child: Container(
+        width: SizeConfig.screenWidth! * 0.9,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: const Center(
+          child: GradientText(
+            'Place My Order',
+            style: TextStyle(fontFamily: 'BentonSans Bold', fontSize: 14),
+            gradient: LinearGradient(colors: [
+              appPrimaryColor,
+              appSecondaryColor,
+            ]),
           ),
         ),
       ),

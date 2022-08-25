@@ -4,6 +4,8 @@ class TestimonialModel {
   String idFood;
   String comment;
   int star;
+  String image;
+  String name;
 
   TestimonialModel({
     this.idUser = '',
@@ -11,14 +13,25 @@ class TestimonialModel {
     this.time = '',
     this.comment = '',
     this.star = 1,
+    this.image = '',
+    this.name = '',
   });
 }
 
 List testimonialDemo= [
   TestimonialModel(
-      idUser: '1', idFood: '2', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '20:00', star: 5),
+      idUser: '1', idFood: '1', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '20:00', star: 5, image: 'assets/images/chat1.png', name: 'Jaehyun'),
   TestimonialModel(
-      idUser: '2', idFood: '2', comment: 'Anamwp', time: '20:00', star: 4),
+      idUser: '2', idFood: '2', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '21:00', star: 5, image: 'assets/images/chat2.png', name: 'Guy Hawkins'),
   TestimonialModel(
-      idUser: '3', idFood: '2', comment: 'Anamwp', time: '20:00', star: 3),
+      idUser: '3', idFood: '1', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '22:00', star: 5, image: 'assets/images/chat3.png', name: 'Mina'),
+  TestimonialModel(
+      idUser: '4', idFood: '3', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '10:00', star: 5, image: 'assets/images/chat1.png', name: 'Nayeon'),
+  TestimonialModel(
+      idUser: '5', idFood: '4', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '9:00', star: 5, image: 'assets/images/chat2.png', name: 'Momo'),
+  TestimonialModel(
+      idUser: '6', idFood: '3', comment: 'This Is great, So delicious! You Must Here, With Your family . . ', time: '8:00', star: 5, image: 'assets/images/chat3.png', name: 'Jungkook'),
+
+
+
 ];
