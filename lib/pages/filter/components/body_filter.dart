@@ -32,6 +32,7 @@ class _BodyFilterState extends State<BodyFilter> {
                     Row(
                       children: const [
                         ButtonText(textFilter: 'Restaurant'),
+                        SizedBox(width: 10),
                         ButtonText(textFilter: 'Menu'),
                       ],
                     ),
@@ -39,7 +40,9 @@ class _BodyFilterState extends State<BodyFilter> {
                     Row(
                       children: const [
                         ButtonText(textFilter: '1 Km'),
+                        SizedBox(width: 10),
                         ButtonText(textFilter: '>10 Km'),
+                        SizedBox(width: 10),
                         ButtonText(textFilter: '<10 Km'),
                       ],
                     ),
@@ -49,13 +52,16 @@ class _BodyFilterState extends State<BodyFilter> {
                         Row(
                           children: const [
                             ButtonText(textFilter: 'Cake'),
+                            SizedBox(width: 10),
                             ButtonText(textFilter: 'Soup'),
+                            SizedBox(width: 10),
                             ButtonText(textFilter: 'Main Course'),
                           ],
                         ),
                         Row(
                           children: const [
                             ButtonText(textFilter: 'Appetizer'),
+                            SizedBox(width: 10),
                             ButtonText(textFilter: 'Dessert'),
                           ],
                         )

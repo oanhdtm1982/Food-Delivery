@@ -16,6 +16,8 @@ import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
+import '../../food_detail/food_detail_screen.dart';
+import '../../foodfavorite_detail/food_fav_detail_screen.dart';
 
 class BodyDetailProfile extends StatefulWidget {
   const BodyDetailProfile({Key? key, required this.userModel})
@@ -144,11 +146,25 @@ class _BodyDetailProfileState extends State<BodyDetailProfile> {
                   child: SlideAnimation(
                     verticalOffset: 50.0,
                     child: FadeInAnimation(
-                      child: FavoriteCard(
-                          restaurantModel:
-                              restaurantNotifier.restaurantList[index],
-                          foodModel: foodNotifier.favoriteFoodList[index],
-                          onPress: () {}),
+                      child: GestureDetector(
+                        onTap: ()
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FoodDetailFavScreen(
+                                restaurantModel: restaurantNotifier.restaurantList[index],
+                                foodModel: foodNotifier.favoriteFoodList[index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: FavoriteCard(
+                            restaurantModel:
+                                restaurantNotifier.restaurantList[index],
+                            foodModel: foodNotifier.favoriteFoodList[index],
+                            onPress: () {}),
+                      ),
                     ),
                   ),
                 );

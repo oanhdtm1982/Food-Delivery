@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/styles/text_styles.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
+import 'package:food_delivery/pages/food_detail/food_detail_screen.dart';
 import 'package:food_delivery/widgets/cards/food_card.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:food_delivery/widgets/screens/top_bar_home.dart';
@@ -59,10 +60,23 @@ class _BodyExploreFoodState extends State<BodyExploreFood> {
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: foodNotifier.foodList.length,
-                    itemBuilder: (context, index) => FoodCard(
-                        restaurantModel: restaurantNotifier.restaurantList[index],
-                        foodModel: foodNotifier.foodList[index],
-                        onPress: () {}),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodDetailScreen(
+                              restaurantModel: restaurantNotifier.restaurantList[index],
+                              foodModel: foodNotifier.foodList[index],
+                            )
+                          ),
+                        );
+                      },
+                      child: FoodCard(
+                          restaurantModel: restaurantNotifier.restaurantList[index],
+                          foodModel: foodNotifier.foodList[index],
+                          onPress: () {}),
+                    ),
                   ),
                 ),
               ),

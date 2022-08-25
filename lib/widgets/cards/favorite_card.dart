@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/models/food_database.dart';
-import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/widgets/buttons/button_buy_again.dart';
 import 'package:food_delivery/widgets/gradient_text.dart';
@@ -56,11 +55,6 @@ class FavoriteCard extends StatelessWidget {
                       const SizedBox(
                         height: 4,
                       ),
-                      Text(
-                          foodModel.idRestaurant == restaurantModel.idRestaurant
-                              ? restaurantModel.restaurantName
-                              : 'null',
-                          style: descRestaurantName),
                       const SizedBox(
                         height: 8,
                       ),
@@ -77,7 +71,9 @@ class FavoriteCard extends StatelessWidget {
                   const Expanded(
                       child: Align(
                           alignment: Alignment.centerRight,
-                          child: BuyAgainButton())),
+                          child: BuyAgainButton(
+
+                          ))),
                 ],
               ),
             )),

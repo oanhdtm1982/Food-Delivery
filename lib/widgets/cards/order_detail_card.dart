@@ -99,12 +99,6 @@ class _OrderDetailCardState extends State<OrderDetailCard> {
                         const SizedBox(
                           height: 4,
                         ),
-                        Text(
-                            widget.foodModel.idRestaurant ==
-                                    widget.restaurantModel.idRestaurant
-                                ? widget.restaurantModel.restaurantName
-                                : 'null',
-                            style: descRestaurantName),
                         const SizedBox(
                           height: 8,
                         ),

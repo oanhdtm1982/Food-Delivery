@@ -18,6 +18,7 @@ import '../../../widgets/cards/restaurant_card.dart';
 import '../../../widgets/title_group.dart';
 import '../../chat_detail/chat_detail_screen.dart';
 import '../../explore_food/explore_food_screen.dart';
+import '../../food_detail/food_detail_screen.dart';
 import '../restaurant_detail_screen.dart';
 
 class DetailRestaurant extends StatelessWidget {
@@ -107,11 +108,25 @@ class DetailRestaurant extends StatelessWidget {
                           child: SlideAnimation(
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
-                              child: FoodCard(
-                                  restaurantModel:
-                                  restaurantNotifier.restaurantList[index],
-                                  foodModel: foodNotifier.foodList[index],
-                                  onPress: () {}),
+                              child: GestureDetector(
+                                onTap: ()
+                                {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FoodDetailScreen(
+                                        restaurantModel: restaurantNotifier.restaurantList[index],
+                                        foodModel: foodNotifier.foodList[index],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: FoodCard(
+                                    restaurantModel:
+                                    restaurantNotifier.restaurantList[index],
+                                    foodModel: foodNotifier.foodList[index],
+                                    onPress: () {}),
+                              ),
                             ),
                           ),
                         );

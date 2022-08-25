@@ -11,6 +11,7 @@ import '../../../notifier/cart_notifier.dart';
 import '../../../repositories/get_cart.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
+import '../../foodfavorite_detail/food_fav_detail_screen.dart';
 
 class BodyCart extends StatefulWidget {
   static String routeName = '/BodyCart';
@@ -70,12 +71,25 @@ class _BodyCartState extends State<BodyCart> {
                       child: SlideAnimation(
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
-                          child: OrderDetailCard(
-                              deleteOrder: () {},
-                              restaurantModel:
-                                  restaurantNotifier.restaurantList[index],
-                              foodModel: cartNotifier.cartFoodList[index],
-                              onPress: () {}),
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FoodDetailFavScreen(
+                                    restaurantModel: restaurantNotifier.restaurantList[index],
+                                    foodModel: cartNotifier.cartFoodList[index],
+                                  ),
+                                ),
+                              );
+                            },
+                            child: OrderDetailCard(
+                                deleteOrder: () {},
+                                restaurantModel:
+                                    restaurantNotifier.restaurantList[index],
+                                foodModel: cartNotifier.cartFoodList[index],
+                                onPress: () {}),
+                          ),
                         ),
                       ),
                     );

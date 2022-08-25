@@ -10,6 +10,7 @@ import '../../../repositories/get_food.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/food_notifier.dart';
 import '../../../notifier/restaurant_notifier.dart';
+import '../../restaurant_detail/restaurant_detail_screen.dart';
 
 class BodyExploreRestaurant extends StatefulWidget {
   const BodyExploreRestaurant({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
           ),
           Expanded(
             child: SizedBox(
-              height: SizeConfig.screenWidth! * 1,
+              height: SizeConfig.screenHeight! * 1,
               width: SizeConfig.screenWidth! * 1,
               child: MediaQuery.removePadding(
                 removeTop: true,
@@ -57,11 +58,28 @@ class _BodyExploreRestaurantState extends State<BodyExploreRestaurant> {
                     scrollDirection: Axis.vertical,
                     itemCount: restaurantNotifier.restaurantList.length,
                     itemBuilder: (BuildContext context, int index) =>
-                        RestaurantCard(
-                            restaurantModel: restaurantNotifier.restaurantList[index],
-                            onPress: () {}),
+                        GestureDetector(
+                          onTap:()
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RestaurantDetailScreen(
+                                    restaurantModel: restaurantNotifier
+                                        .restaurantList[index],
+                                  ),
+                                ),
+                              );
+                            },
+                          child: RestaurantCard(
+                              restaurantModel: restaurantNotifier.restaurantList[index],
+                              onPress: () {}),
+                        ),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+
                     ),
                   ),
                 ),

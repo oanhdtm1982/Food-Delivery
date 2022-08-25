@@ -9,6 +9,8 @@ class FoodModel {
   num price;
   String idRestaurant;
   num? ratingFood;
+  String restaurantName;
+
 
   FoodModel({
     this.idRestaurant = '',
@@ -19,6 +21,7 @@ class FoodModel {
     this.price = 0,
     this.desc = '',
     this.ratingFood,
+    this.restaurantName = '',
   });
 
   factory FoodModel.fromDocument(DocumentSnapshot doc) {
@@ -37,6 +40,7 @@ class FoodModel {
           : 0,
       category:
           doc.data().toString().contains('category') ? doc.get('category') : '',
+      restaurantName: doc.data().toString().contains('restaurantName') ? doc.get('restaurantName') : '',
     );
   }
 
@@ -49,6 +53,8 @@ class FoodModel {
       'price': price,
       'idRestaurant': idRestaurant,
       'ratingFood': ratingFood,
+      'category': category,
+      'restaurantName': restaurantName,
     };
   }
 }

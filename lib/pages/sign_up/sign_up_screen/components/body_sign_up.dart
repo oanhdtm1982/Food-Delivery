@@ -85,7 +85,7 @@ class _BodySignUpState extends State<BodySignUp> {
                   password = value;
                 }),
             SizedBox(
-              height: SizeConfig.screenHeight! * 0.04,
+              height: SizeConfig.screenHeight! * 0.06,
             ),
             ButtonCustom(
                 title: 'Create Account',
@@ -152,7 +152,7 @@ class _BodySignUpState extends State<BodySignUp> {
                   }
                 }),
             SizedBox(
-              height: SizeConfig.screenHeight! * 0.03,
+              height: SizeConfig.screenHeight! * 0.1,
             ),
             GestureDetector(
               onTap: () {
@@ -163,7 +163,7 @@ class _BodySignUpState extends State<BodySignUp> {
                 'Already have an account?',
                 style: TextStyle(
                   fontFamily: 'BentonSans Medium',
-                  fontSize: 12,
+                  fontSize: 16,
                 ),
                 gradient: LinearGradient(colors: [
                   appPrimaryColor,

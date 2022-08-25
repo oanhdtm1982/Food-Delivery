@@ -232,13 +232,17 @@ class _BodySignInState extends State<BodySignIn> {
                     'Forgot Your Password?',
                     style: TextStyle(
                       fontFamily: 'BentonSans Medium',
-                      fontSize: 12,
+                      fontSize: 15,
                     ),
                     gradient: LinearGradient(colors: [
                       appPrimaryColor,
                       appSecondaryColor,
                     ]),
                   ),
+                ),
+                SizedBox(
+                  width: SizeConfig.screenWidth! * 0.03,
+                  height: SizeConfig.screenHeight! * 0.1,
                 ),
                 Expanded(
                   child: Align(
@@ -252,7 +256,7 @@ class _BodySignInState extends State<BodySignIn> {
                         'Create an account?',
                         style: TextStyle(
                           fontFamily: 'BentonSans Medium',
-                          fontSize: 12,
+                          fontSize: 15,
                         ),
                         gradient: LinearGradient(colors: [
                           appPrimaryColor,

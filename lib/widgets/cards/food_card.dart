@@ -57,9 +57,7 @@ class FoodCard extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                          foodModel.idRestaurant == restaurantModel.idRestaurant
-                              ? restaurantModel.restaurantName
-                              : 'null',
+                          foodModel.restaurantName,
                           style: descRestaurantName),
                     ],
                   ),

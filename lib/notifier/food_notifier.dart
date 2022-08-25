@@ -40,5 +40,4 @@ class FoodNotifier with ChangeNotifier {
   }
 
 
-
 }

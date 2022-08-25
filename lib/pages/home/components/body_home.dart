@@ -126,6 +126,9 @@ class _BodyHomeState extends State<BodyHome> {
                 child: const TitleGroup(mainTitle: 'Popular Menu'),
               )),
           SizedBox(
+            height: SizeConfig.screenWidth! * 0.02,
+          ),
+          SizedBox(
             height: SizeConfig.screenWidth! * 0.6,
             width: SizeConfig.screenWidth! * 1,
             child: ListView.builder(

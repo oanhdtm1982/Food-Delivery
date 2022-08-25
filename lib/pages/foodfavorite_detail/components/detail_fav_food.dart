@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
 import 'package:food_delivery/notifier/food_notifier.dart';
@@ -13,18 +14,18 @@ import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
 
-class DetailFood extends StatefulWidget {
-  const DetailFood(
+class DetailFoodFav extends StatefulWidget {
+  const DetailFoodFav(
       {Key? key, required this.restaurantModel, required this.foodModel})
       : super(key: key);
   final RestaurantModel restaurantModel;
-  final FoodModel foodModel;
+  final FoodDataBase foodModel;
 
   @override
-  State<DetailFood> createState() => _DetailFoodState();
+  State<DetailFoodFav> createState() => _DetailFoodFavState();
 }
 
-class _DetailFoodState extends State<DetailFood> {
+class _DetailFoodFavState extends State<DetailFoodFav> {
   @override
   Widget build(BuildContext context) {
     RestaurantNotifier restaurantNotifier =
