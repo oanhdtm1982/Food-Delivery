@@ -21,7 +21,7 @@ class TestimonialCard extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Container(
             height: SizeConfig.screenWidth! * 0.2,
-            width: SizeConfig.screenWidth! * 0.4,
+            width: SizeConfig.screenWidth! * 0.5,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(15)),
                 color: appBackgroundButtonColor.withOpacity(0.1),
@@ -50,7 +50,12 @@ class TestimonialCard extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(testimonialModel.comment, style: descRestaurantName),
+                    Text(testimonialModel.comment,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 10,
+                          fontFamily: 'Roboto',
+                        ),
+                    ),
                     ],
                   ),
                   Expanded(

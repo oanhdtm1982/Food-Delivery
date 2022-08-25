@@ -40,141 +40,143 @@ class DetailRestaurant extends StatelessWidget {
                   topRight: Radius.circular(40), topLeft: Radius.circular(40)),
               color: Colors.white,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: const [
-                          ButtonText(
-                            textFilter: 'Popular',
-                          ),
-                        ],
-                      ),
-                      Text(
-                        restaurantModel.restaurantName,
-                        style: textNameProfile,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        restaurantModel.restaurantDescription,
-                        style: textDescriptionRestaurant,
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ExploreFoodScreen()));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
-                        0, SizeConfig.screenWidth! * 0.05, 0),
-                    child: const TitleGroup(
-                      mainTitle: 'Popular Menu',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                SizedBox(
-                  height: SizeConfig.screenWidth! * 0.3,
-                  width: SizeConfig.screenWidth! * 1,
-                  child: Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: foodNotifier.foodList.length,
-                      itemBuilder: (context, index) {
-                        return AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          child: SlideAnimation(
-                            verticalOffset: 50.0,
-                            child: FadeInAnimation(
-                              child: GestureDetector(
-                                onTap: ()
-                                {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => FoodDetailScreen(
-                                        restaurantModel: restaurantNotifier.restaurantList[index],
-                                        foodModel: foodNotifier.foodList[index],
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: FoodCard(
-                                    restaurantModel:
-                                    restaurantNotifier.restaurantList[index],
-                                    foodModel: foodNotifier.foodList[index],
-                                    onPress: () {}),
-                              ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: const [
+                            ButtonText(
+                              textFilter: 'Popular',
                             ),
-                          ),
-                        );
-                      },
+                          ],
+                        ),
+                        Text(
+                          restaurantModel.restaurantName,
+                          style: textNameProfile,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          restaurantModel.restaurantDescription,
+                          style: textDescriptionRestaurant,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ExploreFoodScreen()));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
-                        0, SizeConfig.screenWidth! * 0.05, 0),
-                    child: const TitleGroup(
-                      mainTitle: 'Testimonials',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ExploreFoodScreen()));
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
+                          0, SizeConfig.screenWidth! * 0.05, 0),
+                      child: const TitleGroup(
+                        mainTitle: 'Popular Menu',
+                      ),
                     ),
                   ),
-                ),
-               const SizedBox(height: 10,),
-                SizedBox(
-                  height: SizeConfig.screenWidth! * 0.3,
-                  width: SizeConfig.screenWidth! * 1,
-                  child: MediaQuery.removePadding(
-                    removeTop: true,
-                    removeBottom: true,
-                    context: context,
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  SizedBox(
+                    height: SizeConfig.screenWidth! * 0.3,
+                    width: SizeConfig.screenWidth! * 1,
                     child: Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: testimonialDemo.length,
-                        itemBuilder: (context, index) => TestimonialCard(
-                            testimonialModel: testimonialDemo[index],
-                            onPress: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ChatDetailScreen()));
-                            }),
+                        itemCount: foodNotifier.foodList.length,
+                        itemBuilder: (context, index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: GestureDetector(
+                                  onTap: ()
+                                  {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FoodDetailScreen(
+                                          restaurantModel: restaurantNotifier.restaurantList[index],
+                                          foodModel: foodNotifier.foodList[index],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: FoodCard(
+                                      restaurantModel:
+                                      restaurantNotifier.restaurantList[index],
+                                      foodModel: foodNotifier.foodList[index],
+                                      onPress: () {}),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ExploreFoodScreen()));
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth! * 0.05,
+                          0, SizeConfig.screenWidth! * 0.05, 0),
+                      child: const TitleGroup(
+                        mainTitle: 'Testimonials',
+                      ),
+                    ),
+                  ),
+                 const SizedBox(height: 10,),
+                  SizedBox(
+                    height: SizeConfig.screenWidth! * 0.3,
+                    width: SizeConfig.screenWidth! * 1,
+                    child: MediaQuery.removePadding(
+                      removeTop: true,
+                      removeBottom: true,
+                      context: context,
+                      child: Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: testimonialDemo.length,
+                          itemBuilder: (context, index) => TestimonialCard(
+                              testimonialModel: testimonialDemo[index],
+                              onPress: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ChatDetailScreen()));
+                              }),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

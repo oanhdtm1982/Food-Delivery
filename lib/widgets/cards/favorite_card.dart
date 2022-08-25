@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
 import 'package:food_delivery/models/food_database.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
@@ -38,9 +41,7 @@ class FavoriteCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.network(foodModel.foodUrlImage,
-                      width: 50,
-                      height: 50,
-                      fit:BoxFit.fill),
+                      width: 50, height: 50, fit: BoxFit.fill),
                   const SizedBox(
                     width: 15,
                   ),
@@ -68,12 +69,39 @@ class FavoriteCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Expanded(
+                  Expanded(
                       child: Align(
                           alignment: Alignment.centerRight,
-                          child: BuyAgainButton(
-
-                          ))),
+                          child: GestureDetector(
+                              onTap: () {
+                                var uid = FirebaseAuth.instance.currentUser;
+                                DatabaseReference ref = FirebaseDatabase
+                                    .instance
+                                    .ref(uid!.uid)
+                                    .child('Cart')
+                                    .child(foodModel.foodName);
+                                ref.set({
+                                  'foodName': foodModel.foodName,
+                                  'price': foodModel.price,
+                                  'desc': foodModel.desc,
+                                  'ratingFood': foodModel.ratingFood,
+                                  'restaurantName':
+                                      restaurantModel.restaurantName,
+                                  'foodUrlImage': foodModel.foodUrlImage,
+                                  'quantity': 1,
+                                }).whenComplete(() {
+                                  Fluttertoast.showToast(
+                                      msg: 'Add to cart success',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor:
+                                          const Color.fromRGBO(83, 232, 139, 1),
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                });
+                              },
+                              child: BuyAgainButton()))),
                 ],
               ),
             )),

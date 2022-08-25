@@ -25,6 +25,7 @@ class DetailFood extends StatefulWidget {
 }
 
 class _DetailFoodState extends State<DetailFood> {
+  bool isPressed = false;
   @override
   Widget build(BuildContext context) {
     RestaurantNotifier restaurantNotifier =
@@ -63,10 +64,30 @@ class _DetailFoodState extends State<DetailFood> {
                               width: SizeConfig.screenWidth! * 0.45,
                             ),
                             GestureDetector(
-                              onTap: () {
+                              onDoubleTap: () {
+                                var uid = FirebaseAuth.instance.currentUser;
+                                DatabaseReference ref = FirebaseDatabase
+                                    .instance
+                                    .ref(uid!.uid)
+                                    .child('Favorite')
+                                    .child(widget.foodModel.foodName);
+                                ref.remove().whenComplete(() {
+                                  Fluttertoast.showToast(
+                                      msg: 'Removed from Favorite',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor:
+                                          const Color.fromRGBO(83, 232, 139, 1),
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                });
                               },
                               child: IconButton(
-                                icon: const Icon(Icons.favorite_border),
+                                icon: Icon(Icons.favorite_border,
+                                    color: (isPressed)
+                                        ? const Color(0xffffffff)
+                                        : const Color(0xffff0000)),
                                 onPressed: () {
                                   var uid = FirebaseAuth.instance.currentUser;
                                   DatabaseReference ref = FirebaseDatabase
@@ -80,8 +101,9 @@ class _DetailFoodState extends State<DetailFood> {
                                     'desc': widget.foodModel.desc,
                                     'ratingFood': widget.foodModel.ratingFood,
                                     'restaurantName':
-                                    widget.restaurantModel.restaurantName,
-                                    'foodUrlImage': widget.foodModel.foodUrlImage,
+                                        widget.restaurantModel.restaurantName,
+                                    'foodUrlImage':
+                                        widget.foodModel.foodUrlImage,
                                     'quantity': 1,
                                   }).whenComplete(() {
                                     Fluttertoast.showToast(
@@ -89,10 +111,13 @@ class _DetailFoodState extends State<DetailFood> {
                                         toastLength: Toast.LENGTH_SHORT,
                                         gravity: ToastGravity.BOTTOM,
                                         timeInSecForIosWeb: 1,
-                                        backgroundColor:
-                                        const Color.fromRGBO(83, 232, 139, 1),
+                                        backgroundColor: const Color.fromRGBO(
+                                            83, 232, 139, 1),
                                         textColor: Colors.white,
                                         fontSize: 16.0);
+                                    setState(() {
+                                      isPressed = true;
+                                    });
                                   });
                                 },
                               ),
