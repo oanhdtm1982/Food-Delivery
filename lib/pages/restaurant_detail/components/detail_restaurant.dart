@@ -7,7 +7,6 @@ import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/styles/text_styles.dart';
-import '../../../models/chat_model.dart';
 import '../../../models/testimonial_model.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';

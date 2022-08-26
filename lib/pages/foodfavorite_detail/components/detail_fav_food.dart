@@ -3,16 +3,20 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_delivery/models/food_database.dart';
-import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
-import 'package:food_delivery/notifier/food_notifier.dart';
 import 'package:food_delivery/widgets/size_config.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/colors/colors.dart';
 import '../../../constants/styles/text_styles.dart';
+import '../../../models/testimonial_model.dart';
 import '../../../repositories/get_restaurant.dart';
 import '../../../notifier/restaurant_notifier.dart';
 import '../../../widgets/buttons/button_filter_text.dart';
+import '../../../widgets/title_group.dart';
+import '../../chat_detail/chat_detail_screen.dart';
+import '../../explore_food/explore_food_screen.dart';
+import '../../restaurant_detail/components/testimonials_card.dart';
 
 class DetailFoodFav extends StatefulWidget {
   const DetailFoodFav(
@@ -32,8 +36,6 @@ class _DetailFoodFavState extends State<DetailFoodFav> {
     RestaurantNotifier restaurantNotifier =
         Provider.of<RestaurantNotifier>(context);
     getRestaurants(restaurantNotifier);
-    FoodNotifier foodNotifier =
-        (Provider.of<FoodNotifier>(context, listen: false));
     return Expanded(
       child: Align(
         alignment: Alignment.bottomCenter,
@@ -181,7 +183,10 @@ class _DetailFoodFavState extends State<DetailFoodFav> {
                         ),
                         Text(
                           '\$${widget.foodModel.price}',
-                          style: textNameProfile,
+                          style: const TextStyle(fontFamily: 'BentonSans Bold', fontSize: 20, color: appFoodPrice),
+                        ),
+                        const SizedBox(
+                          height: 8,
                         ),
                         Text(
                           widget.foodModel.desc,
@@ -190,61 +195,111 @@ class _DetailFoodFavState extends State<DetailFoodFav> {
                         const SizedBox(
                           height: 16,
                         ),
-                        //Elevated Button add to cart
                         GestureDetector(
                           onTap: () {
-                            var uid = FirebaseAuth.instance.currentUser;
-                            DatabaseReference ref = FirebaseDatabase.instance
-                                .ref(uid!.uid)
-                                .child('Cart')
-                                .child(widget.foodModel.foodName);
-                            ref.set({
-                              'foodName': widget.foodModel.foodName,
-                              'price': widget.foodModel.price,
-                              'desc': widget.foodModel.desc,
-                              'ratingFood': widget.foodModel.ratingFood,
-                              'restaurantName':
-                                  widget.restaurantModel.restaurantName,
-                              'foodUrlImage': widget.foodModel.foodUrlImage,
-                              'quantity': 1,
-                            }).whenComplete(() {
-                              Fluttertoast.showToast(
-                                  msg: 'Add to cart success',
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor:
-                                      const Color.fromRGBO(83, 232, 139, 1),
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
-                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ExploreFoodScreen()));
                           },
-                          child: Container(
-                            width: SizeConfig.screenWidth! * 0.9,
-                            height: SizeConfig.screenHeight! * 0.06,
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(83, 232, 139, 1),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Add to cart',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: SizeConfig.screenHeight! * 0.025,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: SizeConfig.screenWidth! * 0.05,
-                                ),
-                              ],
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                SizeConfig.screenWidth! * 0.001,
+                                0,
+                                SizeConfig.screenWidth! * 0.001,
+                                0),
+                            child: const TitleGroup(
+                              mainTitle: 'Testimonials',
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: SizeConfig.screenWidth! * 0.05,
+                        ),
+                        //Elevated Button add to cart
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: SizeConfig.screenWidth! * 0.3,
+                    width: SizeConfig.screenWidth! * 1,
+                    child: MediaQuery.removePadding(
+                      removeTop: true,
+                      removeBottom: true,
+                      context: context,
+                      child: Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: testimonialDemo.length,
+                          itemBuilder: (context, index) => TestimonialCard(
+                              testimonialModel: testimonialDemo[index],
+                              onPress: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ChatDetailScreen()));
+                              }),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      var uid = FirebaseAuth.instance.currentUser;
+                      DatabaseReference ref = FirebaseDatabase.instance
+                          .ref(uid!.uid)
+                          .child('Cart')
+                          .child(widget.foodModel.foodName);
+                      ref.set({
+                        'foodName': widget.foodModel.foodName,
+                        'price': widget.foodModel.price,
+                        'desc': widget.foodModel.desc,
+                        'ratingFood': widget.foodModel.ratingFood,
+                        'restaurantName': widget.restaurantModel.restaurantName,
+                        'foodUrlImage': widget.foodModel.foodUrlImage,
+                        'quantity': 1,
+                      }).whenComplete(() {
+                        Fluttertoast.showToast(
+                            msg: 'Add to cart success',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor:
+                                const Color.fromRGBO(83, 232, 139, 1),
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      });
+                    },
+                    child: Center(
+                      child: Container(
+                        width: SizeConfig.screenWidth! * 0.9,
+                        height: SizeConfig.screenHeight! * 0.06,
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(83, 232, 139, 1),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Add to cart',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: SizeConfig.screenHeight! * 0.025,
+                              ),
+                            ),
+                            SizedBox(
+                              width: SizeConfig.screenWidth! * 0.05,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: SizeConfig.screenWidth! * 0.05,
                   ),
                 ],
               ),

@@ -50,12 +50,14 @@ class TestimonialCard extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                    Text(testimonialModel.comment,
+                      Text(
+                        testimonialModel.comment,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 10,
+                        style: const TextStyle(
+                          fontSize: 10,
                           fontFamily: 'Roboto',
                         ),
-                    ),
+                      ),
                     ],
                   ),
                   Expanded(

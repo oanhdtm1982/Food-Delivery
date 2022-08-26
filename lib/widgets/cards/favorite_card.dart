@@ -93,7 +93,7 @@ class FavoriteCard extends StatelessWidget {
                                   Fluttertoast.showToast(
                                       msg: 'Add to cart success',
                                       toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
+                                      gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
                                       backgroundColor:
                                           const Color.fromRGBO(83, 232, 139, 1),
@@ -101,7 +101,7 @@ class FavoriteCard extends StatelessWidget {
                                       fontSize: 16.0);
                                 });
                               },
-                              child: BuyAgainButton()))),
+                              child: const BuyAgainButton()))),
                 ],
               ),
             )),
