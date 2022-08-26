@@ -26,6 +26,7 @@ class DetailFoodFav extends StatefulWidget {
 }
 
 class _DetailFoodFavState extends State<DetailFoodFav> {
+  bool isPressed = false;
   @override
   Widget build(BuildContext context) {
     RestaurantNotifier restaurantNotifier =
@@ -64,10 +65,33 @@ class _DetailFoodFavState extends State<DetailFoodFav> {
                               width: SizeConfig.screenWidth! * 0.45,
                             ),
                             GestureDetector(
-                              onTap: () {
+                              onDoubleTap: () {
+                                var uid = FirebaseAuth.instance.currentUser;
+                                DatabaseReference ref = FirebaseDatabase
+                                    .instance
+                                    .ref(uid!.uid)
+                                    .child('Favorite')
+                                    .child(widget.foodModel.foodName);
+                                ref.remove().whenComplete(() {
+                                  Fluttertoast.showToast(
+                                      msg: 'Removed from Favorite',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor:
+                                          const Color.fromRGBO(83, 232, 139, 1),
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  setState(() {
+                                    isPressed = false;
+                                  });
+                                });
                               },
                               child: IconButton(
-                                icon: const Icon(Icons.favorite_border),
+                                icon: Icon(Icons.favorite,
+                                    color: (isPressed)
+                                        ? const Color(0xffff0000)
+                                        : const Color(0xffa29e9e)),
                                 onPressed: () {
                                   var uid = FirebaseAuth.instance.currentUser;
                                   DatabaseReference ref = FirebaseDatabase
@@ -75,25 +99,47 @@ class _DetailFoodFavState extends State<DetailFoodFav> {
                                       .ref(uid!.uid)
                                       .child('Favorite')
                                       .child(widget.foodModel.foodName);
-                                  ref.set({
-                                    'foodName': widget.foodModel.foodName,
-                                    'price': widget.foodModel.price,
-                                    'desc': widget.foodModel.desc,
-                                    'ratingFood': widget.foodModel.ratingFood,
-                                    'restaurantName':
-                                    widget.restaurantModel.restaurantName,
-                                    'foodUrlImage': widget.foodModel.foodUrlImage,
-                                    'quantity': 1,
-                                  }).whenComplete(() {
-                                    Fluttertoast.showToast(
-                                        msg: 'Add to Favorite',
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor:
-                                        const Color.fromRGBO(83, 232, 139, 1),
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                  setState(() {
+                                    if (isPressed == false) {
+                                      isPressed = true;
+                                      ref.set({
+                                        'foodName': widget.foodModel.foodName,
+                                        'price': widget.foodModel.price,
+                                        'desc': widget.foodModel.desc,
+                                        'ratingFood':
+                                            widget.foodModel.ratingFood,
+                                        'restaurantName': widget
+                                            .restaurantModel.restaurantName,
+                                        'foodUrlImage':
+                                            widget.foodModel.foodUrlImage,
+                                        'quantity': 1,
+                                      }).whenComplete(() {
+                                        Fluttertoast.showToast(
+                                            msg: 'Added to Favorite',
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.TOP,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor:
+                                                const Color.fromRGBO(
+                                                    83, 232, 139, 1),
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+                                      });
+                                    } else {
+                                      isPressed = false;
+                                      ref.remove().whenComplete(() {
+                                        Fluttertoast.showToast(
+                                            msg: 'Removed from Favorite',
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.TOP,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor:
+                                                const Color.fromRGBO(
+                                                    83, 232, 139, 1),
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+                                      });
+                                    }
                                   });
                                 },
                               ),

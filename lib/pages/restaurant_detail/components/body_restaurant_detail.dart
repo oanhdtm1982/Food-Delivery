@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_model.dart';
 import 'package:food_delivery/models/restaurant_model.dart';
@@ -23,9 +24,9 @@ class BodyRestaurantDetail extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.35,
                 width: SizeConfig.screenWidth! * 1,
-                  child: Image.network(
-                    restaurantModel.restaurantUrlImage2,
-                  fit: BoxFit.cover,
+                  child: FancyShimmerImage(
+                    imageUrl: restaurantModel.restaurantUrlImage2,
+                    boxFit: BoxFit.cover,
                 ),
               ),
               DetailRestaurant(

@@ -24,7 +24,7 @@ const textBuyAgain = TextStyle(
 const textDescriptionRestaurant = TextStyle(
     fontFamily: 'BentonSans Book',
     height: 1.4,
-    fontSize: 12,
+    fontSize: 14,
     wordSpacing: 2,
     color: Color.fromRGBO(0, 0, 0, 1));
 
