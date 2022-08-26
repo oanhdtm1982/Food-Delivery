@@ -31,6 +31,7 @@ class _OrderDetailCardState extends State<OrderDetailCard> {
   @override
   initState() {
     super.initState();
+    build(context);
   }
   @override
   Widget build(BuildContext context) {

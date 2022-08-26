@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/constants/colors/colors.dart';
+import 'package:food_delivery/pages/cart/cart_screen.dart';
 
 class AddSubButton extends StatefulWidget {
   const AddSubButton({Key? key, required this.quantity, required this.foodName})
@@ -16,7 +17,7 @@ class _AddSubButtonState extends State<AddSubButton> {
   @override
   initState() {
     super.initState();
-
+    build(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -34,12 +35,13 @@ class _AddSubButtonState extends State<AddSubButton> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                 if (valueOrder > 1) {
-                   valueOrder--;
-                   ref.update({'quantity': valueOrder--});
-                 } else {
-                   ref.update({'quantity': valueOrder});
-                 }
+                  if (valueOrder > 1) {
+                    valueOrder--;
+                    ref.update({'quantity': valueOrder--});
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CartScreen()));
+                  } else {
+                    ref.update({'quantity': valueOrder});
+                  }
                 });
               },
               child: const SubButton()),
@@ -59,6 +61,8 @@ class _AddSubButtonState extends State<AddSubButton> {
                 setState(() {
                   valueOrder++;
                   ref.update({'quantity': valueOrder++});
+                  build(context);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CartScreen()));
                 });
               },
               child: const AddButton()),
